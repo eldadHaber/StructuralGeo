@@ -13,12 +13,16 @@ class GeoModel:
     """A 3D geological model that can be built up from geological processes.
     
     Parameters:
-    bounds (Tuple): (allmin, allmax) or ((xmin, xmax), (ymin, ymax), (zmin, zmax))
-    resolution (int): Number of divisions in each dimension, 
-                        or a tuple of 3 values for x, y, and z dimensions
-    dtype (dtype): Data type for the model data array 
+        bounds (Tuple): (allmin, allmax) or ((xmin, xmax), (ymin, ymax), (zmin, zmax))
+        resolution (int): Number of divisions in each dimension, 
+                            or a tuple of 3 values for x, y, and z dimensions
+        dtype (dtype): Data type for the model data array 
+        name (str): Optional name of the model
+        height_tracking (bool): Whether to track height above and below the model for renormalization        
     """
     EMPTY_VALUE = -1
+    EXT_FACTOR = 2  # Factor of z-range to extend above and below model for depth measurement
+    RES = 64        # Resolution of the extension bars (number of points computed above and below model)
     
     def __init__(self,  bounds=(0, 16), resolution=128, dtype = np.float32, name = "model", height_tracking = False):
         self.name = name
@@ -207,10 +211,12 @@ class GeoModel:
         if not keep_snapshots:
             self.snapshots = np.empty((0, 0, 0, 0))
         
-        # Remove the height tracking bars
+        # Remove the height tracking bars from the model
         if self.height_tracking:
             self.xyz = self.xyz[:-n_tracking_bar_points]
             self.data = self.data[:-n_tracking_bar_points]
+            self.data_snapshots = self.data_snapshots[:, :-n_tracking_bar_points]
+            self.mesh_snapshots = self.mesh_snapshots[:, :-n_tracking_bar_points]
           
     def _prepare_snapshots(self, history):
         """ Determine when to take snapshots of the mesh during the backward pass.
@@ -272,23 +278,20 @@ class GeoModel:
         x_center = (self.bounds[0][0] + self.bounds[0][1]) / 2
         y_center = (self.bounds[1][0] + self.bounds[1][1]) / 2
                 
-        # create upper and lower bars
-        EXT_FACTOR = 2  # Factor of z-range to extend above and below model for depth measurement
-        RES = 64        # Resolution of the extension bars (number of points computed above and below model)
-        
+        # create upper and lower bars        
         z_range = z_bounds[1] - z_bounds[0]
-        z_lower = np.linspace(z_bounds[0] - EXT_FACTOR*z_range, z_bounds[0],  num=RES, dtype=self.dtype)
-        z_upper = np.linspace(z_bounds[1], z_bounds[1] + EXT_FACTOR*z_range, num=RES, dtype=self.dtype)
+        z_lower = np.linspace(z_bounds[0] - self.EXT_FACTOR*z_range, z_bounds[0],  num=self.RES, dtype=self.dtype)
+        z_upper = np.linspace(z_bounds[1], z_bounds[1] + self.EXT_FACTOR*z_range, num=self.RES, dtype=self.dtype)
         
         lower_bar = np.column_stack((
-            np.full(RES, x_center),
-            np.full(RES, y_center),
+            np.full(self.RES, x_center),
+            np.full(self.RES, y_center),
             z_lower
         ))
         
         upper_bar = np.column_stack((
-            np.full(RES, x_center),
-            np.full(RES, y_center),
+            np.full(self.RES, x_center),
+            np.full(self.RES, y_center),
             z_upper
         ))
         

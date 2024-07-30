@@ -44,7 +44,7 @@ test_history2 = [bedrock, tilt2, sediment0]
 test_history3 = [bedrock, sediment0, dike, slip0]
 
 bounds = ((-20,20), (-20,20), (-10,10))
-model = geo.GeoModel(bounds = bounds, resolution = 128)
+model = geo.GeoModel(bounds = bounds, resolution = 128, height_tracking=True)
 model.add_history(test_history0)
 model.compute_model()
 
