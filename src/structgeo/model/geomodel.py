@@ -20,11 +20,12 @@ class GeoModel:
     """
     EMPTY_VALUE = -1
     
-    def __init__(self,  bounds=(0, 16), resolution=128, dtype = np.float32, name = "model"):
+    def __init__(self,  bounds=(0, 16), resolution=128, dtype = np.float32, name = "model", height_tracking = False):
         self.name = name
         self.dtype = dtype
         self.bounds = bounds
         self.resolution = resolution
+        self.height_tracking = height_tracking
         self.history = []
         # Placeholders for mesh data
         self.data = np.empty(0) # Vector of data values on mesh points
@@ -109,7 +110,7 @@ class GeoModel:
         
         # Initialize data array with NaNs
         self.data = np.full(self.xyz.shape[0], np.nan, dtype=self.dtype)  
-        
+   
     def add_history(self, history):
         """Add one or more geological processes to model history.
         
@@ -184,6 +185,9 @@ class GeoModel:
         # Allocate memory for the mesh and data
         self.setup_mesh()   
         
+        if self.height_tracking:
+            n_tracking_bar_points = self._add_height_tracking_bars()
+        
         # Unpack all compound events into atomic components
         history_unpacked = []
         for event in self.history:
@@ -202,6 +206,11 @@ class GeoModel:
         # Clean up snapshots taken during the backward pass
         if not keep_snapshots:
             self.snapshots = np.empty((0, 0, 0, 0))
+        
+        # Remove the height tracking bars
+        if self.height_tracking:
+            self.xyz = self.xyz[:-n_tracking_bar_points]
+            self.data = self.data[:-n_tracking_bar_points]
           
     def _prepare_snapshots(self, history):
         """ Determine when to take snapshots of the mesh during the backward pass.
@@ -254,6 +263,39 @@ class GeoModel:
                 self.data_snapshots[snapshot_index] = self.data.copy()
             if isinstance(event, Deposition):
                 _, self.data = event.run(current_xyz, self.data)
+    
+    def _add_height_tracking_bars(self):
+        """Hack to add single-file extension of points above and below model for height renorming."""
+        
+        z_bounds = self.bounds[-1]
+        # Calculate centered x, y coords
+        x_center = (self.bounds[0][0] + self.bounds[0][1]) / 2
+        y_center = (self.bounds[1][0] + self.bounds[1][1]) / 2
+                
+        # create upper and lower bars
+        EXT_FACTOR = 2  # Factor of z-range to extend above and below model for depth measurement
+        RES = 64        # Resolution of the extension bars (number of points computed above and below model)
+        
+        z_range = z_bounds[1] - z_bounds[0]
+        z_lower = np.linspace(z_bounds[0] - EXT_FACTOR*z_range, z_bounds[0],  num=RES, dtype=self.dtype)
+        z_upper = np.linspace(z_bounds[1], z_bounds[1] + EXT_FACTOR*z_range, num=RES, dtype=self.dtype)
+        
+        lower_bar = np.column_stack((
+            np.full(RES, x_center),
+            np.full(RES, y_center),
+            z_lower
+        ))
+        
+        upper_bar = np.column_stack((
+            np.full(RES, x_center),
+            np.full(RES, y_center),
+            z_upper
+        ))
+        
+        self.xyz = np.vstack((self.xyz, lower_bar,  upper_bar))
+        self.data = np.concatenate(( self.data,np. full(lower_bar.shape[0], np.nan), np.full(upper_bar.shape[0], np.nan)))
+        self.extra_points = len(lower_bar) + len(upper_bar)
+        return self.extra_points
         
     def fill_nans(self, value = EMPTY_VALUE):
         assert self.data is not None, "Data array is empty."

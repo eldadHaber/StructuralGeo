@@ -182,6 +182,7 @@ class FlatUnconformity(GeoWord):
         self.add_process(unconformity)
         
 class TippedUnconformity(GeoWord):
+    #TODO: Use tile process instead of rotate
     def build_history(self):
         tilt_angle = np.random.normal(0,20)
         theta = np.random.uniform(0, 360)
@@ -191,7 +192,7 @@ class TippedUnconformity(GeoWord):
         rot_in = geo.Rotate(rot_axis, tilt_angle)        
         unconformity = geo.UnconformityDepth(np.random.uniform(0, 2000))
         rot_out = geo.Rotate(rot_axis, -tilt_angle)        
-        self.hist.extend([rot_in, unconformity, rot_out])
+        self.add_process([rot_in, unconformity, rot_out])
         
 class WaveUnconformity(GeoWord):
     def build_history(self):
@@ -207,7 +208,7 @@ class WaveUnconformity(GeoWord):
         fold_out = fold_in.copy()
         fold_out.amplitude *= -1*np.random.normal(.8,.1)
         unconformity = geo.UnconformityDepth(np.random.uniform(200, 2000))        
-        self.hist.extend([fold_in, unconformity, fold_out])
+        self.add_process([fold_in, unconformity, fold_out])
             
         
         

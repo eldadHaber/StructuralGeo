@@ -101,7 +101,7 @@ class Shift(Transformation):
         # Apply the shift to the xyz points (inverse operation is negative vector)
         xyz_transformed = xyz - self.vector
         return xyz_transformed, data
-    
+       
 class Rotate(Transformation):
     """ Rotate the model by a given angle about an axis. """
     def __init__(self, axis, angle):
@@ -816,6 +816,3 @@ class Shear(Slip):
         # Apply the shear transformation
         xyz_transformed, array = super().run(xyz, array)
         return xyz_transformed, array
-   
-    
-
