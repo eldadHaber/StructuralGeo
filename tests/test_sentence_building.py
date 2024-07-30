@@ -34,7 +34,7 @@ def single_sentence_test():
         geovis.volview(model, plotter=p)    
     p.show()
 
-config = load_config()
+config = load_config(name='config_default.json')
 yaml_loc = config['yaml_file']
 stats_dir = config['stats_dir']   
 def model_loader_test():
@@ -46,10 +46,9 @@ def model_loader_test():
         geovis.volview(model, plotter=p)
     p.show()
    
-
     print('')
     
-single_sentence_test()    
+# single_sentence_test()    
 model_loader_test()
     
 

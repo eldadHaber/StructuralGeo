@@ -105,23 +105,25 @@ class GeoModelGenerator:
         return [word.generate() for word in sentence]
     
     def _history_to_model(self, hist: List[geo.GeoProcess]) -> geo.GeoModel:
-        """Generate a model from a history and normalize the height."""
-        
+        """ Generate a model from a history and normalize the height. Use a low resolution to estimate renormalization."""
+    
         # Generate a low resolution model to estimate the renormalization
-        model = geo.GeoModel(bounds=self.bounds, resolution=(8,8,32))
+        model = geo.GeoModel(bounds=self.bounds, resolution=(8,8,64))
         model.add_history(hist)
         model.compute_model()
         
         # First squash the model downwards until it is below the top of the bounds
         new_max = model.get_target_normalization(target_max = .1)
         model_max = model.bounds[2][1]
-        max_iter = 10
+        max_iter = 5
         while True and max_iter > 0:
+            # Find what the max value was before renormalization
             observed_max = model.renormalize_height(new_max=new_max)
             max_iter -= 1
+            # If the max is inside of the bounds, stop
             if observed_max < model_max:
                 break
-        
+            
         # Now renormalize the model to the correct height
         model.renormalize_height(auto=True)
         # Copy the vertical shift required to normalize the model    

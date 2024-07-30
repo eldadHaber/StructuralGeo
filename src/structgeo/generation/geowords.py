@@ -70,7 +70,7 @@ class InfiniteBasement(GeoWord):
     """A foundational bedrock layer to simulate an infinite basement."""
     def build_history(self):
         # Generate a simple basement layer
-        self.add_process(geo.Bedrock(base=BOUNDS_X[0], value=0))
+        self.add_process(geo.Bedrock(base=BOUNDS_Z[0], value=0))
         
 class InfiniteSediment(GeoWord):
     """A large sediment accumulation to simulate deep sedimentary layers."""

@@ -1,6 +1,7 @@
 import numpy as np
 from .geoprocess import *
 from .util import rotate, slip_normal_vectors, resample_mesh
+import traceback
 
 import logging
 # Set up a simple logger
@@ -21,10 +22,10 @@ class GeoModel:
         height_tracking (bool): Whether to track height above and below the model for renormalization        
     """
     EMPTY_VALUE = -1
-    EXT_FACTOR = 2  # Factor of z-range to extend above and below model for depth measurement
-    RES = 64        # Resolution of the extension bars (number of points computed above and below model)
+    EXT_FACTOR = 3  # Factor of z-range to extend above and below model for depth measurement
+    RES = 128        # Resolution of the extension bars (number of points computed above and below model)
     
-    def __init__(self,  bounds=(0, 16), resolution=128, dtype = np.float32, name = "model", height_tracking = False):
+    def __init__(self,  bounds=(0, 16), resolution=128, dtype = np.float32, name = "model", height_tracking = True):
         self.name = name
         self.dtype = dtype
         self.bounds = bounds
@@ -311,8 +312,9 @@ class GeoModel:
         Note this operation is expensive since it requires recomputing the model.
         
         Parameters:
-        - new_max: The new maximum height for the model.
-        - optional auto: Automatically select a new maximum height based on the model's current height.
+        - new_max (float): The new maximum height for the model.
+        - auto (boolean): Automatically select a new maximum height based on the model's current height.
+        - recompute: Recompute the model after renormalization.
         """
         assert self.data is not None, "Data array is empty."
         #Find the highest point
@@ -321,9 +323,10 @@ class GeoModel:
         try:
             current_max_z = np.max(valid_z_values)
         except ValueError:
+            # traceback.print_exc()
             print("All data values are NaN, cannot renormalize.")
             zmin, zmax = self.get_z_bounds()
-            current_max_z = zmin
+            current_max_z = zmin  # Defaulting to zmin if no valid max found
 
         if auto:
             new_max = self.get_target_normalization()
