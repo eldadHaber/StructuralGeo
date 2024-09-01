@@ -42,8 +42,8 @@ class _EventTemplateClass(GeoWord):
 
     Event = namedtuple("Case", ["name", "p", "processes"])
 
-    def __init__(self, cases: List[Event], rng=None):
-        super().__init__(rng)
+    def __init__(self, cases: List[Event], seed=None):
+        super().__init__(seed)
         self.cases = cases
         self.selected_case = None
         self.probabilities = None
@@ -122,7 +122,7 @@ class BaseStrata(_EventTemplateClass):
     A sampling regime for base strata.
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(
                 name="Basement", p=0.3, processes=[InfiniteBasement(), Sediment()]
@@ -139,7 +139,7 @@ class BaseStrata(_EventTemplateClass):
                 processes=[InfiniteSedimentTilted()],
             ),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class Sediment(_EventTemplateClass):
@@ -147,13 +147,13 @@ class Sediment(_EventTemplateClass):
     A sampling regime for sediment events.
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="Fine", p=0.4, processes=[FineRepeatSediment()]),
             self.Event(name="Coarse", p=0.5, processes=[CoarseRepeatSediment()]),
             self.Event(name="Single", p=0.1, processes=[SingleRandSediment()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class Erosion(_EventTemplateClass):
@@ -161,13 +161,13 @@ class Erosion(_EventTemplateClass):
     A sampling regime for erosion events.
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="Flat", p=0.2, processes=[FlatUnconformity()]),
             self.Event(name="Tilted", p=0.4, processes=[TiltedUnconformity()]),
             self.Event(name="Wave", p=0.4, processes=[WaveUnconformity()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class Dike(_EventTemplateClass):
@@ -175,13 +175,13 @@ class Dike(_EventTemplateClass):
     A sampling regime for intrusion events.
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="Dike", p=0.4, processes=[DikePlaneWord()]),
             self.Event(name="WarpedDike", p=0.4, processes=[SingleDikeWarped()]),
             self.Event(name="DikeGroup", p=0.2, processes=[DikeGroup()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class Sills(_EventTemplateClass):
@@ -189,13 +189,13 @@ class Sills(_EventTemplateClass):
     A sampling regime for sill events.
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="SillSingle", p=0.2, processes=[SillWord()]),
             # Note the sill system places a large sediment deposit at same time for embedding
             self.Event(name="SillSystem", p=0.8, processes=[SillSystem()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class Pluton(_EventTemplateClass):
@@ -203,12 +203,12 @@ class Pluton(_EventTemplateClass):
     A sampling regime for volcanic events.
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="Laccolith", p=0.4, processes=[Laccolith()]),
             self.Event(name="Lopolith", p=0.6, processes=[Lopolith()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class OreDeposit(_EventTemplateClass):
@@ -218,11 +218,11 @@ class OreDeposit(_EventTemplateClass):
     Can be expanded to include more types in the future
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="BlobCluster", p=1.0, processes=[BlobCluster()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class Fold(_EventTemplateClass):
@@ -230,19 +230,19 @@ class Fold(_EventTemplateClass):
     A sampling regime for folding events.
     """
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="Simple", p=0.2, processes=[SimpleFold()]),
             self.Event(name="Shaped", p=0.3, processes=[ShapedFold()]),
             self.Event(name="Fourier", p=0.5, processes=[FourierFold()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
 class Fault(_EventTemplateClass):
     """A sampling regime for fault events."""
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="Normal", p=0.1, processes=[FaultNormal()]),
             self.Event(name="Reverse", p=0.1, processes=[FaultReverse()]),
@@ -251,23 +251,24 @@ class Fault(_EventTemplateClass):
             self.Event(name="StrikeSlip", p=0.2, processes=[FaultStrikeSlip()]),
             self.Event(name="FullyRandom", p=0.2, processes=[FaultRandom()]),
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
 
 
+#TODO: Implement Slip events in GeoWords and add to the Slip class
 class Slip(_EventTemplateClass):
     """A sampling regime for slip events."""
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [self.Event(name="Null", p=1.0, processes=[NullWord()])]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)
         NotImplementedError()
 
 
 class End(_EventTemplateClass):
     """An ending flag for the geostory."""
 
-    def __init__(self, rng=None):
+    def __init__(self, seed=None):
         cases = [
             self.Event(name="Null (End of Sequence)", p=1.0, processes=[NullWord()])
         ]
-        super().__init__(cases=cases, rng=rng)
+        super().__init__(cases=cases, seed=seed)

@@ -37,7 +37,7 @@ def test_markov_geostory_init():
     for _ in range(8):
         print(gen._build_markov_sequence())
     for _ in range(8):
-        history = gen._build_geostory()
+        history = gen.build_geostory()
         gm = GeoModel()
         gm.add_history(history)
         print(gm.get_history_string())
