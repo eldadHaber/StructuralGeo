@@ -83,8 +83,8 @@ class MarkovGeostoryGenerator(_GeostoryGenerator):
         See the MarkovMatrixParser class for more information on format and requirements.
     """
 
-    _START_STATE = "BaseStrata"
-    _END_STATE = "End"
+    _START_STATE = "BaseStrata" # Name of the Markov chain start state, must reference valid events class
+    _END_STATE = "End" # Name of the Markov chain termination event, must reference valid events class
     _MAX_STEPS = 20
 
     def __init__(self, **kwargs):

@@ -209,6 +209,9 @@ class CompoundProcess(GeoProcess):
 class NullProcess(GeoProcess):
     """A null process that does not modify the model."""
 
+    def __str__(self):
+        return "NullProcess: no compute action."
+
     def run(self, xyz, data):
         return xyz, data
 

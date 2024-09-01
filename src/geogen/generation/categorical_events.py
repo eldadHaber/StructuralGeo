@@ -269,6 +269,6 @@ class End(_EventTemplateClass):
 
     def __init__(self, seed=None):
         cases = [
-            self.Event(name="Null (End of Sequence)", p=1.0, processes=[NullWord()])
+            self.Event(name="Termination of Sequence", p=1.0, processes=[NullWord()])
         ]
         super().__init__(cases=cases, seed=seed)
