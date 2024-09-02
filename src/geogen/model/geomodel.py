@@ -14,22 +14,41 @@ logging.disable()
 
 
 class GeoModel:
-    """A 3D geological model that can be built up from geological processes.
+    """
+    A 3D geological model that can be built up from geological processes. The model is represented
+    as a 3D meshgrid with data values at each point. A history of GeoProcesses can be added and
+    computed to build the model.
 
-    Parameters:
-        bounds (Tuple): (allmin, allmax) or ((xmin, xmax), (ymin, ymax), (zmin, zmax))
-        resolution (int): Number of divisions in each dimension,
-                            or a tuple of 3 values for x, y, and z dimensions
-        dtype (dtype): Data type for the model data array
-        name (str): Optional name of the model
-        height_tracking (bool): Whether to track height above and below the model for renormalization
+    Parameters
+    ----------
+    bounds : tuple
+        A tuple specifying the bounds of the model. It can be a single tuple of two values
+        representing (min, max) for all dimensions, or a tuple of three tuples representing
+        (xmin, xmax), (ymin, ymax), and (zmin, zmax).
+    resolution : int or tuple
+        The number of divisions in each dimension. If a single integer is provided, the same
+        resolution is used for all dimensions. If a tuple of three integers is provided,
+        they represent the resolution for x, y, and z dimensions, respectively.
+    dtype : dtype, optional
+        The data type for the model's data array. Default is np.float32.
+    name : str, optional
+        The name of the model. Default is "model".
+    height_tracking : bool, optional
+        Whether to track height above and below the model for renormalization. Default is True.
     """
 
+    # fmt: off
+    # Conversion value from NaN to integer for filling air/non-rock areas in the model
     EMPTY_VALUE = -1
-    EXT_FACTOR = (
-        3  # Factor of z-range to extend above and below model for depth measurement
-    )
-    RES = 128  # Resolution of the extension bars (number of points computed above and below model)
+
+    # Height tracking parameters
+    HEIGHT_BAR_EXT_FACTOR = 3  # Factor of z-range to extend above and below model for depth measurement
+    HEIGHT_BAR_RESOLUTION = 128  # Resolution of the extension bars (number of points computed above and below model)
+
+    # Height normalization parameters
+    HEIGHT_NORMALIZATION_FILL_TARGET = 0.85  # Target maximum height for model normalization    
+    HEIGHT_NORMALIZATION_STD_DEV = 0.05  # Standard deviation for height normalization
+    # fmt: on
 
     def __init__(
         self,
@@ -43,13 +62,16 @@ class GeoModel:
         self.dtype = dtype
         self.bounds = bounds
         self.resolution = resolution
+
+        # Height tracking extensions
         self.height_tracking = height_tracking
-        self.extra_points = (
-            0  # Number of extra points currently added for height tracking
-        )
+        self.num_tracking_points = 0
+        self.height_tracking_indices = []
+
+        # A packed and cached unpacked history of geological processes
         self.history = []
-        # modified history with deferred parameters resolved (post-computation)
-        self.processed_history = []
+        self.history_unpacked = []
+
         # Placeholders for mesh data
         self.data = np.empty(0)  # Vector of data values on mesh points
         self.xyz = np.empty((0, 0))  # nx3 matrix of mesh points (x, y, z)
@@ -66,7 +88,14 @@ class GeoModel:
         self._validate_model_params()
 
     def _validate_model_params(self):
-        """Validate the model parameters."""
+        """
+        Validate the model parameters.
+
+        Raises
+        ------
+        ValueError
+            If the resolution or bounds are not properly formatted or invalid.
+        """
         # Check and accept resolution as a single value or a tuple of 3 values
         if isinstance(self.resolution, int):
             self.resolution = (self.resolution, self.resolution, self.resolution)
@@ -95,12 +124,36 @@ class GeoModel:
             )
 
     def __repr__(self):
+        """
+        Provide a compact string representation of the GeoModel instance.
+
+        Returns
+        -------
+        str
+            A string that represents the GeoModel instance.
+        """
         return f"GeoModel(name={self.name}, bounds={self.bounds}, resolution={self.resolution})"
 
     def __str__(self):
+        """
+        Provide a detailed string description of the GeoModel instance.
+
+        Returns
+        -------
+        str
+            A detailed string description of the GeoModel instance.
+        """
         return f"GeoModel: {self.name}\nBounds: {self.bounds}\nResolution: {self.resolution}\nHistory: {self.get_history_string()}"
 
     def _repr_html_(self):
+        """
+        Provide an HTML representation of the GeoModel instance for Jupyter notebooks.
+
+        Returns
+        -------
+        str
+            An HTML-formatted string representation of the GeoModel instance.
+        """
         # Generating the history column HTML
         if not self.history:
             history_html = "<p>No geological history to display.</p>"
@@ -127,8 +180,10 @@ class GeoModel:
         """
         return table
 
-    def setup_mesh(self):
-        """Sets up the 3D meshgrid based on given bounds and resolution."""
+    def _setup_mesh(self):
+        """
+        Set up the 3D meshgrid and data based on the specified bounds and resolution.
+        """
         # Unpack bounds and resolution
         try:
             x_bounds, y_bounds, z_bounds = self.bounds
@@ -156,10 +211,20 @@ class GeoModel:
         self.data = np.full(self.xyz.shape[0], np.nan, dtype=self.dtype)
 
     def add_history(self, history):
-        """Add one or more geological processes to model history.
+        """
+        Add one or more geological processes to the model's history with validation.
 
-        Parameters:
-            history (GeoProcess or list of GeoProcess): A GeoProcess instance or a list of GeoProcess instances to be added to the model's history.
+        Parameters
+        ----------
+        history : GeoProcess or list of GeoProcess
+            A GeoProcess instance or a list of GeoProcess instances to be added to the model's history.
+
+        Raises
+        ------
+        TypeError
+            If any item in the history list is not an instance of GeoProcess.
+        ValueError
+            If a CompoundProcess in the history has no defined history.
         """
         # Check if the input is not a list, make it a list
         if not isinstance(history, list):
@@ -178,31 +243,39 @@ class GeoModel:
 
         # Extend the existing history with the new history
         self.history.extend(history)
+        # Clear the unpacked history cache
+        self.history_unpacked = []
 
     def get_history_string(self):
-        """Returns a string describing the complete geological history of the model."""
+        """
+        Get a string description of the complete geological history of the model.
+
+        Returns
+        -------
+        str
+            A string describing the geological history of the model.
+        """
         if not self.history:
             return "No geological history to display."
 
         history_str = "Geological History:\n"
 
-        # Print from the processed history if available
-        ref_history = (
-            self.history if not self.processed_history else self.processed_history
-        )
-
-        for index, process in enumerate(ref_history):
+        for index, process in enumerate(self.history):
             history_str += f"{index + 1}: {str(process)}\n"
 
         return history_str.strip()  # Remove the trailing newline
 
     def clear_history(self):
-        """Clear all geological process from history."""
+        """
+        Clear all geological processes from the model's history.
+        """
         self.history = []
-        self.processed_history = []
+        self.history_unpacked = []
 
     def clear_data(self):
-        """Clear the model but retain build parameters."""
+        """
+        Clear the model data while retaining the build parameters.
+        """
         self.mesh_snapshots = np.empty((0, 0, 0, 0))
         self.data_snapshots = np.empty((0, 0))
         self.data = np.empty(0)
@@ -211,107 +284,224 @@ class GeoModel:
         self.Y = np.empty((0, 0, 0))
         self.Z = np.empty((0, 0, 0))
 
-    def compute_model(
-        self, normalize=False, low_res=(8, 8, 64), max_iter=10, keep_snapshots=True
-    ):
+    def compute_model(self, keep_snapshots=True, normalize=False, low_res=(8, 8, 64)):
         """
-        Compute the present day model based on the geological history with an option to normalize the height.
+        Compute the present-day model based on the geological history with an option to normalize the height.
 
-        Parameters:
-            - normalize (boolean) : Whether to auto-normalize the model's height to fit in view field.
-            - low_res (tuple) : The resolution for the preliminary model used for renormalization.
-            - max_iter (int) : Maximum iterations for the renormalization loop.
-            - keep_snapshots (boolean) : Whether to keep snapshots of the mesh during computation.
-
-        Returns:
-            - None
+        Parameters
+        ----------
+        keep_snapshots : bool, optional
+            Whether to keep snapshots of the mesh during computation. Default is True.
+        normalize : bool, optional
+            Whether to auto-normalize the model's height to fit in the view field. Default is False.
+        low_res : tuple, optional
+            If normalize is True, the low-cost normalization model resolution used. Default is (8, 8, 64).
         """
         if normalize:
-            normed_history = self._get_lowres_normalized_history(
-                low_res=low_res, max_iter=max_iter
-            )
-            self.clear_history()
-            self.add_history(normed_history)
+            # Run a preliminary low res model to normalize the height
+            z_shift = self._get_lowres_z_shift_normalization(low_res=low_res)
+            self.add_history(Shift([0, 0, z_shift]))
 
         # Run the actual model computation (whether normalized or not)
-        self._apply_history_computation(keep_snapshots)
+        self._apply_history_computation(keep_snapshots=keep_snapshots)
 
-    def _apply_history_computation(self, keep_snapshots=True):
-        """Compute the present day model based on the geological history
+    def _apply_history_computation(self, keep_snapshots=True, remove_bars=True):
+        """
+        Compute the present-day model based on the geological history.
 
-        Snapshots:
-        The xyz mesh is saved to a preallocated array for use in the forward pass.
-        The starting state [0] is always required, additional snapshots are needed
-        at the start of any deposition process.
+        Parameters
+        ----------
+        keep_snapshots : bool, optional
+            Whether to keep snapshots of the mesh during computation. Default is True.
+        remove_bars : bool, optional
+            Whether to remove height tracking bars after computation. Default is True.
 
-        Backward pass:
-        The xyz mesh is backtracked through history using the transformations
-        stored in the history list. Intermediate states are stored at required
-        intervals for the forward pass.
+        Method Overview
+        ---------------
+        This method performs the following steps:
 
-        Forward pass:
-        The deposition events are applied to the xyz mesh in its intermediate
-        transformed state.
+        - **Snapshots**:
+        The xyz mesh sequence of deformations are saved to a preallocated array for use
+        in the forward pass. The starting state [0] is always required; additional
+        snapshots are needed at the start of any deposition process, since depositions are
+        applied to the deformed mesh on the forward pass.
 
-        Conditional height tracking:
-        If height tracking is enabled, additional points are added to the model so that
-        additional low resolution context is known to help with renormalization of model height.
+        - **Backward pass**:
+        The xyz mesh is backtracked through history using the Transformation GeoProcesses
+        that are stored in the history list. Snapshots of deformed mesh are stored to for the
+        forward pass.
 
-        Deferred Parameters:
-        The GeoProcess are allowed to use DeferredParameters, they are process parameters that
+        - **Forward pass**:
+        The Deposition GeoProcesses are applied to the xyz mesh in its intermediate transformed state.
+
+        - **Conditional height tracking**:
+        If height tracking is enabled, additional points are added to the model ro add
+        extended low-resolution context above and below the model. This is crucial for tracking
+        heights and stabilizing the model through shifting bounds, height, and sediments.
+        The number of extra points added is tracked in the `num_tracking_points` attribute.
+
+        - **Deferred Parameters**:
+        GeoProcesses are allowed to use DeferredParameters, which are GeoProcess atrributes that
         are resolved at the time of computation since they depend on the context of the history.
-        For example it could be tracking an origin point backwards through history to get its
+        For example, it could involve tracking an origin point backward through history to get its
         equivalent position in the past. History and index are passed for this purpose.
         """
-        if len(self.history) == 0:
+        if not self.history:
             raise ValueError("No geological history to compute.")
 
         # Clear the model data before recomputing
         self.clear_data()
         # Allocate memory for the mesh and data
-        self.setup_mesh()
+        self._setup_mesh()
 
-        if getattr(
-            self, "height_tracking", False
-        ):  # Handle earlier versions of GeoModel without height tracking
-            n_tracking_bar_points = self._add_height_tracking_bars()
-
-        # Make a copy of the history to be processed to avoid modifying orignal history
-        # with any deferred parameters.
-        self.processed_history = copy.deepcopy(self.history)
+        # If height tracking is enabled, add bars
+        self._add_height_tracking_bars() if self.height_tracking else 0
 
         # Unpack all compound events into atomic components
-        history_unpacked = []
-        for event in self.processed_history:
-            if isinstance(event, CompoundProcess):
-                history_unpacked.extend(event.unpack())
-            else:
-                history_unpacked.append(event)
+        self.history_unpacked = self._unpack_history()
 
         # Determine how many snapshots are needed for memory pre-allocation
-        self._prepare_snapshots(history_unpacked)
+        self._prepare_snapshots(self.history_unpacked)
         # Backward pass to reverse mesh grid of points
-        self._backward_pass(history_unpacked)
+        self._backward_pass(self.history_unpacked)
         # Forward pass to apply deposition events
-        self._forward_pass(history_unpacked)
+        self._forward_pass(self.history_unpacked)
 
-        # Clean up snapshots taken during the backward pass
+        # Clean up snapshots if not required
         if not keep_snapshots:
-            self.snapshots = np.empty((0, 0, 0, 0))
+            self.mesh_snapshots = np.empty((0, 0, 0, 0))
+            self.data_snapshots = np.empty((0, 0))
 
-        # Remove the height tracking bars from the model
-        if getattr(
-            self, "height_tracking", False
-        ):  # Handle earlier versions of GeoModel without height tracking
-            self.xyz = self.xyz[:-n_tracking_bar_points]
-            self.data = self.data[:-n_tracking_bar_points]
-            self.data_snapshots = self.data_snapshots[:, :-n_tracking_bar_points]
-            self.mesh_snapshots = self.mesh_snapshots[:, :-n_tracking_bar_points]
+        # Remove height tracking bars if required
+        if remove_bars and self.num_tracking_points > 0:
+            self._remove_tracking_points()
+
+    def _add_height_tracking_bars(self):
+        """
+        Add height tracking bars that extend from the center and corners of the model's bounds
+        above and below the model. One bar from each corner and one from the center, both the upper
+        and lower face of the model for a total of 10 bars. EXT_FACTOR and RESOLUTION are used to control
+        the factor of z-range to extend and the resolution of the bars.
+
+        This method saves the indices of the added height tracking points in `self.height_tracking_indices`.
+        """
+
+        # Calculate x, y coords for center and corners
+        x_center, y_center = np.mean(self.bounds[0]), np.mean(self.bounds[1])
+
+        corners = [
+            (self.bounds[0][0], self.bounds[1][0]),  # Bottom-left
+            (self.bounds[0][0], self.bounds[1][1]),  # Top-left
+            (self.bounds[0][1], self.bounds[1][0]),  # Bottom-right
+            (self.bounds[0][1], self.bounds[1][1]),  # Top-right
+        ]
+
+        # Create upper and lower bars
+        z_bounds = self.bounds[-1]
+        z_range = z_bounds[1] - z_bounds[0]
+        z_lower = np.linspace(
+            z_bounds[0] - self.HEIGHT_BAR_EXT_FACTOR * z_range,
+            z_bounds[0],
+            num=self.HEIGHT_BAR_RESOLUTION,
+            dtype=self.dtype,
+        )
+        z_upper = np.linspace(
+            z_bounds[1],
+            z_bounds[1] + self.HEIGHT_BAR_EXT_FACTOR * z_range,
+            num=self.HEIGHT_BAR_RESOLUTION,
+            dtype=self.dtype,
+        )
+
+        # Generate bars from center and corners (across all 5 (x,y) by 2 z sets)
+        bars = [
+            np.column_stack(
+                [
+                    np.full(self.HEIGHT_BAR_RESOLUTION, x),
+                    np.full(self.HEIGHT_BAR_RESOLUTION, y),
+                    z,
+                ]
+            )
+            for x, y in [(x_center, y_center)] + corners
+            for z in [z_lower, z_upper]
+        ]
+
+        # Stack all bars together into a single Mx3 array of (x, y, z) points
+        all_bars = np.vstack(bars)
+        M = all_bars.shape[0]
+
+        # Append the new points to existing xyz and data arrays
+        self.xyz = np.vstack((self.xyz, all_bars))
+        self.data = np.concatenate((self.data, np.full(M, np.nan)))
+
+        # Save the indices of the newly added points
+        self.height_tracking_indices = np.arange(len(self.xyz) - M, len(self.xyz))
+
+        # Update the number of tracking points
+        self.num_tracking_points = M
+
+    def _remove_tracking_points(self):
+        """
+        Remove the height tracking bars from the model.
+
+        This method modifies the following attributes:
+        - `xyz`: The meshgrid points array, with height tracking bars removed.
+        - `data`: The data array corresponding to the meshgrid points.
+        - `data_snapshots`: The array storing data snapshots, with tracking points removed.
+        - `mesh_snapshots`: The array storing mesh snapshots, with tracking points removed.
+        - `num_tracking_points`: Reset to zero after removing the height tracking bars.
+        - `height_tracking_indices`: Cleared after removing the height tracking bars.
+        """
+        if self.num_tracking_points > 0 and hasattr(self, "height_tracking_indices"):
+            mask = np.ones(len(self.xyz), dtype=bool)
+            mask[self.height_tracking_indices] = False
+
+            self.xyz = self.xyz[mask]
+            self.data = self.data[mask]
+            self.data_snapshots = self.data_snapshots[:, mask]
+            self.mesh_snapshots = self.mesh_snapshots[:, mask]
+
+            # Reset the tracking points information
+            self.num_tracking_points = 0
+            self.height_tracking_indices = []
+
+    def _unpack_history(self):
+        """
+        Unpack all compound processes into atomic components and cache the result.
+
+        This method resolves compound geological processes, breaking them into simpler, atomic
+        components to ensure each process is individually applied during model computation.
+
+        Returns
+        -------
+        list
+            A list of unpacked (atomic) geological processes.
+        """
+        if not self.history_unpacked:
+            self.history_unpacked = []
+            history_copy = copy.deepcopy(self.history)
+            for event in history_copy:
+                if isinstance(event, CompoundProcess):
+                    self.history_unpacked.extend(event.unpack())
+                else:
+                    self.history_unpacked.append(event)
+        return self.history_unpacked
 
     def _prepare_snapshots(self, history):
-        """Determine when to take snapshots of the mesh during the backward pass.
+        """
+        Determine when to take snapshots of the mesh during the backward pass.
 
-        Snapshots of the xyz mesh should be taken at end of a transformation sequence
+        Snapshots are taken at key points in the transformation sequence to capture
+        the state of the mesh before deposition events are applied.
+
+        Parameters
+        ----------
+        history : list
+            The unpacked geological history of the model.
+
+        Returns
+        -------
+        list
+            A list of indices indicating when snapshots are to be taken.
         """
         # Always include the oldest time state of mesh
         snapshot_indices = [0]
@@ -333,7 +523,17 @@ class GeoModel:
         return snapshot_indices
 
     def _backward_pass(self, history):
-        """Backtrack the xyz mesh through the geological history using transformations."""
+        """
+        Backtrack the xyz mesh through the geological history using transformations.
+
+        This method assumes reverse transformations to revert the model's state
+        back in time, storing snapshots at key intervals for the forward pass (inverse transform).
+
+        Parameters
+        ----------
+        history : list
+            The unpacked geological history of the model.
+        """
         # Make a copy of the model xyz mesh to apply transformations
         current_xyz = self.xyz.copy()
 
@@ -362,7 +562,17 @@ class GeoModel:
             i -= 1
 
     def _forward_pass(self, history):
-        """Apply deposition events to the mesh based on the geological history."""
+        """
+        Apply deposition events to the mesh based on the geological history.
+
+        This method applies deposition processes to the model, modifying the geological data
+        according to the intermediate transformed state captured during the backward pass.
+
+        Parameters
+        ----------
+        history : list
+            The unpacked geological history of the model.
+        """
         for i, event in enumerate(history):
             # Update mesh coordinates as required by fetching snapshot from the backward pass
             if i in self.snapshot_indices:
@@ -377,136 +587,125 @@ class GeoModel:
                     index=i,  # Pass the index of the event in the history
                 )
 
-    def _add_height_tracking_bars(self):
-        """Add height tracking bars that extend from the center and corners of the bounds above and below the model.
-        The class attributes EXT_FACTOR and RES control the number of points and the extension factor.
+    def _get_lowres_z_shift_normalization(self, low_res=(8, 8, 64), max_iter=10):
         """
+        Normalize the model to a new maximum height through iterative correction.
 
-        z_bounds = self.bounds[-1]
-        # Calculate x, y coords for center and corners
-        x_center = (self.bounds[0][0] + self.bounds[0][1]) / 2
-        y_center = (self.bounds[1][0] + self.bounds[1][1]) / 2
+        This method generates a low-resolution version of the model to estimate the required
+        vertical shift for normalizing the model's height to a desired range.
 
-        corners = [
-            (self.bounds[0][0], self.bounds[1][0]),  # Bottom-left
-            (self.bounds[0][0], self.bounds[1][1]),  # Top-left
-            (self.bounds[0][1], self.bounds[1][0]),  # Bottom-right
-            (self.bounds[0][1], self.bounds[1][1]),  # Top-right
-        ]
+        Parameters
+        ----------
+        low_res : tuple, optional
+            Resolution to use for the low-resolution model. Default is (8, 8, 64).
+        max_iter : int, optional
+            Maximum iterations for attempting to normalize the height. Default is 10.
 
-        # create upper and lower bars
-        z_range = z_bounds[1] - z_bounds[0]
-        z_lower = np.linspace(
-            z_bounds[0] - self.EXT_FACTOR * z_range,
-            z_bounds[0],
-            num=self.RES,
-            dtype=self.dtype,
-        )
-        z_upper = np.linspace(
-            z_bounds[1],
-            z_bounds[1] + self.EXT_FACTOR * z_range,
-            num=self.RES,
-            dtype=self.dtype,
-        )
+        Returns
+        -------
+        float
+            The total vertical shift needed to normalize the model's height.
+        """
+        total_z_shift = 0  # Accumulated total shift required to renormalize the model
 
-        # Generate bars from center, adds 2 bars
-        bars = [
-            np.column_stack(
-                (np.full(self.RES, x_center), np.full(self.RES, y_center), z_lower)
-            ),
-            np.column_stack(
-                (np.full(self.RES, x_center), np.full(self.RES, y_center), z_upper)
-            ),
-        ]
-
-        # Generate bars from corners, adds 8 bars
-        for x, y in corners:
-            lower_bar = np.column_stack(
-                (np.full(self.RES, x), np.full(self.RES, y), z_lower)
-            )
-            upper_bar = np.column_stack(
-                (np.full(self.RES, x), np.full(self.RES, y), z_upper)
-            )
-            bars.extend([lower_bar, upper_bar])
-
-        # Stack all bars together
-        all_bars = np.vstack(bars)
-        self.xyz = np.vstack((self.xyz, all_bars))
-        self.data = np.concatenate((self.data, np.full(all_bars.shape[0], np.nan)))
-        self.extra_points = all_bars.shape[0]
-        return self.extra_points
-
-    def _get_lowres_normalized_history(self, low_res=(8, 8, 64), max_iter=10):
-        """Normalize the model to a new maximum height through iterative correction."""
         # Step 1: Generate a low-resolution model to estimate renormalization
-        temp_model = GeoModel(self.bounds, resolution=low_res)
+        temp_model = self.__class__(
+            self.bounds, resolution=low_res, dtype=self.dtype, height_tracking=True
+        )
         temp_model.add_history(self.history)
-        temp_model._apply_history_computation(
-            keep_snapshots=False
-        )  # Run without snapshots for efficiency
+        temp_model._apply_history_computation(keep_snapshots=False, remove_bars=False)
 
-        # Step 2: Normalize the temporary model's height to 50% filled height through iterative correction
-        # The goal is to get the model rock/air boundary to be within the model bounds where it can be renormalized
-        new_max = temp_model.get_target_normalization(target_max=0.50, std_dev=0.)
-        model_max_zbound = temp_model.bounds[2][1]  # Get the maximum z height of the model
+        # Step 2: Set a target to middle of model (50% filled z-range)
+        model_z_min, model_z_max = temp_model.get_z_bounds()
+        target_max_z = model_z_min + 0.5 * (model_z_max - model_z_min)
+        model_max_filled_z = temp_model._get_max_filled_height()
 
-        while True and max_iter > 0:
-            # Shift the model so that all the points are shifted up or down aiming 
-            # for the model to fill only 10% of the sample window height
-            observed_max = temp_model.renormalize_height(new_max=new_max)
-            if observed_max < model_max_zbound:
-                break # If the observed data is lowered enough to be within the model's bounds, break
-            max_iter -= 1
+        # Step 3: Iterate towards target, checking if model is in frame
+        def is_in_frame(z):
+            return model_z_min < z < model_z_max
 
-        # Assumes that the model rock/air boundary is in frame now
-        # Step 3: Rerun normalization to reach the ~85% filled target specified by auto
-        for _ in range(3):
-            temp_model.renormalize_height(auto=True)
+        itr = 0
+        while not is_in_frame(model_max_filled_z) and itr < max_iter:
+            # Calculate the model shift required to shift to a desired maximum height
+            shift_z = target_max_z - model_max_filled_z
+            total_z_shift += shift_z
+            # Add a shift transformation to the history and recompute
+            temp_model.add_history(Shift([0, 0, shift_z]))
+            temp_model.clear_data()
+            temp_model._apply_history_computation(
+                keep_snapshots=False, remove_bars=False
+            )
+            model_max_filled_z = temp_model._get_max_filled_height()
+            itr += 1
 
-        # Step 4: Return the normalized history to be re-run at full resolution
-        normed_history = temp_model.history
+            if is_in_frame(model_max_filled_z):
+                log.debug(f"Model successfully normalized within {itr} iterations.")
+                break
+            elif itr == max_iter:
+                log.warning(
+                    f"Normalization loop reached maximum iterations ({max_iter}). Model may not be fully normalized."
+                )
 
-        del temp_model  # Clean up the temporary model
+        # Step 4: Final adjustment to match the exact desired target height
+        target_max_z = self.get_target_normalization()
+        shift_z = target_max_z - model_max_filled_z
+        total_z_shift += shift_z
 
-        return normed_history
+        # Clean up the temporary model
+        del temp_model
 
-    def fill_nans(self, value=EMPTY_VALUE):
-        assert self.data is not None, "Data array is empty."
-        indnan = np.isnan(self.data)
-        self.data[indnan] = value
-        return self.data
+        return total_z_shift
 
-    def renormalize_height(self, new_max=0, auto=False, recompute=True):
-        """Shift the model vertically so that the highest point in view field is at a new maximum height.
-        Note this operation can be expensive since it requires recomputing the model.
-
-        Parameters:
-            new_max (float): The new maximum height for the model.
-            auto (boolean): Automatically select a new maximum height based on the model's current height.
-            recompute: Recompute the model after renormalization.
-
-        Returns:
-            The current maximum height of the model.
+    def _get_max_filled_height(self):
         """
-        assert self.data is not None, "Data array is empty."
-        # Find the highest point
+        Get the maximum filled height of the model.
+
+        This method returns the highest z-value among the non-NaN data points,
+        representing the top of the geological structures within the model.
+
+        Returns
+        -------
+        float
+            The maximum height of the filled areas in the model.
+        """
         valid_indices = ~np.isnan(self.data)
         valid_z_values = self.xyz[valid_indices, 2]
         try:
-            current_max_z = np.max(valid_z_values)
+            max_z = np.max(valid_z_values)
         except ValueError:
             # traceback.print_exc()
             zmin, zmax = self.get_z_bounds()
-            current_max_z = zmin  # Defaulting to zmin if no valid max found
+            max_z = zmin
+        return max_z
+
+    def renormalize_height(self, new_max=0, auto=False, recompute=True):
+        """
+        Shift the model vertically so that the highest point in view field is at a new maximum height.
+
+        This operation can be computationally expensive as it requires recomputing the model. This is
+        a convenience method to be used for adjusting a model's height to a target value.
+
+        Parameters
+        ----------
+        new_max : float, optional
+            The new maximum height for the model. Default is 0.
+        auto : bool, optional
+            Automatically select a new maximum height based on the model's current height. Default is False.
+        recompute : bool, optional
+            Whether to recompute the model after renormalization. Default is True.
+
+        Returns
+        -------
+        float
+            The current maximum height of the model after renormalization.
+        """
+        current_max_z = self._get_max_filled_height()
 
         if auto:
             new_max = self.get_target_normalization()
 
         # Calculate the model shift required to shift to a desired maximum height
         shift_z = new_max - current_max_z
-
-        zmin, zmax = self.get_z_bounds()
-        # print(f"Renormalizing model to new maximum height percent: {(new_max-zmin)/ (zmax - zmin):.2f}")
 
         # Add a shift transformation to the history and recompute
         self.add_history(Shift([0, 0, shift_z]))
@@ -516,13 +715,33 @@ class GeoModel:
 
         return current_max_z
 
-    def get_target_normalization(self, target_max=0.85, std_dev=0.05):
-        """Get the normalization factor to scale the model to a target maximum height.
-
-        Parameters:
-        - target_max: The target maximum height for the model as a fraction of total height.
-        - std_dev: The standard deviation of the normal distribution used to add variation.
+    def get_target_normalization(
+        self,
+        target_max=HEIGHT_NORMALIZATION_FILL_TARGET,
+        std_dev=HEIGHT_NORMALIZATION_STD_DEV,
+    ):
         """
+        Calculate the target normalization height for the model with some random variance.
+
+        This method determines the target height to which the model should be normalized.
+        The target height is computed as a fraction of the total z-range of the model, with
+        an optional standard deviation to introduce variation.
+
+        Parameters
+        ----------
+        target_max : float, optional
+            The target maximum height for the model as a fraction of the total height.
+            Default is HEIGHT_NORMALIZATION_FILL_TARGET.
+        std_dev : float, optional
+            The standard deviation for the normal distribution used to add variation to
+            the target height. Default is HEIGHT_NORMALIZATION_STD_DEV.
+
+        Returns
+        -------
+        float
+            The calculated target height for normalization.
+        """
+
         bounds = self.get_z_bounds()
         zmin, zmax = bounds
         z_range = zmax - zmin
@@ -533,7 +752,17 @@ class GeoModel:
         return target_height
 
     def get_z_bounds(self):
-        """Return the minimum and maximum z-coordinates of the model."""
+        """
+        Return the minimum and maximum z-coordinates of the model.
+
+        This method retrieves the z-coordinate bounds of the model, which define the vertical
+        extent of the model's space.
+
+        Returns
+        -------
+        tuple
+            A tuple containing the minimum and maximum z-coordinates of the model.
+        """
         # Check if bounds is a tuple of tuples (multi-dimensional)
         if isinstance(self.bounds[0], tuple):
             # Multi-dimensional bounds, assuming the last tuple represents the z-dimension
@@ -545,14 +774,58 @@ class GeoModel:
         return z_vals
 
     def get_data_grid(self):
-        """Return the model data in meshgrid form."""
+        """
+        Return the model data in meshgrid form.
+
+        This method reshapes the flattened data array into a 3D meshgrid that matches the
+        model's x, y, and z grid.
+
+        Returns
+        -------
+        np.ndarray
+            The model data reshaped into the form of the 3D meshgrid.
+        """
         return self.data.reshape(self.X.shape)
 
-    def add_topography(self, mesh):
-        """Add a topography mesh to the model.
+    def fill_nans(self, value=EMPTY_VALUE):
+        """
+        Replace NaN values in the model data array with a specified value.
 
-        Parameters:
-        - mesh: A 2D numpy array representing the topography mesh.
+        This method identifies NaN values within the model's data array and replaces them
+        with the specified value.
+
+        Parameters
+        ----------
+        value : int or float, optional
+            The value to replace NaNs with. Default is EMPTY_VALUE.
+
+        Returns
+        -------
+        np.ndarray
+            The data array with NaNs replaced by the specified value.
+        """
+        assert self.data is not None, "Data array is empty."
+        indnan = np.isnan(self.data)
+        self.data[indnan] = value
+        return self.data
+
+    def add_topography(self, mesh):
+        """
+        Add a topography mesh to the model.
+
+        This method integrates a topography mesh into the 3D model by interpolating the
+        2D topography mesh to match the model's resolution, and then applying it to
+        adjust the z-values in the model's data.
+
+        Parameters
+        ----------
+        mesh : np.ndarray
+            A 2D numpy array representing the topography mesh.
+
+        Raises
+        ------
+        ValueError
+            If the mesh dimensions do not match the model's resolution.
         """
         # Interpolate the topography mesh to match the model resolution
         resampled_mesh = resample_mesh(mesh, self.resolution[:2])
@@ -575,16 +848,29 @@ class GeoModel:
     @classmethod
     def from_tensor(cls, data_tensor, bounds=None):
         """
-        Special initializer to create a GeoModel instance from a 1xXxYxZ or XxYxZ shaped data tensor.
-        Initializes history to [NullProcess()] and sets up the mesh and data to allow GeoModel
-        plotting tools and processing methods to be used.
+        Create a GeoModel instance from a 1xXxYxZ or XxYxZ shaped data tensor.
 
-        Args:
-            data_tensor (torch.Tensor): The data tensor to initialize the model with; can be 1xXxYxZ or XxYxZ tensor.
-            bounds (tuple, optional): The bounds of the model in measurement units, if not provided defaults to the resolution of the tensor.
+        This special initializer allows the creation of a GeoModel instance directly from
+        a PyTorch tensor, setting up the model's meshgrid and data. It also initializes
+        the model's history with a `NullProcess()` to indicate no known geological history.
 
-        Returns:
-            GeoModel: An instance of the GeoModel class.
+        Parameters
+        ----------
+        data_tensor : torch.Tensor
+            The data tensor to initialize the model with; can be 1xXxYxZ or XxYxZ tensor.
+        bounds : tuple, optional
+            The bounds of the model in measurement units. If not provided, defaults to the
+            resolution of the tensor.
+
+        Returns
+        -------
+        GeoModel
+            An instance of the GeoModel class.
+
+        Raises
+        ------
+        AssertionError
+            If the data tensor does not have the correct dimensions.
         """
         # Check and adjust tensor dimensions if needed
         if data_tensor.dim() == 4 and data_tensor.size(0) == 1:
@@ -602,7 +888,7 @@ class GeoModel:
 
         instance = cls(bounds, resolution)
         # Setup mesh for X, Y, Z coordinates and flattened xyz array
-        instance.setup_mesh()
+        instance._setup_mesh()
         # Insert torch tensor data into model
         instance.data = (
             data_tensor.detach().numpy().flatten()

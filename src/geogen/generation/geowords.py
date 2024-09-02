@@ -133,7 +133,7 @@ class InfiniteSedimentUniform(GeoWord):  # Validated
     def build_history(self):
         # Choose a large depth that runs beyond the model's height extension bars
         depth = (Z_RANGE) * (
-            3 * geo.GeoModel.EXT_FACTOR
+            3 * geo.GeoModel.HEIGHT_BAR_EXT_FACTOR
         )  # Pseudo-infinite using a large depth
         sediment_base = (
             -depth
@@ -158,7 +158,7 @@ class InfiniteSedimentMarkov(GeoWord):  # Validated
     def build_history(self):
         # Caution, the depth needs to extend beyond the bottom of the model mesh,
         # Including height bar extensions for height tracking, or it will leave a gap underneath
-        depth = (Z_RANGE) * (3 * geo.GeoModel.EXT_FACTOR)
+        depth = (Z_RANGE) * (3 * geo.GeoModel.HEIGHT_BAR_EXT_FACTOR)
         sediment_base = -depth
 
         # Get a markov process for selecting next layer type, gaussian differencing for thickness
@@ -188,7 +188,7 @@ class InfiniteSedimentTilted(GeoWord):  # Validated
 
     def build_history(self):
         # Choose a large depth that runs beyond the model's height extension bars below and above
-        depth = (Z_RANGE) * (6 * geo.GeoModel.EXT_FACTOR)
+        depth = (Z_RANGE) * (6 * geo.GeoModel.HEIGHT_BAR_EXT_FACTOR)
         sediment_base = (
             -0.5 * depth
         )  # In this case we overbuild up and down to allow for tilting and eroding after
