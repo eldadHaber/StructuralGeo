@@ -230,7 +230,7 @@ class GeoModel:
         # Clear the unpacked history cache
         self.history_unpacked = []
 
-    def get_history_string(self):
+    def get_history_string(self, unpacked=False):
         """
         Get a string description of the complete geological history of the model.
 
@@ -241,10 +241,15 @@ class GeoModel:
         """
         if not self.history:
             return "No geological history to display."
+        
+        if not unpacked:
+            history = self.history
+        else:
+            history = self.history_unpacked
 
         history_str = "Geological History:\n"
 
-        for index, process in enumerate(self.history):
+        for index, process in enumerate(history):
             history_str += f"{index + 1}: {str(process)}\n"
 
         return history_str.strip()  # Remove the trailing newline
