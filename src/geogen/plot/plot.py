@@ -49,6 +49,7 @@ def volview(
     plotter: Optional[pv.Plotter] = None,
     threshold=-0.5,
     show_bounds=False,
+    clim=None
 ) -> pv.Plotter:
     """
     Visualize a volumetric view of the geological model with an optional bounding box.
@@ -72,6 +73,9 @@ def volview(
     plotter, mesh, plot_config = setup_plot(model, plotter, threshold)
     if mesh is None:
         return plotter
+    
+    if clim:
+        plot_config["clim"] = clim
 
     plotter.add_mesh(mesh, scalars="values", **plot_config, interpolate_before_map=False)
     plotter.add_axes(line_width=5)
