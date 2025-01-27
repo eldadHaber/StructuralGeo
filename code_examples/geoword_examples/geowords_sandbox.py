@@ -17,10 +17,10 @@ def main():
 
     # direct_model_generation_demo()
     # geo_sentence_batch_sampling()
-    # sampling_summary()  # <-- Summary of using GeoWords
+    sampling_summary()  # <-- Summary of using GeoWords
     # experimenting_with_geowords()  # <-- Editing GeoWords
     # clocking_geoword_generation()  # <-- Performance Check
-    dataloader_test()  # <-- Testing the DataLoader
+    # dataloader_test()  # <-- Testing the DataLoader
 
 
 def direct_model_generation_demo():

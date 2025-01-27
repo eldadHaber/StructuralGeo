@@ -110,7 +110,7 @@ plotter.show_bounds(
     ytitle="",
     ztitle="Elevation",
 )
-plotter.add_title("Initial Meshgrid", font_size=12, color="black")
+# plotter.add_title("Initial Meshgrid", font_size=12, color="black")
 # Set the view vector
 plotter.view_vector(view_vector)
 # Increase the camera distance to zoom out
@@ -173,7 +173,7 @@ plotter.show_bounds(
     ytitle="",
     ztitle="Elevation",
 )
-plotter.add_title("Inverse Fault Transform", font_size=12, color="black")
+# plotter.add_title("Inverse Fault Transform", font_size=12, color="black")
 # Set the view vector
 plotter.view_vector(view_vector)
 # Increase the camera distance to zoom out
@@ -226,7 +226,7 @@ model = geo.GeoModel(bounds=bounds, resolution=128)
 bounds_edit = model.bounds
 model.bounds = (bounds_edit[0], bounds_edit[1], (-1.3, 1.3))
 hist = []
-sediment = geo.Sedimentation([1, 3, 4], [1, 0.8, 0.4])
+sediment = geo.Sedimentation([1, 3, 4], [1, 0.8, 0.4], base=-1)
 hist.append(sediment)
 
 model.add_history(hist)
@@ -261,7 +261,7 @@ plotter.show_bounds(
     ytitle="",
     ztitle="Elevation",
 )
-plotter.add_title("Sampling of Sediment Layers", font_size=12, color="black")
+# plotter.add_title("Sampling of Sediment Layers", font_size=12, color="black")
 # Set the view vector
 plotter.view_vector(view_vector)
 # Increase the camera distance to zoom out
@@ -272,7 +272,7 @@ plotter.subplot(1, 1)
 
 model = geo.GeoModel(bounds=bounds, resolution=resolution)
 hist = []
-sediment = geo.Sedimentation([1, 3, 4], [1, 0.8, 0.5])
+sediment = geo.Sedimentation([1, 3, 4], [1, 0.8, 0.4], base=-1)
 hist.append(sediment)
 fault = geo.Fault(10, 90, 90, 0.3)
 hist.append(fault)
@@ -316,7 +316,7 @@ _ = plotter.add_axes(line_width=6)
 # high res
 model = geo.GeoModel(bounds=bounds, resolution=128)
 hist = []
-sediment = geo.Sedimentation([1, 3, 4], [1, 0.8, 0.5])
+sediment = geo.Sedimentation([1, 3, 4], [1, 0.8, 0.4], base=-1)
 hist.append(sediment)
 fault = geo.Fault(10, 90, 90, 0.3)
 hist.append(fault)
@@ -353,7 +353,7 @@ plotter.show_bounds(
     ytitle="",
     ztitle="Elevation",
 )
-plotter.add_title("Final Sample Grid", font_size=12, color="black")
+# plotter.add_title("Final Sample Grid", font_size=12, color="black")
 # Set the view vector
 plotter.view_vector(view_vector)
 # Increase the camera distance to zoom out
