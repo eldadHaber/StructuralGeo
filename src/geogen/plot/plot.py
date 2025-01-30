@@ -18,37 +18,50 @@ from geogen.generation import (
 )
 
 
-def get_plot_config():
+def get_plot_config(geowords=True):
+    """Generate a plot configuration dictionary for PyVista visualization.
+
+    Args:
+        geowords (bool): Whether to use categorical colormap and annotations.
+
+    Returns:
+        dict: Configuration dictionary for PyVista plots.
+    """
+    plot_config = {}
+
+    # Use a default color range for all plots (can be overridden in plot functions)
     color_range = (-1, 13)
     clim = (color_range[0] - 0.5, color_range[1] + 0.5)
-    n_colors = color_range[1] - color_range[0] + 1
-    my_cmap = plt.get_cmap("gist_ncar", n_colors)
+    plot_config["clim"] = clim
 
-    annotations = {}
-    annotations[float(-1)] = "Air"
-    annotations[float(BED_ROCK_VAL)] = "Basement"
+    if geowords:
+        n_colors = color_range[1] - color_range[0] + 1
+        cmap_discrete = plt.get_cmap("gist_ncar", n_colors)
 
-    for val in SEDIMENT_VALS:
-        annotations[float(val)] = "Sedimentary"
+        annotations = {
+            float(-1): "Air",
+            float(BED_ROCK_VAL): "Basement",
+        }
 
-    for val in DIKE_VALS:
-        annotations[float(val)] = "Planar Dikes"
+        for val in SEDIMENT_VALS:
+            annotations[float(val)] = "Sedimentary"
+        for val in DIKE_VALS:
+            annotations[float(val)] = "Planar Dikes"
+        for val in INTRUSION_VALS:
+            annotations[float(val)] = "Magma Intrusion"
+        for val in BLOB_VALS:
+            annotations[float(val)] = "Minerals"
 
-    for val in INTRUSION_VALS:
-        annotations[float(val)] = "Magma Intrusion"
+        # Add only if geowords is enabled
+        plot_config.update(
+            {
+                "cmap": cmap_discrete,
+                "n_colors": n_colors,
+                "annotations": annotations,
+            }
+        )
 
-    for val in BLOB_VALS:
-        annotations[float(val)] = "Minerals"
-
-    plot_config = {
-        "cmap": my_cmap,
-        # Shift so each integer is the center of a bin:
-        "clim": clim,
-        "n_colors": n_colors,
-        # Provide annotation dict for -1..15
-        "annotations": annotations,
-        # Optional: scalar bar styling
-        "scalar_bar_args": {
+        plot_config["scalar_bar_args"] = {
             "title": "Rock Type",
             "title_font_size": 16,
             "label_font_size": 12,
@@ -56,12 +69,14 @@ def get_plot_config():
             "n_labels": 0,
             "width": 0.10,
             "height": 0.8,
-        },
-    }
+        }
+
     return plot_config
 
 
-def setup_plot(model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5):
+def setup_plot(
+    model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5, geowords=True
+):
     if plotter is None:
         plotter = pv.Plotter()
 
@@ -71,7 +86,7 @@ def setup_plot(model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=
     else:
         mesh = get_voxel_grid_from_model(model, threshold)
 
-    plot_config = get_plot_config()
+    plot_config = get_plot_config(geowords)
     return plotter, mesh, plot_config
 
 
@@ -81,6 +96,7 @@ def volview(
     threshold=-0.5,
     show_bounds=False,
     clim=None,
+    geowords=True,
 ) -> pv.Plotter:
     """
     Visualize a volumetric view of the geological model with an optional bounding box.
@@ -101,7 +117,9 @@ def volview(
     pv.Plotter
         The PyVista plotter object with the volumetric view rendered.
     """
-    plotter, mesh, plot_config = setup_plot(model, plotter, threshold)
+    plotter, mesh, plot_config = setup_plot(
+        model, plotter, threshold, geowords=geowords
+    )
     if mesh is None:
         return plotter
 
@@ -137,7 +155,7 @@ def volview(
 
 
 def orthsliceview(
-    model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5
+    model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5,
 ) -> pv.Plotter:
     """
     Visualize using interactive orthogonal slices of the geological model.
