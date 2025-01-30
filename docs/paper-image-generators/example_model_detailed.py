@@ -3,6 +3,8 @@ import pickle as pkl
 import numpy as np
 import pyvista as pv
 
+import matplotlib.pyplot as plt
+
 import geogen.model as geo
 import geogen.plot as geovis
 
@@ -10,25 +12,28 @@ import geogen.plot as geovis
 
 model = geo.GeoModel
 with open(
-    "C:/Users/sghys/Summer2024/StructuralGeo/paper-image-generators/model_scale30_ar1_res128.pkl",
+    "C:\\Users\\sghys\\ComputationalResearch\\StructuralGeo\\docs\\paper-image-generators\\geological-sequence\\sequence_model.pkl",
     "rb",
 ) as f:
     model = pkl.load(f)
 
-model.history[14].strike = 30
 print(model.get_history_string())
-model.compute_model()
+model.compute_model(normalize=True)
+
 
 mesh = geovis.get_mesh_from_model(model)
 
 """ Plot the model with the snapshots of the transformation history."""
-# Create the main plotter with a specified size and two viewports
-p = pv.Plotter(shape=(1, 2), border=True, window_size=(1200, 600), off_screen=False)
+# Define the shape of the plotter as 1 row and 4 columns
+shape = (1, 2)
 
-p.subplot(0, 0)  # Left subplot (3/4 width)
+# Create the plotter with the defined shape and groups
+p = pv.Plotter(shape=shape, window_size=(1200, 450), border=True, off_screen=True)
+
+p.subplot(0, 0) 
 
 time_arrow = pv.Arrow(
-    start=(25000, 0, 4000),
+    start=(22000, 0, 4000),
     direction=(-1, 0, 0),
     scale=25000,
     tip_length=0.20,
@@ -39,28 +44,51 @@ p.add_mesh(time_arrow, color="black", label="Time Arrow")
 
 # Get final present-day mesh of model
 final_mesh = geovis.get_mesh_from_model(model)
-plot_config = geovis.get_plot_config()
+cmap = plt.get_cmap("gist_ncar", 17)
+
+plot_config = {
+    # Color map for the rock types
+    "cmap": cmap,  # Vibrant color map to differentiate rock types
+    # Scalar bar settings
+    "scalar_bar_args": {
+        "title": "Rock Type",
+        "title_font_size": 16,
+        "label_font_size": 10,
+        "shadow": True,
+        "italic": True,
+        "font_family": "arial",
+        "n_labels": 2,  # Reducing the number of labels for clarity
+        "vertical": False,
+        "n_colors": 17,
+    },
+}
+
+# change to horizontal colorbar
+
 if np.all(np.isnan(model.data)):
     p.add_text("No data to show, all values are NaN.", font_size=20)
 else:
     # Add the mesh to the plotter
-    p.add_mesh(
+    final_actor = p.add_mesh(
         final_mesh,
         scalars="values",
         **plot_config,
+        clim = [0,17]
     )
 _ = p.add_axes(line_width=5)
+
+clim = final_actor.mapper.scalar_range
+cmap = plot_config["cmap"]
 
 resolution = model.resolution
 # Calculate the offset to separate each snapshot
 # The offset is chosen based on the overall size of the model
 x_offset = model.bounds[0][1] - model.bounds[0][0]  # Width of the model along x
-x_offset = x_offset * 1.15
 
 # Remove first data time entry which is empty, add the final data time entry
 data_snapshots = np.concatenate((model.data_snapshots[1:], model.data.reshape(1, -1)), axis=0)
 
-# Reverse the snapshots
+# Reverse the snapshots for proper plotting
 mesh_snapshots = model.mesh_snapshots[::-1]
 data_snapshots = data_snapshots[::-1]
 
@@ -70,7 +98,7 @@ for i, (mesh_snapshot, data_snapshot) in enumerate(zip(mesh_snapshots, data_snap
     # Reshape to 3D grid of points-- i.e. 4x4x4 grid of (x,y,z) points
     deformed_points = mesh_snapshot.reshape(resolution + (3,))
     grid = pv.StructuredGrid(
-        deformed_points[..., 0] + (i + 1) * x_offset * 1.3,  # Shift along x
+        deformed_points[..., 0] + (i + 1) * x_offset * 1.4,  # Shift along x
         deformed_points[..., 1],
         deformed_points[..., 2],
     )
@@ -78,12 +106,13 @@ for i, (mesh_snapshot, data_snapshot) in enumerate(zip(mesh_snapshots, data_snap
     grid["values"] = data_snapshot.reshape(model.X.shape).flatten(
         order="F"
     )  # Assigning scalar values to the grid
-    # Add grid to plotter with a unique color and using the same scalar values
+    # Add grid to plotter using the same colormap and scalar range as the final mesh
     a = p.add_mesh(
         grid,
         style="wireframe",
         scalars="values",
-        cmap=plot_config["cmap"],
+        cmap=cmap,  # Use the colormap from the final mesh
+        clim=clim,  # Use the scalar range from the final mesh
         line_width=1,
         show_scalar_bar=False,
     )
@@ -113,13 +142,14 @@ p.add_mesh(bounding_box, color="black", style="wireframe", line_width=1)
 
 # Adjust subplot sizes
 p.subplot(0, 0)
-p.view_vector([0.2, 1, 0.2])
-p.camera.roll = 224
+p.view_vector([0.1, 1, 0.5])
+p.camera.roll = 190
 p.add_title("Depositions on a Deformed Mesh", font_size=12, color="black")
+p.camera.zoom(1.4)
 
 p.subplot(0, 1)
 p.camera_position = "iso"
-p.camera.zoom(0.7)
+p.camera.zoom(0.8)
 p.add_title("Final Model", font_size=12, color="black")
 
 p.show()
