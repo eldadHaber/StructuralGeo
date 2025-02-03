@@ -3,8 +3,8 @@ import logging
 
 import numpy as np
 
-from .geoprocess import *
-from .util import resample_mesh
+from geogen.model.geoprocess import *
+from geogen.model.util import resample_mesh
 
 # Set up a simple logger
 logging.basicConfig(level=logging.DEBUG)
