@@ -11,7 +11,6 @@ __all__ = [
     "Fold",
     "Fault",
     "Slip",
-    "Mountains",
     "End",
 ]
 
@@ -119,12 +118,12 @@ class BaseStrata(_EventTemplateClass):
 
     def __init__(self, seed=None):
         cases = [
-            self.Event(name="Basement", p=0.27, processes=[InfiniteBasement(), Sediment()]),
-            self.Event(name="Sediment: Markov", p=0.22, processes=[InfiniteSedimentMarkov()]),
-            self.Event(name="Sediment: Uniform", p=0.22, processes=[InfiniteSedimentUniform()]),
+            self.Event(name="Basement", p=0.3, processes=[InfiniteBasement(), Sediment()]),
+            self.Event(name="Sediment: Markov", p=0.25, processes=[InfiniteSedimentMarkov()]),
+            self.Event(name="Sediment: Uniform", p=0.25, processes=[InfiniteSedimentUniform()]),
             self.Event(
                 name="Sediment: Tilted Markov",
-                p=0.29,
+                p=0.2,
                 processes=[InfiniteSedimentTilted()],
             ),
         ]
@@ -152,9 +151,9 @@ class Erosion(_EventTemplateClass):
 
     def __init__(self, seed=None):
         cases = [
-            self.Event(name="Flat", p=0.20, processes=[FlatUnconformity()]),
+            self.Event(name="Flat", p=0.25, processes=[FlatUnconformity()]),
             self.Event(name="Tilted", p=0.25, processes=[TiltedUnconformity()]),
-            self.Event(name="TiltCutFill", p=0.20, processes=[TiltCutFill()]),
+            self.Event(name="TiltCutFill", p=0.15, processes=[TiltCutFill()]),
             self.Event(name="Wave", p=0.35, processes=[WaveUnconformity()]),
         ]
         super().__init__(cases=cases, seed=seed)
@@ -241,15 +240,6 @@ class Fault(_EventTemplateClass):
             self.Event(name="StrikeSlip", p=0.25, processes=[FaultStrikeSlip()]),
             self.Event(name="FullyRandom", p=0.2, processes=[FaultRandom()]),
             self.Event(name="Sequence", p=0.15, processes=[FaultSequence()]),
-        ]
-        super().__init__(cases=cases, seed=seed)
-        
-class Mountains(_EventTemplateClass):
-    """A sampling regime for mountain events."""
-
-    def __init__(self, seed=None):
-        cases = [
-            self.Event(name="TiltedMountains", p=1.0, processes=[TiltedMountains()]),
         ]
         super().__init__(cases=cases, seed=seed)
 
