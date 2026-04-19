@@ -1,0 +1,117 @@
+name: Release
+
+# Two paths:
+#
+# 1. PUSH a tag like `v0.2.0`  →  publish to real PyPI.
+#    Uses Trusted Publishing (OIDC); no API token required.
+#    One-time setup at https://pypi.org/manage/account/publishing/
+#      - PyPI project name: geogen
+#      - Owner: eldadHaber       Repository: StructuralGeo
+#      - Workflow: release.yml   Environment: pypi
+#
+# 2. DISPATCH this workflow manually with target=testpypi  →  publish to TestPyPI
+#    for a pre-release smoke check. No tag is required (so version bumps in
+#    pyproject.toml can be verified end-to-end before cutting a real tag).
+#    One-time setup at https://test.pypi.org/manage/account/publishing/
+#      - Environment: testpypi
+#    After a testpypi publish, verify with:
+#      uv venv /tmp/gg && /tmp/gg/bin/pip install -i https://test.pypi.org/simple/ \
+#                         --extra-index-url https://pypi.org/simple/ geogen
+#      /tmp/gg/bin/python -c "import geogen; print(geogen.__version__)"
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Where to publish"
+        required: true
+        default: "testpypi"
+        type: choice
+        options:
+          - testpypi
+          - pypi
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Verify tag matches pyproject version (tag-triggered only)
+        if: github.event_name == 'push'
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PROJECT_VERSION="$(uv run --no-project python -c 'import tomllib; print(tomllib.load(open("pyproject.toml","rb"))["project"]["version"])')"
+          if [ "$TAG" != "$PROJECT_VERSION" ]; then
+            echo "Tag $GITHUB_REF_NAME ($TAG) does not match pyproject version $PROJECT_VERSION" >&2
+            exit 1
+          fi
+
+      - name: Build sdist and wheel
+        run: uv build
+
+      - name: Check metadata (twine)
+        run: |
+          uv tool install twine
+          uv tool run twine check dist/*
+
+      - name: Upload dist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-testpypi:
+    # Dispatched with target=testpypi  →  TestPyPI.
+    if: github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/geogen/
+    permissions:
+      id-token: write
+    steps:
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+  publish-pypi:
+    # Tag push OR dispatched with target=pypi  →  real PyPI.
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && inputs.target == 'pypi')
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/geogen/
+    permissions:
+      id-token: write
+    steps:
+      - name: Download dist artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

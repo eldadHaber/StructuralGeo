@@ -2,33 +2,70 @@
 
 **StructuralGeo** is a Python package designed for creating, visualizing, and randomizing synthetic structural geology data. The package leverages NumPy for efficient data handling and PyVista for powerful 3D visualization. It includes a randomization scheme within the generation and dataset modules, enabling the creation of an extensive synthetic dataset for use with PyTorch or similar frameworks.
 
-### Project Installation
-To install StructuralGeo to your Python environment, first clone this repo into a working directory and change directory into the cloned folder.
+### Installation
+
+`geogen` is a pure-Python library that ships on PyPI. Core install:
 
 ```bash
-cd path/to/my/project
+pip install geogen
+```
+
+The streaming PyTorch dataset (`geogen.dataset`) lives behind the `[torch]` extra so that users who only need the model + visualization stack aren't forced to install PyTorch:
+
+```bash
+pip install "geogen[torch]"      # adds PyTorch
+pip install "geogen[all]"        # adds PyTorch + Qt GUI + Jupyter/trame viz
+```
+
+If you installed only the core and try to `import geogen.dataset`, you'll get a clear `ImportError` pointing at the `[torch]` extra. `import geogen` itself always works.
+
+> [!NOTE]
+> Create a virtual environment first (`venv`, `conda`, or `uv venv`) so `geogen` and its deps don't land in your system Python.
+
+#### Contributor install
+
+Clone the repo and use either `pip` or `uv`:
+
+```bash
 git clone https://github.com/eldadHaber/StructuralGeo
 cd StructuralGeo
+
+# Option A — pip, editable:
+pip install -e ".[torch]"
+
+# Option B — uv (recommended), with CUDA-matched PyTorch:
+uv sync --group dev --group cu128      # CUDA 12.8 torch
+uv sync --group dev --group cu130      # CUDA 13.0 torch
+uv sync --group dev --group cpu        # CPU-only torch
 ```
 
->[!NOTE]
-> Before continuing with installation you may want to create a virtual environment to install the package into, using a tool such as `venv` or `conda`.
+The three CUDA groups (`cpu`, `cu128`, `cu130`) are mutually exclusive and are uv-only — they do not affect what PyPI consumers see. Pick the one that matches your GPU stack.
 
-The package and its dependencies can be installed using the `setup.py` file and the `pip install` command. The `-e` flag installs the package as editable, allowing changes to the package to be reflected immedeately in the Python environment, and is recommended for development.
+Install pre-commit hooks once:
 
 ```bash
-cd path/to/my/project/StructuralGeo
-pip install -e .
+uv run pre-commit install
 ```
 
->[!IMPORTANT]
->The package has a dependency on PyTorch for using the dataset module which is not automatically installed. PyTorch can be installed using the instructions on the [PyTorch website](https://pytorch.org/get-started/locally/). 
-
-After installation, the package can be imported into your Python environment with the following command:
+Then:
 
 ```python
 import geogen
 ```
+
+#### Releasing
+
+Releases are published to PyPI via GitHub Actions using Trusted Publishing (OIDC). To cut a release:
+
+```bash
+# 1. Bump version in pyproject.toml (must match the tag)
+# 2. Commit the bump
+# 3. Tag and push:
+git tag v0.2.0
+git push --tags
+```
+
+The release workflow verifies that the tag matches the `pyproject.toml` version before uploading.
 ### Dataset Quick Start
 
 The streaming dataset is initialized with:

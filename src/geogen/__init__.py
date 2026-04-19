@@ -4,32 +4,36 @@
 GeoGen Geological Modeling Library
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-GeoGen is a Python library for generating and manipulating synthetic geological models.
-Basic usage:
+GeoGen is a Python library for generating and manipulating synthetic geological
+models. Basic usage:
 
    >>> import geogen
-   >>> model = geogen.GeoModel(bounds=((0, 100), (0, 100), (0, 100)), resolution=(100, 100, 50))
-   >>> word = geogen.word.SingleDikeWarped()
-   >>> history = word.generate()
-   >>> model.add_history(history)
-   >>> model.compute_model(normalize=True)
+   >>> model = geogen.model.GeoModel(
+   ...     bounds=((0, 100), (0, 100), (0, 100)),
+   ...     resolution=(100, 100, 50),
+   ... )
 
-You can visualize the model using PyVista or with some built-in visualization tools:
+The streaming PyTorch dataset requires the optional ``[torch]`` extra:
 
-   >>> p = geogen.plot.volview(model) # Returns a PyVista plotter object
-   >>> p.show()                       # Show the plotter window
-   >>> geogen.plot.categorical_grid_view(model).show()  # Directly display the model
+   >>> from geogen.dataset import GeoData3DStreamingDataset
+
+If torch is not installed, ``geogen`` itself still imports cleanly; only the
+``geogen.dataset`` module will raise a helpful ``ImportError``.
 
 :copyright: (c) 2024 by Simon Ghyselincks.
-:license: Apache 2.0, see LICENSE for more details.
+:license: MIT, see LICENSE for more details.
 """
+
+from importlib.metadata import PackageNotFoundError, version
+
+from geogen import model, plot
+from geogen import generation as gen
 
 __title__ = "GeoGen"
 
-import geogen.model as model
-# TODO: Update these imports into a cohesive API
-# Note, some very specific imports should be used to avoid importing the entire library
-from geogen.dataset import GeoData3DStreamingDataset as StreamingDataset
+try:
+    __version__ = version("geogen")
+except PackageNotFoundError:
+    __version__ = "0.0.0+unknown"
 
-# This controls the import behaviour when using `from geogen import *`
-__all__ = ["GeoData3DStreamingDataset", "model", "plot", "gen"]
+__all__ = ["model", "plot", "gen", "__version__", "__title__"]

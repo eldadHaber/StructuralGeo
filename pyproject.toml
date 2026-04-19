@@ -1,0 +1,137 @@
+[project]
+name = "geogen"
+version = "1.0.0"
+description = "Create, visualize, and randomize synthetic 3D structural geology models."
+readme = "readme.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Simon Ghyselincks", email = "sghyseli@cs.ubc.ca" },
+    { name = "Eldad Haber" },
+]
+keywords = ["geology", "geophysics", "structural geology", "synthetic data", "pytorch", "pyvista"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "pyvista>=0.43",
+    "tqdm",
+    "PyDTMC",
+]
+
+[project.optional-dependencies]
+# Public extras — ship in wheel metadata, visible to `pip install geogen[...]`.
+# `[torch]` is the common case; `[all]` adds GUI + Jupyter/trame viz.
+torch = ["torch>=2.0"]
+all = [
+    "torch>=2.0",
+    "pyvistaqt>=0.11",
+    "PyQt5",
+    "ipywidgets>=8",
+    "ipykernel>=6",
+    "trame>=3",
+    "trame-vuetify",
+    "trame-vtk",
+    "jupyterlab>=3",
+]
+
+[project.urls]
+Homepage = "https://github.com/eldadHaber/StructuralGeo"
+Repository = "https://github.com/eldadHaber/StructuralGeo"
+Issues = "https://github.com/eldadHaber/StructuralGeo/issues"
+DOI = "https://doi.org/10.5281/zenodo.15244035"
+
+[build-system]
+requires = ["uv_build>=0.11,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "geogen"
+# uv_build includes all files under src/geogen by default, which covers the
+# Markov-matrix CSVs at src/geogen/generation/markov_matrix/*.csv. Verified
+# post-build by inspecting the wheel.
+
+# ---------------------------------------------------------------------------
+# uv-only dev configuration — ignored by pip. Consumers are unaffected.
+# Developers pick one CUDA variant when syncing:
+#   uv sync --dev --group cpu
+#   uv sync --dev --group cu128
+#   uv sync --dev --group cu130
+# The three groups are declared mutually exclusive below.
+# ---------------------------------------------------------------------------
+
+[tool.uv]
+conflicts = [
+    [
+        { group = "cpu" },
+        { group = "cu128" },
+        { group = "cu130" },
+    ],
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu", group = "cpu" },
+    { index = "pytorch-cu128", group = "cu128" },
+    { index = "pytorch-cu130", group = "cu130" },
+]
+torchvision = [
+    { index = "pytorch-cpu", group = "cpu" },
+    { index = "pytorch-cu128", group = "cu128" },
+    { index = "pytorch-cu130", group = "cu130" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "black>=25.0",
+    "isort>=7.0",
+    "pre-commit>=4.5",
+    "nbstripout>=0.8",
+    "build",
+    "tomli; python_version < '3.11'",
+]
+cpu = ["torch>=2.0", "torchvision"]
+cu128 = ["torch>=2.0", "torchvision"]
+cu130 = ["torch>=2.0", "torchvision"]
+
+[tool.black]
+line-length = 108
+target-version = ['py310']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 108
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"

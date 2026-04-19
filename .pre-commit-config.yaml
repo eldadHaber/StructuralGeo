@@ -1,0 +1,28 @@
+repos:
+  - repo: https://github.com/psf/black-pre-commit-mirror
+    rev: 25.12.0
+    hooks:
+      - id: black
+        language_version: python3.10
+
+  - repo: https://github.com/pycqa/isort
+    rev: 7.0.0
+    hooks:
+      - id: isort
+        args: ["--profile", "black"]
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+        args: ["--extra-keys", "metadata.kernelspec metadata.language_info cell.metadata.execution cell.metadata.scrolled"]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
