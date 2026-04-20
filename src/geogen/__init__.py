@@ -26,8 +26,8 @@ If torch is not installed, ``geogen`` itself still imports cleanly; only the
 
 from importlib.metadata import PackageNotFoundError, version
 
-from geogen import model, plot
 from geogen import generation as gen
+from geogen import model, plot
 
 __title__ = "GeoGen"
 

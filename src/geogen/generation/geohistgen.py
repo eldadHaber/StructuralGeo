@@ -1,4 +1,4 @@
-""" Collection of functions to generate histories and models using GeoWords and GeoProcesses. """
+"""Collection of functions to generate histories and models using GeoWords and GeoProcesses."""
 
 from typing import List
 

@@ -127,7 +127,7 @@ The project is structured with the following directories:
   - **geohistgen.py**: Helper functions related to automated geological history generation.
 
 #### `model`
-- **Description**: Core framework for creating parametrized geological models. 
+- **Description**: Core framework for creating parametrized geological models.
 - **Components**:
   - **GeoModel**: Main class for creating a blank model, can be updated with geological history and visualized with PyVista.
   - **GeoProcess**: A collection of parameterized geological events that can be applied to a GeoModel. i.e. Fault, Unconformity, Deposition, etc.
@@ -153,7 +153,7 @@ ___
 
 #### Jupyter Notebook Viewing
 
-The visualization is handled with Pyvista which may require additional configuration for Jupyter Notebook to view the model iteractively. 
+The visualization is handled with Pyvista which may require additional configuration for Jupyter Notebook to view the model iteractively.
 
 The type of visualization backend for Jupyter can be set to `static`, `html` or `trame`.
 
@@ -173,13 +173,13 @@ On an individual Pyvista plot that is returned by geovis package, the backend ca
 p = geovis.volview(model)
 p.window_size = window_size
 p.add_title(title='Sedimentation Ontop of Bedrock Model', font_size=8)
-p.show(jupyter_backend='static') 
+p.show(jupyter_backend='static')
 ```
 
 To install the trame framework, use the following command:
 
 ```bash
-pip install 'jupyterlab>=3' ipywidgets 'pyvista[all,trame]'   
+pip install 'jupyterlab>=3' ipywidgets 'pyvista[all,trame]'
 ```
 
 If `trame` is not installed the jupyter backend should be set to static which will render non-interactive plots. See examples folder for implementation, or read more at the [Pyvista documentation](https://tutorial.pyvista.org/tutorial/00_jupyter/index.html).
@@ -188,7 +188,7 @@ More information can be found in the code_examples folder.
 
 ## Acknowledgements
 
-StructuralGeo was developed by Simon Ghyselincks and Eldad Haber.  
+StructuralGeo was developed by Simon Ghyselincks and Eldad Haber.
 This software was used in collaborative research funded in part by the King Abdullah University of Science and Technology (KAUST).
 
 ## Citation

@@ -14,7 +14,13 @@ def test_top_level_import():
 
 def test_submodules_importable():
     # Core submodules must import without torch / ipywidgets / pyvistaqt.
-    for name in ("geogen.model", "geogen.plot", "geogen.generation", "geogen.probability", "geogen.filemanagement"):
+    for name in (
+        "geogen.model",
+        "geogen.plot",
+        "geogen.generation",
+        "geogen.probability",
+        "geogen.filemanagement",
+    ):
         mod = importlib.import_module(name)
         assert mod is not None
 

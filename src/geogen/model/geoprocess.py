@@ -1,4 +1,4 @@
-""" Base classes for implementing parametric geological processes."""
+"""Base classes for implementing parametric geological processes."""
 
 import warnings
 from abc import ABC as _ABC

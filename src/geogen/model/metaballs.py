@@ -1,4 +1,4 @@
-""" Collection of classes for implementing metaball blobs in a geological model. """
+"""Collection of classes for implementing metaball blobs in a geological model."""
 
 from typing import List
 

@@ -1,4 +1,4 @@
-""" Sentence structures and generation processes for geo histories. """
+"""Sentence structures and generation processes for geo histories."""
 
 import abc as _abc
 import csv

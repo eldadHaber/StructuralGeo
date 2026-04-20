@@ -1,9 +1,8 @@
 import pickle as pkl
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pyvista as pv
-
-import matplotlib.pyplot as plt
 
 import geogen.model as geo
 import geogen.plot as geovis
@@ -81,9 +80,7 @@ resolution = model.resolution
 x_offset = model.bounds[0][1] - model.bounds[0][0]  # Width of the model along x
 
 # Remove first data time entry which is empty, add the final data time entry
-data_snapshots = np.concatenate(
-    (model.data_snapshots[1:], model.data.reshape(1, -1)), axis=0
-)
+data_snapshots = np.concatenate((model.data_snapshots[1:], model.data.reshape(1, -1)), axis=0)
 
 # Reverse the snapshots for proper plotting
 mesh_snapshots = model.mesh_snapshots[::-1]

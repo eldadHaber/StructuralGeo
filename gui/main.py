@@ -3,13 +3,10 @@ import sys
 
 os.environ["QT_API"] = "pyqt5"
 
-from file_manager_gui import \
-    FileManagerGUI  # Import the file manager GUI class
-from plotter import \
-    ModelPlotter  # Ensure this import matches the file location
+from file_manager_gui import FileManagerGUI  # Import the file manager GUI class
+from plotter import ModelPlotter  # Ensure this import matches the file location
 from qtpy import QtCore, QtGui, QtWidgets
-from toolbar import \
-    ToolBarWidget  # Ensure this import matches the file location
+from toolbar import ToolBarWidget  # Ensure this import matches the file location
 
 from geogen.filemanagement import FileManager
 

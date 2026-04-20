@@ -46,7 +46,7 @@ class GeoModel:
     HEIGHT_BAR_RESOLUTION = 128  # Resolution of the extension bars (number of points computed above and below model)
 
     # Height normalization parameters
-    HEIGHT_NORMALIZATION_FILL_TARGET = 0.85  # Target maximum height for model normalization    
+    HEIGHT_NORMALIZATION_FILL_TARGET = 0.85  # Target maximum height for model normalization
     HEIGHT_NORMALIZATION_STD_DEV = 0.05  # Standard deviation for height normalization
     # fmt: on
 
