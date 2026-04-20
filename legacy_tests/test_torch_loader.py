@@ -23,7 +23,7 @@ def dataset_test():
 
     bounds = ((-3840, 3840), (-3840, 3840), (-1920, 1920))
     resolution = (128, 128, 64)
-    csv_weights_path = resources.files("geogen.generation.markov_matrix").joinpath("tilt-adjusted.csv")
+    csv_weights_path = resources.files("geogen.config").joinpath("tilt-adjusted.csv")
     dataset = GeoData3DStreamingDataset(
         model_bounds=bounds, model_resolution=resolution, generator_config=csv_weights_path
     )

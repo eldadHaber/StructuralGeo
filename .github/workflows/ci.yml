@@ -30,7 +30,7 @@ jobs:
       - name: Install headless GL stack
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libgl1-mesa-glx libxrender1 libxkbcommon0 xvfb
+          sudo apt-get install -y --no-install-recommends libgl1 libglx-mesa0 libxrender1 libxkbcommon0 xvfb
 
       - name: Sync (dev + cpu torch)
         run: uv sync --group dev --group cpu
@@ -91,7 +91,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends libgl1-mesa-glx libxrender1 libxkbcommon0 xvfb
+          sudo apt-get install -y --no-install-recommends libgl1 libglx-mesa0 libxrender1 libxkbcommon0 xvfb
 
       - name: Sync (dev + cpu torch)
         run: uv sync --group dev --group cpu --python ${{ matrix.python-version }}
@@ -126,8 +126,8 @@ jobs:
           with zipfile.ZipFile(wheels[0]) as z:
               names = set(z.namelist())
           required = [
-              "geogen/generation/markov_matrix/default_markov_matrix.csv",
-              "geogen/generation/markov_matrix/tilt-adjusted.csv",
+              "geogen/config/default_markov_matrix.csv",
+              "geogen/config/tilt-adjusted.csv",
           ]
           missing = [r for r in required if r not in names]
           if missing:

@@ -59,9 +59,10 @@ build-backend = "uv_build"
 
 [tool.uv.build-backend]
 module-name = "geogen"
-# uv_build includes all files under src/geogen by default, which covers the
-# Markov-matrix CSVs at src/geogen/generation/markov_matrix/*.csv. Verified
-# post-build by inspecting the wheel.
+# Package data files (CSVs, YAMLs defining geophysical properties and category
+# names) live at src/geogen/config/. uv_build includes everything under
+# src/geogen by default, so resources are shipped in the wheel automatically.
+# Verified post-build by inspecting the wheel in CI.
 
 # ---------------------------------------------------------------------------
 # uv-only dev configuration — ignored by pip. Consumers are unaffected.
