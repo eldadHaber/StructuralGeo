@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 import pydtmc as dtmc
 
 import geogen.plot as geovis
-from geogen.generation.model_generators import (MarkovGeostoryGenerator,
-                                                MarkovMatrixParser)
+from geogen.generation.model_generators import MarkovGeostoryGenerator, MarkovMatrixParser
 from geogen.model import GeoModel
 
 

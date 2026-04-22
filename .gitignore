@@ -1,3 +1,52 @@
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
 StructuralGeo.egg*
+geogen.egg*
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# uv
+# uv.lock is intentionally NOT ignored — we commit it for reproducible dev envs.
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Testing / tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Model checkpoints / pickles
+*.pt
+*.pth
+*.ckpt
 *.pkl

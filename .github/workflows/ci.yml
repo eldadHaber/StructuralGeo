@@ -1,0 +1,149 @@
+name: CI
+
+# Trigger philosophy:
+#   - Full matrix (lint + 2 OS * 4 Python versions + build) runs on `main` and
+#     on pull requests targeting `main`. This is the pre-release gate.
+#   - Cheap single-runner lint + smoke test runs on every other push (develop,
+#     feature/*) so devs get fast feedback without burning 8 runners per commit.
+on:
+  push:
+    branches: [main, develop, "feature/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ----- Cheap path: any push that isn't `main` and isn't a PR to main. -----
+  quick-check:
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install headless GL stack
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libgl1 libglx-mesa0 libxrender1 libxkbcommon0 xvfb
+
+      - name: Sync (dev + cpu torch)
+        run: uv sync --group dev --group cpu
+
+      - name: Lint (black + isort)
+        run: |
+          uv run black --check .
+          uv run isort --check-only .
+
+      - name: Run pytest
+        run: uv run pytest -v
+
+  # ----- Full gate: PR to main, or push that landed on main. -----
+  lint:
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dev tooling
+        run: uv sync --only-group dev
+
+      - name: Check formatting (black)
+        run: uv run black --check .
+
+      - name: Check imports (isort)
+        run: uv run isort --check-only .
+
+  test:
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install headless GL stack (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libgl1 libglx-mesa0 libxrender1 libxkbcommon0 xvfb
+
+      - name: Sync (dev + cpu torch)
+        run: uv sync --group dev --group cpu --python ${{ matrix.python-version }}
+
+      - name: Run pytest
+        run: uv run pytest -v
+
+  build:
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Build sdist and wheel
+        run: uv build
+
+      - name: Verify package data is in the wheel
+        run: |
+          python - <<'PY'
+          import glob, zipfile, sys
+          wheels = glob.glob("dist/*.whl")
+          assert wheels, "No wheel produced"
+          with zipfile.ZipFile(wheels[0]) as z:
+              names = set(z.namelist())
+          required = [
+              "geogen/config/default_markov_matrix.csv",
+              "geogen/config/tilt-adjusted.csv",
+          ]
+          missing = [r for r in required if r not in names]
+          if missing:
+              print("Missing from wheel:", missing, file=sys.stderr)
+              print("Wheel contents:", sorted(names), file=sys.stderr)
+              sys.exit(1)
+          print("Wheel contains required package data.")
+          PY
+
+      - name: Check metadata (twine)
+        run: |
+          uv tool install twine
+          uv tool run twine check dist/*
+
+      - name: Upload dist artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/

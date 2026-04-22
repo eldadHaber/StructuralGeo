@@ -1,4 +1,4 @@
-""" A Jupyter notebook based single-model review tool/object for GeoWord models.
+"""A Jupyter notebook based single-model review tool/object for GeoWord models.
 
 Requirements:
 A Jupyter notebook environment with the PyVista and ipywidgets packages installed.

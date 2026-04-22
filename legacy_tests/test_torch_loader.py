@@ -1,3 +1,4 @@
+import importlib.resources as resources
 import os
 
 import matplotlib.pyplot as plt
@@ -9,9 +10,7 @@ import geogen.plot as geovis
 from geogen.dataset import GeoData3DStreamingDataset, OneHotTransform
 from geogen.model import GeoModel
 
-import importlib.resources as resources
-
-""" 
+"""
 Load a default config pointing to a default dataset directory with yaml file.
 """
 
@@ -21,10 +20,10 @@ def dataset_test():
     Check that the dataset can be loaded and a sample can be drawn from it.
     Check the conversion of a tensor back into a model for display.
     """
-    
+
     bounds = ((-3840, 3840), (-3840, 3840), (-1920, 1920))
     resolution = (128, 128, 64)
-    csv_weights_path = resources.files("geogen.generation.markov_matrix").joinpath("tilt-adjusted.csv")
+    csv_weights_path = resources.files("geogen.config").joinpath("tilt-adjusted.csv")
     dataset = GeoData3DStreamingDataset(
         model_bounds=bounds, model_resolution=resolution, generator_config=csv_weights_path
     )
@@ -79,9 +78,7 @@ def onehot_test():
     bounds = ((-3840, 3840), (-3840, 3840), (-1920, 1920))
     resolution = (64, 64, 32)
     onehot = OneHotTransform(num_classes=15, min_val=-1)
-    dataset = GeoData3DStreamingDataset(
-        model_bounds=bounds, model_resolution=resolution, transform=onehot
-    )
+    dataset = GeoData3DStreamingDataset(model_bounds=bounds, model_resolution=resolution, transform=onehot)
 
     # Draw a sample from the torch dataser
     onehot_tensor = dataset[0]

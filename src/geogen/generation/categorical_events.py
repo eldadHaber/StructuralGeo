@@ -1,4 +1,4 @@
-""" Categorical definitions for sampling of broad categories of GeoWords."""
+"""Categorical definitions for sampling of broad categories of GeoWords."""
 
 __all__ = [
     "BaseStrata",
@@ -243,7 +243,8 @@ class Fault(_EventTemplateClass):
             self.Event(name="Sequence", p=0.15, processes=[FaultSequence()]),
         ]
         super().__init__(cases=cases, seed=seed)
-        
+
+
 class Mountains(_EventTemplateClass):
     """A sampling regime for mountain events."""
 

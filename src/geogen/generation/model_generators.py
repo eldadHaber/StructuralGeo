@@ -1,4 +1,4 @@
-""" Sentence structures and generation processes for geo histories. """
+"""Sentence structures and generation processes for geo histories."""
 
 import abc as _abc
 import csv
@@ -177,7 +177,7 @@ class MarkovMatrixParser:
 
     def _get_default_path(self):
         # Using importlib.resources to access the default Markov matrix file
-        return resources.files("geogen.generation.markov_matrix").joinpath("default_markov_matrix.csv")
+        return resources.files("geogen.config").joinpath("default_markov_matrix.csv")
 
     def _validate_path(self, path):
         if not os.path.exists(path):

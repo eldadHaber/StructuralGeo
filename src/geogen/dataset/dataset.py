@@ -1,5 +1,5 @@
 """
-PyTorch DataLoader for streaming GeoWord geological histories. 
+PyTorch DataLoader for streaming GeoWord geological histories.
 """
 
 import torch

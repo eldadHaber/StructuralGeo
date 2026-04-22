@@ -1,7 +1,7 @@
-""" 
+"""
 A multi-plotter PyVista window offering viewing of GeoWord sentences in 3D.
 
-Allows for rapid sampling and viewing of histories generated from GeoWords. 
+Allows for rapid sampling and viewing of histories generated from GeoWords.
 Simply pass in a sentence (list of GeoWords) and the plotter will generate and plot samples.
 
 Shortcut keys:
@@ -9,7 +9,7 @@ Shortcut keys:
 - '1': View the samples in volume mode.
 - '2': View the samples in orthogonal slice mode.
 - '3': View the samples in n-slice mode.
-- '4': View the samples in one-slice mode.  
+- '4': View the samples in one-slice mode.
 
 Plotter Parameters:
 - sentence (list): A list of GeoWords (a sentence or Geostory) to generate histories from.
@@ -23,8 +23,7 @@ from pyvista import Box
 from pyvistaqt import BackgroundPlotter
 
 import geogen.plot as geovis
-from geogen.generation import (InfiniteBasement, InfiniteSedimentUniform,
-                               generate_history)
+from geogen.generation import InfiniteBasement, InfiniteSedimentUniform, generate_history
 from geogen.model import GeoModel
 
 

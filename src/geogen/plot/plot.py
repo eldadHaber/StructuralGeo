@@ -4,18 +4,18 @@ A module for plotting views and visualization of GeoModel objects.
 
 from typing import Optional
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pyvista as pv
-import matplotlib.pyplot as plt
 
-from geogen.model import GeoModel
 from geogen.generation import (
     BED_ROCK_VAL,
-    SEDIMENT_VALS,
+    BLOB_VALS,
     DIKE_VALS,
     INTRUSION_VALS,
-    BLOB_VALS,
+    SEDIMENT_VALS,
 )
+from geogen.model import GeoModel
 
 
 def plot_config_categorical(geowords=True):
@@ -78,7 +78,6 @@ def plot_config_continuous():
     plot_config = {
         "cmap": "rainbow",
         # "clim": clim,
-
         "scalar_bar_args": {
             "title": "Continuous Data",
             "title_font_size": 16,
@@ -91,9 +90,7 @@ def plot_config_continuous():
     return plot_config
 
 
-def setup_plot(
-    model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5, geowords=True
-):
+def setup_plot(model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5, geowords=True):
     if plotter is None:
         plotter = pv.Plotter()
 
@@ -106,9 +103,8 @@ def setup_plot(
     plot_config = plot_config_categorical(geowords)
     return plotter, mesh, plot_config
 
-def plot_array(
-    data, bounds=None, plotter: Optional[pv.Plotter] = None, threshold=-0.5
-) -> pv.Plotter:
+
+def plot_array(data, bounds=None, plotter: Optional[pv.Plotter] = None, threshold=-0.5) -> pv.Plotter:
     """
     Visualize a 3D array of values using PyVista.
     Parameters
@@ -128,9 +124,9 @@ def plot_array(
         The PyVista plotter object with the 3D array rendered.
     """
     assert len(data.shape) == 3, f"Data must be a 3D array, got shape {data.shape}"
-    
+
     # force data to np array
-    data = np.array(data)    
+    data = np.array(data)
 
     grid = _convert_3darray_to_voxel_grid(data, bounds)
     mesh = grid.threshold(threshold, all_scalars=True)
@@ -142,6 +138,7 @@ def plot_array(
     plotter.add_mesh(mesh, scalars="values", **plot_config, interpolate_before_map=False)
     plotter.add_axes()
     return plotter
+
 
 def volview(
     model: GeoModel,
@@ -170,18 +167,14 @@ def volview(
     pv.Plotter
         The PyVista plotter object with the volumetric view rendered.
     """
-    plotter, mesh, plot_config = setup_plot(
-        model, plotter, threshold, geowords=geowords
-    )
+    plotter, mesh, plot_config = setup_plot(model, plotter, threshold, geowords=geowords)
     if mesh is None:
         return plotter
 
     if clim:
         plot_config["clim"] = clim
 
-    plotter.add_mesh(
-        mesh, scalars="values", **plot_config, interpolate_before_map=False
-    )
+    plotter.add_mesh(mesh, scalars="values", **plot_config, interpolate_before_map=False)
     plotter.add_axes(line_width=5)
 
     flat_bounds = [item for sublist in model.bounds for item in sublist]
@@ -272,9 +265,7 @@ def nsliceview(
     return plotter
 
 
-def onesliceview(
-    model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5
-) -> pv.Plotter:
+def onesliceview(model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=-0.5) -> pv.Plotter:
     """
     Visualize a single slice through the geological model, along with a translucent surface for context.
 
@@ -309,9 +300,7 @@ def onesliceview(
     return plotter
 
 
-def transformationview(
-    model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=None
-) -> pv.Plotter:
+def transformationview(model: GeoModel, plotter: Optional[pv.Plotter] = None, threshold=None) -> pv.Plotter:
     """
     Visualize a time-sequenced transformation view of the geological model, showing snapshots of model deformations.
 
@@ -372,18 +361,14 @@ def _add_snapshots_to_plotter(plotter: pv.Plotter, model: GeoModel, cmap, clim):
     x_offset = model.bounds[0][1] - model.bounds[0][0]  # Width of the model along x
 
     # Remove first data time entry which is empty, add the final data time entry
-    data_snapshots = np.concatenate(
-        (model.data_snapshots[1:], model.data.reshape(1, -1)), axis=0
-    )
+    data_snapshots = np.concatenate((model.data_snapshots[1:], model.data.reshape(1, -1)), axis=0)
 
     # Reverse the snapshots for proper plotting
     mesh_snapshots = model.mesh_snapshots[::-1]
     data_snapshots = data_snapshots[::-1]
 
     actors = []
-    for i, (mesh_snapshot, data_snapshot) in enumerate(
-        zip(mesh_snapshots, data_snapshots)
-    ):
+    for i, (mesh_snapshot, data_snapshot) in enumerate(zip(mesh_snapshots, data_snapshots)):
         # Assuming snapshots are stored as Nx3 arrays
         # Reshape to 3D grid of points-- i.e. 4x4x4 grid of (x,y,z) points
         deformed_points = mesh_snapshot.reshape(resolution + (3,))
@@ -411,9 +396,7 @@ def _add_snapshots_to_plotter(plotter: pv.Plotter, model: GeoModel, cmap, clim):
     return actors
 
 
-def categorical_grid_view(
-    model: GeoModel, threshold=None, text_annot=True, off_screen=False
-) -> pv.Plotter:
+def categorical_grid_view(model: GeoModel, threshold=None, text_annot=True, off_screen=False) -> pv.Plotter:
     """
     Visualize categorical rock types from the geological model in a grid layout, with each category displayed separately.
 
@@ -448,9 +431,7 @@ def categorical_grid_view(
     num_cats = len(cats)
     rows, cols = calculate_grid_dims(num_cats)
 
-    p = pv.Plotter(
-        shape=(rows, cols), border=False, off_screen=off_screen
-    )  # subplot square layout
+    p = pv.Plotter(shape=(rows, cols), border=False, off_screen=off_screen)  # subplot square layout
 
     clim = [cats.min(), cats.max()]  # Preset color limits for all subplots
     skin = grid.extract_surface()  # Extract surface mesh for translucent skin
@@ -460,9 +441,7 @@ def categorical_grid_view(
         p.subplot(row, col)
 
         cat_mask = grid["values"] == cat  # mask for a category
-        category_grid = grid.extract_cells(
-            cat_mask
-        )  # Pull only those cells from voxel grid
+        category_grid = grid.extract_cells(cat_mask)  # Pull only those cells from voxel grid
 
         # Plot the category cluster and a translucent skin for context
         p.add_mesh(
@@ -508,9 +487,7 @@ def get_mesh_from_model(model: GeoModel, threshold=None):
     """
 
     if model.data is None or model.data.size == 0:
-        raise ValueError(
-            "Model data is empty or not computed, no data to show. Use compute model first."
-        )
+        raise ValueError("Model data is empty or not computed, no data to show. Use compute model first.")
 
     grid = pv.StructuredGrid(model.X, model.Y, model.Z)
 
@@ -539,19 +516,13 @@ def get_voxel_grid_from_model(model, threshold=None):
         The voxel grid representation of the geological model, with discrete values for rock types.
     """
     if model.data is None or model.data.size == 0:
-        raise ValueError(
-            "Model data is empty or not computed, no data to show. Use compute model first."
-        )
+        raise ValueError("Model data is empty or not computed, no data to show. Use compute model first.")
     if not all(res > 1 for res in model.resolution):
-        raise ValueError(
-            "Voxel grid requires a model resolution greater than 1 in each dimension."
-        )
+        raise ValueError("Voxel grid requires a model resolution greater than 1 in each dimension.")
 
     # Create a padded grid with n+1 nodes and node spacing equal to model sample spacing
     dimensions = tuple(x + 1 for x in model.resolution)
-    spacing = tuple(
-        (x[1] - x[0]) / (r - 1) for x, r in zip(model.bounds, model.resolution)
-    )
+    spacing = tuple((x[1] - x[0]) / (r - 1) for x, r in zip(model.bounds, model.resolution))
     # pad origin with a half cell size to center the grid
     origin = tuple(x[0] - cs / 2 for x, cs in zip(model.bounds, spacing))
 
@@ -566,9 +537,8 @@ def get_voxel_grid_from_model(model, threshold=None):
     grid = grid.threshold(threshold, all_scalars=True)
     return grid
 
-def _convert_3darray_to_voxel_grid(
-    model_data, bounds=None
-) -> pv.ImageData:
+
+def _convert_3darray_to_voxel_grid(model_data, bounds=None) -> pv.ImageData:
     """
     Converts np.ndarray to a voxel grid with each channel of data as a scalar field.
     Parameters
@@ -581,7 +551,7 @@ def _convert_3darray_to_voxel_grid(
     """
 
     resolution = model_data.shape[-3:]
-    
+
     if bounds is None:
         bounds = ((0, model_data.shape[0]), (0, model_data.shape[1]), (0, model_data.shape[2]))
 
@@ -595,5 +565,5 @@ def _convert_3darray_to_voxel_grid(
         origin=origin,
     )
     grid["values"] = model_data.ravel(order="F")
-    
+
     return grid

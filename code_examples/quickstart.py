@@ -18,6 +18,7 @@ def main():
     sampling_summary()  # <-- Summary of using GeoWords
     direct_model_generation_demo()
 
+
 def visualize_model_demo(model):
     """Demonstration of visualizing a geomodel."""
     # Now we can visualize the model, there are a few options:
@@ -55,9 +56,7 @@ def dataloader_test():
     resolution = (128, 128, 64)
 
     # Dataset, Loader and Batch
-    dataset = GeoData3DStreamingDataset(
-        model_bounds=bounds, model_resolution=resolution
-    )
+    dataset = GeoData3DStreamingDataset(model_bounds=bounds, model_resolution=resolution)
     loader = DataLoader(dataset, batch_size=4, shuffle=True, num_workers=4)
     batch = next(iter(loader))
 
@@ -140,9 +139,7 @@ def direct_model_generation_demo():
     # We can inspect each one to get an idea of what they do
     for geoword in geosentence:
         print(f"Generating Sample from {geoword.__class__.__name__}")
-        print(
-            geoword.generate()
-        )  # GeoProcess classes generated mostly have descriptive __str__ methods
+        print(geoword.generate())  # GeoProcess classes generated mostly have descriptive __str__ methods
         print("\n")
 
     # The most general classes are categorical events, which sample from a subset of GeoWords
