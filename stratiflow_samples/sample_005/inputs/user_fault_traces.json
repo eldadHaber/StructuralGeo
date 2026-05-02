@@ -1,0 +1,52 @@
+{
+  "faults": [
+    {
+      "id": "fault_gt_002",
+      "polyline_xy_m": [
+        [
+          0.0,
+          3022.37
+        ],
+        [
+          4239.54,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 35.76,
+      "dip_direction_degrees": 141.46,
+      "rake_degrees": 87.39,
+      "throw_m": 244.65,
+      "amplitude_m": 418.62,
+      "origin_xyz_m": [
+        -2541.68,
+        997.42,
+        1629.41
+      ],
+      "source": "user_input"
+    },
+    {
+      "id": "fault_gt_003",
+      "polyline_xy_m": [
+        [
+          6400.0,
+          447.37
+        ],
+        [
+          6244.46,
+          0.0
+        ]
+      ],
+      "dip_degrees": 81.57,
+      "dip_direction_degrees": 109.17,
+      "rake_degrees": 90.02,
+      "throw_m": 627.08,
+      "amplitude_m": 633.92,
+      "origin_xyz_m": [
+        5670.08,
+        -1652.08,
+        5036.38
+      ],
+      "source": "user_input"
+    }
+  ]
+}

@@ -21,6 +21,19 @@ setup(
         "tqdm",
         "PyDTMC",
     ],
+    extras_require={
+        # Microsoft Planetary Computer + raster ingestion for geogen.gis
+        "gis": [
+            "pystac-client>=0.7",
+            "planetary-computer>=1.0",
+            "rioxarray>=0.15",
+            "rasterio>=1.3",
+            "xarray>=2023.1",
+            "pyproj>=3.5",
+            "shapely>=2.0",
+            "affine>=2.4",
+        ],
+    },
     package_data={
         "geogen.generation.markov_matrix": ["default_markov_matrix.csv"],
     },

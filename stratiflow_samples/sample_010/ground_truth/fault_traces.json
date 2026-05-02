@@ -1,0 +1,76 @@
+{
+  "faults": [
+    {
+      "id": "fault_gt_001",
+      "polyline_xy_m": [
+        [
+          0.0,
+          2338.25
+        ],
+        [
+          6400.0,
+          6318.86
+        ]
+      ],
+      "dip_degrees": 104.82,
+      "dip_direction_degrees": 148.12,
+      "rake_degrees": 94.33,
+      "throw_m": 303.61,
+      "amplitude_m": -314.05,
+      "origin_xyz_m": [
+        644.74,
+        2739.25,
+        1932.77
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_002",
+      "polyline_xy_m": [
+        [
+          6400.0,
+          810.86
+        ],
+        [
+          4955.13,
+          0.0
+        ]
+      ],
+      "dip_degrees": 72.71,
+      "dip_direction_degrees": 150.7,
+      "rake_degrees": 96.74,
+      "throw_m": 297.12,
+      "amplitude_m": 311.18,
+      "origin_xyz_m": [
+        2157.73,
+        -1569.9,
+        2462.01
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_003",
+      "polyline_xy_m": [
+        [
+          0.0,
+          4718.75
+        ],
+        [
+          1802.65,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 110.77,
+      "dip_direction_degrees": 317.0,
+      "rake_degrees": 7.66,
+      "throw_m": 262.52,
+      "amplitude_m": 280.77,
+      "origin_xyz_m": [
+        -2196.03,
+        2670.62,
+        4698.35
+      ],
+      "source": "ground_truth"
+    }
+  ]
+}

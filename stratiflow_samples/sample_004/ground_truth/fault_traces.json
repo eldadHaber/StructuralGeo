@@ -1,0 +1,172 @@
+{
+  "faults": [
+    {
+      "id": "fault_gt_001",
+      "polyline_xy_m": [
+        [
+          0.0,
+          1417.14
+        ],
+        [
+          542.19,
+          0.0
+        ]
+      ],
+      "dip_degrees": 112.7,
+      "dip_direction_degrees": 69.06,
+      "rake_degrees": 1.89,
+      "throw_m": 112.47,
+      "amplitude_m": -121.92,
+      "origin_xyz_m": [
+        231.9,
+        811.03,
+        5474.36
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_002",
+      "polyline_xy_m": [
+        [
+          0.0,
+          5201.62
+        ],
+        [
+          593.47,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 51.03,
+      "dip_direction_degrees": 296.35,
+      "rake_degrees": 17.13,
+      "throw_m": 395.65,
+      "amplitude_m": 508.88,
+      "origin_xyz_m": [
+        -2722.01,
+        -294.91,
+        2517.08
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_003",
+      "polyline_xy_m": [
+        [
+          0.0,
+          6214.31
+        ],
+        [
+          207.82,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 90.11,
+      "dip_direction_degrees": 138.22,
+      "rake_degrees": 92.56,
+      "throw_m": 171.98,
+      "amplitude_m": -171.98,
+      "origin_xyz_m": [
+        -3459.68,
+        3123.05,
+        5097.82
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_004",
+      "polyline_xy_m": [
+        [
+          0.0,
+          4133.41
+        ],
+        [
+          2490.46,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 88.51,
+      "dip_direction_degrees": 137.69,
+      "rake_degrees": 93.1,
+      "throw_m": 175.52,
+      "amplitude_m": 175.58,
+      "origin_xyz_m": [
+        -2419.24,
+        1931.65,
+        5323.33
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_005",
+      "polyline_xy_m": [
+        [
+          6400.0,
+          4782.66
+        ],
+        [
+          2174.28,
+          0.0
+        ]
+      ],
+      "dip_degrees": 10.36,
+      "dip_direction_degrees": 311.46,
+      "rake_degrees": 158.59,
+      "throw_m": 36.72,
+      "amplitude_m": 204.11,
+      "origin_xyz_m": [
+        3019.54,
+        956.67,
+        4495.71
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_006",
+      "polyline_xy_m": [
+        [
+          6400.0,
+          6151.48
+        ],
+        [
+          6384.53,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 83.13,
+      "dip_direction_degrees": 86.44,
+      "rake_degrees": 98.14,
+      "throw_m": 344.72,
+      "amplitude_m": 347.21,
+      "origin_xyz_m": [
+        6697.39,
+        1372.3,
+        2462.09
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_007",
+      "polyline_xy_m": [
+        [
+          0.0,
+          3127.24
+        ],
+        [
+          6400.0,
+          4069.23
+        ]
+      ],
+      "dip_degrees": 65.85,
+      "dip_direction_degrees": 351.63,
+      "rake_degrees": 229.32,
+      "throw_m": 143.68,
+      "amplitude_m": 157.46,
+      "origin_xyz_m": [
+        1896.98,
+        3406.45,
+        4136.58
+      ],
+      "source": "ground_truth"
+    }
+  ]
+}

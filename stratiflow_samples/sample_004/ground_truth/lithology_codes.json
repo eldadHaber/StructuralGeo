@@ -1,0 +1,107 @@
+{
+  "2": {
+    "name": "middle_sediments",
+    "lithology": "sandstone",
+    "category": "sediment",
+    "density_kg_m3": -220.8386310586138,
+    "susceptibility_si": 3e-05,
+    "chemistry_template": {
+      "SiO2_pct": 78.0,
+      "Al2O3_pct": 9.0,
+      "Fe2O3_pct": 2.5,
+      "K2O_pct": 1.5,
+      "Cu_ppm": 15.0,
+      "Au_ppm": 0.001
+    }
+  },
+  "4": {
+    "name": "conglomerate",
+    "lithology": "conglomerate",
+    "category": "sediment",
+    "density_kg_m3": -236.33873534774034,
+    "susceptibility_si": 4e-05,
+    "chemistry_template": {
+      "SiO2_pct": 70.0,
+      "Al2O3_pct": 11.0,
+      "Fe2O3_pct": 3.5,
+      "K2O_pct": 2.0,
+      "Cu_ppm": 25.0,
+      "Au_ppm": 0.001
+    }
+  },
+  "1": {
+    "name": "lower_sediments",
+    "lithology": "shale",
+    "category": "sediment",
+    "density_kg_m3": -170.97320316098515,
+    "susceptibility_si": 2e-05,
+    "chemistry_template": {
+      "SiO2_pct": 60.0,
+      "Al2O3_pct": 18.0,
+      "Fe2O3_pct": 6.0,
+      "K2O_pct": 3.0,
+      "Cu_ppm": 50.0,
+      "Au_ppm": 0.002
+    }
+  },
+  "3": {
+    "name": "upper_sediments",
+    "lithology": "siltstone",
+    "category": "sediment",
+    "density_kg_m3": -125.67032627815935,
+    "susceptibility_si": 2e-05,
+    "chemistry_template": {
+      "SiO2_pct": 66.0,
+      "Al2O3_pct": 14.0,
+      "Fe2O3_pct": 4.5,
+      "K2O_pct": 2.5,
+      "Cu_ppm": 30.0,
+      "Au_ppm": 0.002
+    }
+  },
+  "5": {
+    "name": "alluvium",
+    "lithology": "alluvium",
+    "category": "alluvium",
+    "density_kg_m3": -479.28751328390524,
+    "susceptibility_si": 1e-05,
+    "chemistry_template": {
+      "SiO2_pct": 65.0,
+      "Al2O3_pct": 12.0,
+      "Fe2O3_pct": 4.0,
+      "K2O_pct": 2.0,
+      "Cu_ppm": 20.0,
+      "Au_ppm": 0.001
+    }
+  },
+  "7": {
+    "name": "andesitic_dike",
+    "lithology": "andesite",
+    "category": "volcanic",
+    "density_kg_m3": 193.36347557013593,
+    "susceptibility_si": 0.012,
+    "chemistry_template": {
+      "SiO2_pct": 58.0,
+      "Al2O3_pct": 17.0,
+      "Fe2O3_pct": 7.5,
+      "K2O_pct": 1.8,
+      "Cu_ppm": 60.0,
+      "Au_ppm": 0.003
+    }
+  },
+  "8": {
+    "name": "rhyolitic_dike",
+    "lithology": "rhyolite",
+    "category": "volcanic",
+    "density_kg_m3": 199.23576087194346,
+    "susceptibility_si": 0.004,
+    "chemistry_template": {
+      "SiO2_pct": 73.0,
+      "Al2O3_pct": 13.0,
+      "Fe2O3_pct": 1.5,
+      "K2O_pct": 4.5,
+      "Cu_ppm": 18.0,
+      "Au_ppm": 0.004
+    }
+  }
+}

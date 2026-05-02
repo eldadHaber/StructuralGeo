@@ -1,0 +1,28 @@
+{
+  "faults": [
+    {
+      "id": "fault_gt_001",
+      "polyline_xy_m": [
+        [
+          0.0,
+          2771.71
+        ],
+        [
+          6400.0,
+          400.49
+        ]
+      ],
+      "dip_degrees": 56.78,
+      "dip_direction_degrees": 20.33,
+      "rake_degrees": 86.56,
+      "throw_m": 392.29,
+      "amplitude_m": 468.94,
+      "origin_xyz_m": [
+        2119.16,
+        1986.55,
+        1787.78
+      ],
+      "source": "ground_truth"
+    }
+  ]
+}

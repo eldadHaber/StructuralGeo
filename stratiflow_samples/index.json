@@ -1,0 +1,102 @@
+[
+  {
+    "out_dir": "stratiflow_samples/sample_001",
+    "n_units": 9,
+    "n_faults": 1,
+    "n_boreholes": 8,
+    "surface_relief_m": 1250.0,
+    "qc_warnings": [],
+    "sample_id": "sample_001",
+    "seconds": 2.5
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_002",
+    "n_units": 6,
+    "n_faults": 5,
+    "n_boreholes": 8,
+    "surface_relief_m": 200.0,
+    "qc_warnings": [],
+    "sample_id": "sample_002",
+    "seconds": 2.1
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_003",
+    "n_units": 6,
+    "n_faults": 1,
+    "n_boreholes": 8,
+    "surface_relief_m": 800.0,
+    "qc_warnings": [],
+    "sample_id": "sample_003",
+    "seconds": 1.0
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_004",
+    "n_units": 7,
+    "n_faults": 7,
+    "n_boreholes": 8,
+    "surface_relief_m": 1250.0,
+    "qc_warnings": [],
+    "sample_id": "sample_004",
+    "seconds": 1.0
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_005",
+    "n_units": 7,
+    "n_faults": 3,
+    "n_boreholes": 8,
+    "surface_relief_m": 1150.0,
+    "qc_warnings": [],
+    "sample_id": "sample_005",
+    "seconds": 1.5
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_006",
+    "n_units": 5,
+    "n_faults": 2,
+    "n_boreholes": 8,
+    "surface_relief_m": 350.0,
+    "qc_warnings": [],
+    "sample_id": "sample_006",
+    "seconds": 0.6
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_007",
+    "n_units": 7,
+    "n_faults": 2,
+    "n_boreholes": 8,
+    "surface_relief_m": 450.0,
+    "qc_warnings": [],
+    "sample_id": "sample_007",
+    "seconds": 1.4
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_008",
+    "n_units": 7,
+    "n_faults": 4,
+    "n_boreholes": 8,
+    "surface_relief_m": 700.0,
+    "qc_warnings": [],
+    "sample_id": "sample_008",
+    "seconds": 1.2
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_009",
+    "n_units": 5,
+    "n_faults": 1,
+    "n_boreholes": 8,
+    "surface_relief_m": 300.0,
+    "qc_warnings": [],
+    "sample_id": "sample_009",
+    "seconds": 1.2
+  },
+  {
+    "out_dir": "stratiflow_samples/sample_010",
+    "n_units": 7,
+    "n_faults": 3,
+    "n_boreholes": 8,
+    "surface_relief_m": 1750.0,
+    "qc_warnings": [],
+    "sample_id": "sample_010",
+    "seconds": 1.3
+  }
+]

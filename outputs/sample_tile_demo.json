@@ -1,0 +1,35 @@
+{
+  "schema_version": "geogen-sample-tile-v1",
+  "terrain_id": "sample-southern_alps",
+  "region_name": "southern_alps",
+  "region_description": "Alpine Fault transpressional thrust belt; uplifted greywacke/schist with high relief, oblique reverse faulting, tight folds.",
+  "center_lonlat": [
+    169.8,
+    -43.599999999999994
+  ],
+  "bbox_nztm": [
+    0.0,
+    0.0,
+    7680.0,
+    7680.0
+  ],
+  "crs_horizontal": "EPSG:2193",
+  "crs_geographic": "EPSG:4326",
+  "mesh": {
+    "nz": 128,
+    "ny": 256,
+    "nx": 256,
+    "dx_m": 30.0,
+    "dy_m": 30.0,
+    "dz_m": 30.0,
+    "z_top_m": 2374.031494140625,
+    "observation_height_m": 50.0
+  },
+  "physics": {
+    "background_density_kg_m3": 2670.0,
+    "obs_plane_z_m": 2424.031494140625,
+    "gravity_units": "mGal",
+    "gravity_sign": "positive_downward"
+  },
+  "source": "structural-geogis sample tile"
+}

@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: GeoGen
-Version: 0.0.3
+Version: 0.1.0
 Summary: A package for creating, visualizing, and exporting 3D structural geology models.     Allows either user specified, or randomized generation of models.
 License-File: LICENSE
 Requires-Dist: numpy
@@ -15,3 +15,6 @@ Requires-Dist: trame-vuetify
 Requires-Dist: trame-vtk
 Requires-Dist: tqdm
 Requires-Dist: PyDTMC
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary

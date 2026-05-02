@@ -1,0 +1,100 @@
+{
+  "faults": [
+    {
+      "id": "fault_gt_001",
+      "polyline_xy_m": [
+        [
+          0.0,
+          1417.14
+        ],
+        [
+          542.19,
+          0.0
+        ]
+      ],
+      "dip_degrees": 112.7,
+      "dip_direction_degrees": 69.06,
+      "rake_degrees": 1.89,
+      "throw_m": 112.47,
+      "amplitude_m": -121.92,
+      "origin_xyz_m": [
+        231.9,
+        811.03,
+        5474.36
+      ],
+      "source": "user_input"
+    },
+    {
+      "id": "fault_gt_004",
+      "polyline_xy_m": [
+        [
+          0.0,
+          4133.41
+        ],
+        [
+          2490.46,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 88.51,
+      "dip_direction_degrees": 137.69,
+      "rake_degrees": 93.1,
+      "throw_m": 175.52,
+      "amplitude_m": 175.58,
+      "origin_xyz_m": [
+        -2419.24,
+        1931.65,
+        5323.33
+      ],
+      "source": "user_input"
+    },
+    {
+      "id": "fault_gt_005",
+      "polyline_xy_m": [
+        [
+          6400.0,
+          4782.66
+        ],
+        [
+          2174.28,
+          0.0
+        ]
+      ],
+      "dip_degrees": 10.36,
+      "dip_direction_degrees": 311.46,
+      "rake_degrees": 158.59,
+      "throw_m": 36.72,
+      "amplitude_m": 204.11,
+      "origin_xyz_m": [
+        3019.54,
+        956.67,
+        4495.71
+      ],
+      "source": "user_input"
+    },
+    {
+      "id": "fault_gt_006",
+      "polyline_xy_m": [
+        [
+          6400.0,
+          6151.48
+        ],
+        [
+          6384.53,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 83.13,
+      "dip_direction_degrees": 86.44,
+      "rake_degrees": 98.14,
+      "throw_m": 344.72,
+      "amplitude_m": 347.21,
+      "origin_xyz_m": [
+        6697.39,
+        1372.3,
+        2462.09
+      ],
+      "source": "user_input"
+    }
+  ]
+}

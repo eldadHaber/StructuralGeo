@@ -1,0 +1,124 @@
+{
+  "faults": [
+    {
+      "id": "fault_gt_001",
+      "polyline_xy_m": [
+        [
+          0.0,
+          3636.79
+        ],
+        [
+          2184.33,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 96.35,
+      "dip_direction_degrees": 128.33,
+      "rake_degrees": 94.68,
+      "throw_m": 129.01,
+      "amplitude_m": 129.81,
+      "origin_xyz_m": [
+        -2362.84,
+        647.75,
+        3975.14
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_002",
+      "polyline_xy_m": [
+        [
+          0.0,
+          667.91
+        ],
+        [
+          4435.46,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 110.53,
+      "dip_direction_degrees": 127.73,
+      "rake_degrees": 5.81,
+      "throw_m": 161.14,
+      "amplitude_m": 172.08,
+      "origin_xyz_m": [
+        572.21,
+        1407.39,
+        1972.53
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_003",
+      "polyline_xy_m": [
+        [
+          128.29,
+          0.0
+        ],
+        [
+          2512.11,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 103.15,
+      "dip_direction_degrees": 290.43,
+      "rake_degrees": 82.56,
+      "throw_m": 456.31,
+      "amplitude_m": 468.6,
+      "origin_xyz_m": [
+        218.36,
+        241.82,
+        3378.98
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_004",
+      "polyline_xy_m": [
+        [
+          0.0,
+          3639.82
+        ],
+        [
+          996.18,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 105.89,
+      "dip_direction_degrees": 289.84,
+      "rake_degrees": 82.56,
+      "throw_m": 469.64,
+      "amplitude_m": 488.3,
+      "origin_xyz_m": [
+        -1158.18,
+        430.75,
+        3567.6
+      ],
+      "source": "ground_truth"
+    },
+    {
+      "id": "fault_gt_005",
+      "polyline_xy_m": [
+        [
+          430.32,
+          0.0
+        ],
+        [
+          3809.77,
+          6400.0
+        ]
+      ],
+      "dip_degrees": 112.46,
+      "dip_direction_degrees": 117.84,
+      "rake_degrees": -4.44,
+      "throw_m": 161.64,
+      "amplitude_m": -174.91,
+      "origin_xyz_m": [
+        -1362.18,
+        -3394.62,
+        1547.24
+      ],
+      "source": "ground_truth"
+    }
+  ]
+}

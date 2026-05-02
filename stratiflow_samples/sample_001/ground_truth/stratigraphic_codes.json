@@ -1,0 +1,38 @@
+{
+  "1": {
+    "name": "lower_sediments",
+    "age_order": 0
+  },
+  "3": {
+    "name": "upper_sediments",
+    "age_order": 1
+  },
+  "5": {
+    "name": "alluvium",
+    "age_order": 2
+  },
+  "4": {
+    "name": "conglomerate",
+    "age_order": 3
+  },
+  "2": {
+    "name": "middle_sediments",
+    "age_order": 4
+  },
+  "6": {
+    "name": "mafic_dike",
+    "age_order": 5
+  },
+  "8": {
+    "name": "rhyolitic_dike",
+    "age_order": 6
+  },
+  "9": {
+    "name": "felsic_pluton",
+    "age_order": 7
+  },
+  "11": {
+    "name": "mafic_pluton",
+    "age_order": 8
+  }
+}

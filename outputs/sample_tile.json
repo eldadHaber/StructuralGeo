@@ -1,0 +1,35 @@
+{
+  "schema_version": "geogen-sample-tile-v1",
+  "terrain_id": "sample-taupo_volcanic_zone",
+  "region_name": "taupo_volcanic_zone",
+  "region_description": "Active continental rift arc with calderas, rhyolitic volcanism, ignimbrite plateaus and shallow plutons.",
+  "center_lonlat": [
+    176.40135165341155,
+    -38.82334587229754
+  ],
+  "bbox_nztm": [
+    1891457.4348428384,
+    5693487.964789066,
+    1899137.4348428384,
+    5701167.964789066
+  ],
+  "crs_horizontal": "EPSG:2193",
+  "crs_geographic": "EPSG:4326",
+  "mesh": {
+    "nz": 128,
+    "ny": 256,
+    "nx": 256,
+    "dx_m": 30.0,
+    "dy_m": 30.0,
+    "dz_m": 30.0,
+    "z_top_m": 797.0836791992188,
+    "observation_height_m": 50.0
+  },
+  "physics": {
+    "background_density_kg_m3": 2670.0,
+    "obs_plane_z_m": 847.0836791992188,
+    "gravity_units": "mGal",
+    "gravity_sign": "positive_downward"
+  },
+  "source": "structural-geogis sample tile"
+}
