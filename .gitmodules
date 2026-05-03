@@ -1,0 +1,4 @@
+[submodule "contracts"]
+	path = contracts
+	url = https://github.com/agr-geology/geoflow-contracts.git
+	branch = main

@@ -2,6 +2,23 @@
 
 **StructuralGeo** is a Python package designed for creating, visualizing, and randomizing synthetic structural geology data. The package leverages NumPy for efficient data handling and PyVista for powerful 3D visualization. It includes a randomization scheme within the generation and dataset modules, enabling the creation of an extensive synthetic dataset for use with PyTorch or similar frameworks.
 
+## Shared Contracts
+
+This repository includes `contracts/` as a git submodule pointing at
+`geoflow-contracts`. That submodule is the source of truth for cross-repo schema
+IDs, schema versions, feature-set IDs, service run envelopes, and validation
+fixtures.
+
+When changing synthetic data outputs consumed by Stratiflow, Geoflow, or the ML
+training pipelines, update `contracts/` first, validate the fixtures there, then
+update this repository against the new contracts pin.
+
+Initialize submodules with:
+
+```bash
+git submodule update --init --recursive
+```
+
 ### Project Installation
 To install StructuralGeo to your Python environment, first clone this repo into a working directory and change directory into the cloned folder.
 
