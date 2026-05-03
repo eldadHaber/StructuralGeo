@@ -45,6 +45,40 @@ def _load_sample(sample_dir: Path) -> Dict:
             (sd / "inputs" / "boreholes.json").read_text()
         )["boreholes"],
     }
+    s2_path = sd / "inputs" / "satellite_rgb.npy"
+    out["satellite_rgb"] = np.load(s2_path) if s2_path.exists() else None
+    return out
+
+
+def _hillshade(dem: np.ndarray, az_deg: float = 315.0, alt_deg: float = 45.0,
+               pixel_m: float = 50.0) -> np.ndarray:
+    az = np.deg2rad(360.0 - az_deg + 90.0)
+    alt = np.deg2rad(alt_deg)
+    gy, gx = np.gradient(dem.astype(np.float32), pixel_m)
+    slope = np.arctan(np.hypot(gx, gy))
+    aspect = np.arctan2(-gx, gy)
+    return np.clip(
+        np.sin(alt) * np.cos(slope)
+        + np.cos(alt) * np.sin(slope) * np.cos(az - aspect),
+        0.0, 1.0,
+    )
+
+
+def _stretch_rgb(rgb: np.ndarray, p_lo: float = 2.0, p_hi: float = 98.0) -> np.ndarray:
+    """Per-band percentile stretch to [0, 1] for display, NaN-safe."""
+    out = np.empty_like(rgb)
+    for c in range(rgb.shape[-1]):
+        band = rgb[..., c]
+        if not np.isfinite(band).any():
+            out[..., c] = 0.0
+            continue
+        lo, hi = np.nanpercentile(band, [p_lo, p_hi])
+        if not np.isfinite(lo) or not np.isfinite(hi) or hi - lo < 1e-6:
+            out[..., c] = 0.0
+            continue
+        scaled = (band - lo) / (hi - lo)
+        scaled = np.where(np.isfinite(scaled), scaled, 0.0)
+        out[..., c] = np.clip(scaled, 0.0, 1.0)
     return out
 
 
@@ -72,8 +106,8 @@ def _categorical_cmap_norm(codes: List[int]):
 
 
 def plot_sample(sample_dir: Path, out_path: Optional[Path] = None,
-                figsize=(16, 9)) -> Path:
-    """Render the per-sample preview panel and return its file path."""
+                figsize=(20, 10)) -> Path:
+    """Render the per-sample preview panel (2x4 with satellite when available)."""
     import matplotlib.pyplot as plt
 
     sd = Path(sample_dir)
@@ -82,59 +116,87 @@ def plot_sample(sample_dir: Path, out_path: Optional[Path] = None,
     mesh = meta["mesh"]
     nx, ny, nz = mesh["nx"], mesh["ny"], mesh["nz"]
     dx, dy, dz = mesh["dx_m"], mesh["dy_m"], mesh["dz_m"]
-    extent_xy = [0, nx * dx, 0, ny * dy]                 # imshow uses (left, right, bottom, top)
-    extent_xz = [0, nx * dx, -nz * dz, 0]                # x-z cross-section
+    extent_xy = [0, nx * dx, 0, ny * dy]
+    extent_xz = [0, nx * dx, -nz * dz, 0]
     summary = meta["summary"]
+    label_map = {int(k): v["lithology"] for k, v in s["lithology_codes"].items()}
+    label_map[-1] = "(air)"
 
-    fig, axes = plt.subplots(2, 3, figsize=figsize)
+    fig, axes = plt.subplots(2, 4, figsize=figsize)
 
-    # --- Panel 1: DEM with faults + boreholes overlaid -------------------
+    # --- Panel 1: Sentinel-2 RGB (or hillshade fallback) -----------------
     ax = axes[0, 0]
+    if s["satellite_rgb"] is not None:
+        rgb_arr = np.transpose(s["satellite_rgb"], (1, 2, 0))  # (ny, nx, 3)
+        rgb_disp = _stretch_rgb(rgb_arr)
+        nodata = ~np.all(np.isfinite(rgb_arr), axis=-1)
+        coverage = 100.0 * (1.0 - nodata.mean())
+        # Hillshade undercoat so missing pixels still show terrain
+        ax.imshow(_hillshade(s["dem"], pixel_m=dx), cmap="gray",
+                  extent=extent_xy, origin="lower", alpha=0.5)
+        # The image is row-major; origin="lower" + flip vertically so geographic
+        # north is up (matches DEM panel orientation).
+        ax.imshow(np.flipud(rgb_disp), extent=extent_xy, origin="lower",
+                  alpha=np.where(np.flipud(nodata), 0.0, 1.0))
+        title = "Sentinel-2 RGB (true-color)"
+        if coverage < 99.0:
+            title += f"  [{coverage:.0f}% cov]"
+        ax.set_title(title)
+    else:
+        ax.imshow(_hillshade(s["dem"], pixel_m=dx), cmap="gray",
+                  extent=extent_xy, origin="lower")
+        ax.set_title("DEM hillshade (no satellite imagery)")
+    ax.set_xticks([]); ax.set_yticks([])
+
+    # --- Panel 2: DEM color (terrain) ------------------------------------
+    ax = axes[0, 1]
     im = ax.imshow(s["dem"], cmap="terrain", extent=extent_xy, origin="lower")
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="Elevation (m)")
+    ax.set_title(f"Topography (relief={float(np.ptp(s['dem'])):.0f} m)")
+    ax.set_xticks([]); ax.set_yticks([])
+
+    # --- Panel 3: DEM hillshade + faults + boreholes ---------------------
+    ax = axes[0, 2]
+    ax.imshow(_hillshade(s["dem"], pixel_m=dx), cmap="gray",
+              extent=extent_xy, origin="lower")
     for ft in s["fault_traces"]:
         (x0, y0), (x1, y1) = ft["polyline_xy_m"]
         is_user = any(uf["id"] == ft["id"] for uf in s["user_faults"])
         ax.plot([x0, x1], [y0, y1],
                 color="red" if not is_user else "blue",
                 lw=2 if not is_user else 1.5,
-                ls="-" if not is_user else "--",
-                label=("hidden" if not is_user else "user") if ft is s["fault_traces"][0] else None)
+                ls="-" if not is_user else "--")
     for bh in s["boreholes"]:
-        ax.plot(bh["x_m"], bh["y_m"], "o", color="white",
-                mec="black", ms=5)
+        ax.plot(bh["x_m"], bh["y_m"], "o", color="yellow", mec="black", ms=5)
     ax.set_xlim(0, nx * dx); ax.set_ylim(0, ny * dy)
-    ax.set_title(f"DEM + faults (red=hidden, blue dashed=user-known)\n"
-                 f"+ {len(s['boreholes'])} borehole collars")
-    ax.set_xlabel("x (m)"); ax.set_ylabel("y (m)")
+    ax.set_title("Hillshade + faults (red=hidden, blue dashed=known) + BHs")
+    ax.set_xticks([]); ax.set_yticks([])
 
-    # --- Panel 2: Surface contact raster ---------------------------------
-    ax = axes[0, 1]
-    contact = s["contact"]
-    cmap, norm, codes = _categorical_cmap_norm([int(c) for c in np.unique(contact)])
-    im = ax.imshow(contact, cmap=cmap, norm=norm, extent=extent_xy, origin="lower",
-                   interpolation="nearest")
-    cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, ticks=codes)
-    label_map = {int(k): v["lithology"] for k, v in s["lithology_codes"].items()}
-    label_map[-1] = "(air)"
-    cbar.ax.set_yticklabels([label_map.get(c, str(c)) for c in codes])
-    ax.set_title("Surface contact (top stratigraphic unit)")
-    ax.set_xlabel("x (m)"); ax.set_ylabel("y (m)")
-
-    # --- Panel 3: Gravity grid -------------------------------------------
-    ax = axes[0, 2]
+    # --- Panel 4: Gravity grid -------------------------------------------
+    ax = axes[0, 3]
     g = s["gravity"]
     vmax = float(np.max(np.abs(g - g.mean())))
     im = ax.imshow(g, cmap="seismic", extent=extent_xy, origin="lower",
                    vmin=g.mean() - vmax, vmax=g.mean() + vmax)
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, label="gz (mGal)")
-    ax.set_title(f"Forward gravity  range=[{g.min():.1f}, {g.max():.1f}] mGal")
-    ax.set_xlabel("x (m)"); ax.set_ylabel("y (m)")
+    ax.set_title(f"Gravity  [{g.min():.1f}, {g.max():.1f}] mGal")
+    ax.set_xticks([]); ax.set_yticks([])
 
-    # --- Panel 4: Lithology xz cross-section -----------------------------
+    # --- Panel 5: Surface contact raster ---------------------------------
     ax = axes[1, 0]
+    contact = s["contact"]
+    cmap, norm, codes = _categorical_cmap_norm([int(c) for c in np.unique(contact)])
+    im = ax.imshow(contact, cmap=cmap, norm=norm, extent=extent_xy, origin="lower",
+                   interpolation="nearest")
+    cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, ticks=codes)
+    cbar.ax.set_yticklabels([label_map.get(c, str(c)) for c in codes])
+    ax.set_title("Surface contact (top unit)")
+    ax.set_xticks([]); ax.set_yticks([])
+
+    # --- Panel 6: Lithology xz cross-section -----------------------------
+    ax = axes[1, 1]
     j_mid = ny // 2
-    litho_xz = s["lithology"][:, j_mid, :]   # (nz, nx) z=0 top
+    litho_xz = s["lithology"][:, j_mid, :]
     cmap, norm, codes = _categorical_cmap_norm(
         [int(c) for c in np.unique(s["lithology"])]
     )
@@ -142,36 +204,42 @@ def plot_sample(sample_dir: Path, out_path: Optional[Path] = None,
                    origin="upper", interpolation="nearest", aspect="auto")
     cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04, ticks=codes)
     cbar.ax.set_yticklabels([label_map.get(c, str(c)) for c in codes])
-    ax.set_title(f"Lithology cross-section at y = {j_mid * dy:.0f} m")
+    ax.set_title(f"Lithology xz @ y={j_mid * dy:.0f} m")
     ax.set_xlabel("x (m)"); ax.set_ylabel("z (m)")
 
-    # --- Panel 5: Density xz cross-section -------------------------------
-    ax = axes[1, 1]
+    # --- Panel 7: Density xz cross-section -------------------------------
+    ax = axes[1, 2]
     dens_xz = s["density"][:, j_mid, :]
     vmax = float(np.max(np.abs(dens_xz)))
+    if vmax < 1e-6:
+        vmax = 1.0
     im = ax.imshow(dens_xz, cmap="RdBu_r", extent=extent_xz,
                    origin="upper", vmin=-vmax, vmax=vmax, aspect="auto")
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04,
                  label="density contrast (kg/m^3)")
-    ax.set_title(f"Density cross-section at y = {j_mid * dy:.0f} m")
+    ax.set_title(f"Density xz @ y={j_mid * dy:.0f} m")
     ax.set_xlabel("x (m)"); ax.set_ylabel("z (m)")
 
-    # --- Panel 6: Fault distance (top slice) -----------------------------
-    ax = axes[1, 2]
-    fd_top = s["fault_dist"][0]    # near-surface slice
+    # --- Panel 8: Fault distance (top slice) -----------------------------
+    ax = axes[1, 3]
+    fd_top = s["fault_dist"][0]
     im = ax.imshow(fd_top, cmap="magma_r", extent=extent_xy, origin="lower")
     fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04,
-                 label="distance to nearest fault (m)")
+                 label="dist to fault (m)")
     for ft in s["fault_traces"]:
         (x0, y0), (x1, y1) = ft["polyline_xy_m"]
         ax.plot([x0, x1], [y0, y1], color="cyan", lw=1.5)
-    ax.set_title(f"Fault distance @ top slice  (gt: {len(s['fault_traces'])})")
-    ax.set_xlabel("x (m)"); ax.set_ylabel("y (m)")
+    ax.set_title(f"Fault distance (gt: {len(s['fault_traces'])})")
+    ax.set_xticks([]); ax.set_yticks([])
 
+    region = ""
+    prov = meta.get("provenance")
+    if prov:
+        region = f"  |  {prov['region_name']}  ({prov['center_lonlat'][0]:.3f}, {prov['center_lonlat'][1]:.3f})"
     title = (
-        f"{meta['sample_id']}  seed={meta['seed']}  |  "
+        f"{meta['sample_id']}  seed={meta['seed']}{region}  |  "
         f"{summary['n_units']} units, "
-        f"{summary['n_faults']} faults ({summary['n_user_faults']} user-known), "
+        f"{summary['n_faults']} faults ({summary['n_user_faults']} known), "
         f"{summary['n_boreholes']} BHs, "
         f"relief {summary['surface_relief_m']:.0f} m"
     )

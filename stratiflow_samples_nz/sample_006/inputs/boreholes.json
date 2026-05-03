@@ -1,0 +1,4178 @@
+{
+  "boreholes": [
+    {
+      "id": "BH-SYNTH-001",
+      "x_m": 3200.0,
+      "y_m": 3200.0,
+      "elevation_m": -968.32,
+      "azimuth_deg": 216.68,
+      "dip_deg": 73.75,
+      "total_depth_m": 950.43,
+      "samples": [
+        {
+          "start_depth_m": 35.0,
+          "length_m": 50.0,
+          "density_kg_m3": -426.42,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 67.8384,
+            "Al2O3_pct": 12.0942,
+            "Fe2O3_pct": 4.0703,
+            "K2O_pct": 2.0405,
+            "Cu_ppm": 19.1974,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 85.0,
+          "length_m": 50.0,
+          "density_kg_m3": -434.79,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.6477,
+            "Al2O3_pct": 12.1559,
+            "Fe2O3_pct": 4.1097,
+            "K2O_pct": 1.9975,
+            "Cu_ppm": 31.097,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 135.0,
+          "length_m": 50.0,
+          "density_kg_m3": -396.94,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 67.9686,
+            "Al2O3_pct": 12.2507,
+            "Fe2O3_pct": 3.9513,
+            "K2O_pct": 2.0157,
+            "Cu_ppm": 19.4615,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 185.0,
+          "length_m": 50.0,
+          "density_kg_m3": -468.29,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.7915,
+            "Al2O3_pct": 11.8831,
+            "Fe2O3_pct": 3.9722,
+            "K2O_pct": 1.8518,
+            "Cu_ppm": 21.6624,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 235.0,
+          "length_m": 50.0,
+          "density_kg_m3": -407.38,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.2504,
+            "Al2O3_pct": 12.3474,
+            "Fe2O3_pct": 4.1766,
+            "K2O_pct": 2.1369,
+            "Cu_ppm": 21.4503,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 285.0,
+          "length_m": 50.0,
+          "density_kg_m3": -432.21,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.0927,
+            "Al2O3_pct": 13.0067,
+            "Fe2O3_pct": 4.2253,
+            "K2O_pct": 2.1753,
+            "Cu_ppm": 24.2819,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 335.0,
+          "length_m": 50.0,
+          "density_kg_m3": -453.24,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 63.0316,
+            "Al2O3_pct": 11.3476,
+            "Fe2O3_pct": 3.6052,
+            "K2O_pct": 2.0003,
+            "Cu_ppm": 20.9802,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 385.0,
+          "length_m": 50.0,
+          "density_kg_m3": -443.63,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 62.1727,
+            "Al2O3_pct": 11.9264,
+            "Fe2O3_pct": 3.7846,
+            "K2O_pct": 1.9914,
+            "Cu_ppm": 24.0069,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 435.0,
+          "length_m": 50.0,
+          "density_kg_m3": -427.85,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.9185,
+            "Al2O3_pct": 12.0718,
+            "Fe2O3_pct": 4.0898,
+            "K2O_pct": 2.0207,
+            "Cu_ppm": 22.5873,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 485.0,
+          "length_m": 50.0,
+          "density_kg_m3": -441.84,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.2428,
+            "Al2O3_pct": 12.4454,
+            "Fe2O3_pct": 3.6419,
+            "K2O_pct": 1.8302,
+            "Cu_ppm": 30.1038,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 535.0,
+          "length_m": 50.0,
+          "density_kg_m3": -425.81,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 63.8477,
+            "Al2O3_pct": 12.382,
+            "Fe2O3_pct": 4.0058,
+            "K2O_pct": 1.9046,
+            "Cu_ppm": 19.1069,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 585.0,
+          "length_m": 50.0,
+          "density_kg_m3": -462.71,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 68.1988,
+            "Al2O3_pct": 12.5775,
+            "Fe2O3_pct": 4.1194,
+            "K2O_pct": 1.7598,
+            "Cu_ppm": 14.9428,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 635.0,
+          "length_m": 50.0,
+          "density_kg_m3": -460.88,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 67.4785,
+            "Al2O3_pct": 11.9355,
+            "Fe2O3_pct": 4.1427,
+            "K2O_pct": 2.0216,
+            "Cu_ppm": 22.906,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 685.0,
+          "length_m": 50.0,
+          "density_kg_m3": -433.29,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 66.663,
+            "Al2O3_pct": 11.7414,
+            "Fe2O3_pct": 3.9297,
+            "K2O_pct": 1.9887,
+            "Cu_ppm": 13.9298,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 735.0,
+          "length_m": 25.0,
+          "density_kg_m3": -419.19,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 62.0704,
+            "Al2O3_pct": 11.6681,
+            "Fe2O3_pct": 4.1592,
+            "K2O_pct": 1.9171,
+            "Cu_ppm": 12.7284,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 765.0,
+          "length_m": 50.0,
+          "density_kg_m3": -80.31,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.3931,
+            "Al2O3_pct": 14.9849,
+            "Fe2O3_pct": 4.2971,
+            "K2O_pct": 2.5206,
+            "Cu_ppm": 37.8194,
+            "Au_ppm": 0.0024
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 815.0,
+          "length_m": 50.0,
+          "density_kg_m3": -99.63,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 59.8499,
+            "Al2O3_pct": 13.0363,
+            "Fe2O3_pct": 4.3712,
+            "K2O_pct": 2.7668,
+            "Cu_ppm": 44.8633,
+            "Au_ppm": 0.0025
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 865.0,
+          "length_m": 50.0,
+          "density_kg_m3": -95.09,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 71.7437,
+            "Al2O3_pct": 14.9066,
+            "Fe2O3_pct": 4.4006,
+            "K2O_pct": 2.571,
+            "Cu_ppm": 26.2131,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 915.0,
+          "length_m": 35.0,
+          "density_kg_m3": -107.52,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.1874,
+            "Al2O3_pct": 14.4215,
+            "Fe2O3_pct": 4.47,
+            "K2O_pct": 2.5228,
+            "Cu_ppm": 25.041,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        }
+      ]
+    },
+    {
+      "id": "BH-SYNTH-002",
+      "x_m": 3304.67,
+      "y_m": 5429.22,
+      "elevation_m": -1132.94,
+      "azimuth_deg": 0.0,
+      "dip_deg": 90.0,
+      "total_depth_m": 1906.02,
+      "samples": [
+        {
+          "start_depth_m": 20.0,
+          "length_m": 50.0,
+          "density_kg_m3": -443.57,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 63.6434,
+            "Al2O3_pct": 12.2798,
+            "Fe2O3_pct": 3.8056,
+            "K2O_pct": 1.9892,
+            "Cu_ppm": 24.4446,
+            "Au_ppm": 0.0007
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 70.0,
+          "length_m": 50.0,
+          "density_kg_m3": -440.38,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 68.9845,
+            "Al2O3_pct": 12.6634,
+            "Fe2O3_pct": 4.0549,
+            "K2O_pct": 2.1475,
+            "Cu_ppm": 11.8914,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 120.0,
+          "length_m": 50.0,
+          "density_kg_m3": -398.56,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 69.7441,
+            "Al2O3_pct": 12.0501,
+            "Fe2O3_pct": 3.8882,
+            "K2O_pct": 1.9721,
+            "Cu_ppm": 17.496,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 170.0,
+          "length_m": 50.0,
+          "density_kg_m3": -428.81,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.0252,
+            "Al2O3_pct": 11.6349,
+            "Fe2O3_pct": 3.914,
+            "K2O_pct": 2.0634,
+            "Cu_ppm": 18.7322,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 220.0,
+          "length_m": 50.0,
+          "density_kg_m3": -413.58,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.6655,
+            "Al2O3_pct": 12.5764,
+            "Fe2O3_pct": 4.056,
+            "K2O_pct": 2.1024,
+            "Cu_ppm": 20.0557,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 270.0,
+          "length_m": 50.0,
+          "density_kg_m3": -403.42,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.2812,
+            "Al2O3_pct": 11.4149,
+            "Fe2O3_pct": 4.4064,
+            "K2O_pct": 1.9737,
+            "Cu_ppm": 18.6652,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 320.0,
+          "length_m": 50.0,
+          "density_kg_m3": -411.9,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 61.3388,
+            "Al2O3_pct": 12.6936,
+            "Fe2O3_pct": 3.9091,
+            "K2O_pct": 2.1609,
+            "Cu_ppm": 18.6603,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 370.0,
+          "length_m": 50.0,
+          "density_kg_m3": -437.22,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 69.1369,
+            "Al2O3_pct": 11.3581,
+            "Fe2O3_pct": 3.9005,
+            "K2O_pct": 1.9125,
+            "Cu_ppm": 29.7513,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 420.0,
+          "length_m": 45.0,
+          "density_kg_m3": -448.3,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 63.0482,
+            "Al2O3_pct": 12.5339,
+            "Fe2O3_pct": 4.1448,
+            "K2O_pct": 1.9591,
+            "Cu_ppm": 19.2853,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 470.0,
+          "length_m": 50.0,
+          "density_kg_m3": -161.08,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.2158,
+            "Al2O3_pct": 12.4209,
+            "Fe2O3_pct": 4.4825,
+            "K2O_pct": 2.6353,
+            "Cu_ppm": 25.0481,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 520.0,
+          "length_m": 50.0,
+          "density_kg_m3": -143.16,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 63.3679,
+            "Al2O3_pct": 14.5349,
+            "Fe2O3_pct": 4.425,
+            "K2O_pct": 2.3314,
+            "Cu_ppm": 39.1727,
+            "Au_ppm": 0.0017
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 570.0,
+          "length_m": 50.0,
+          "density_kg_m3": -122.39,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.8295,
+            "Al2O3_pct": 13.4195,
+            "Fe2O3_pct": 4.6148,
+            "K2O_pct": 2.6682,
+            "Cu_ppm": 29.3344,
+            "Au_ppm": 0.0016
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 620.0,
+          "length_m": 50.0,
+          "density_kg_m3": -107.65,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.0799,
+            "Al2O3_pct": 14.421,
+            "Fe2O3_pct": 4.5973,
+            "K2O_pct": 2.5106,
+            "Cu_ppm": 26.0406,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 670.0,
+          "length_m": 50.0,
+          "density_kg_m3": -110.31,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.54,
+            "Al2O3_pct": 14.3969,
+            "Fe2O3_pct": 4.4506,
+            "K2O_pct": 2.3014,
+            "Cu_ppm": 31.3191,
+            "Au_ppm": 0.0027
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 720.0,
+          "length_m": 45.0,
+          "density_kg_m3": -135.79,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.3454,
+            "Al2O3_pct": 13.3871,
+            "Fe2O3_pct": 4.4142,
+            "K2O_pct": 2.5312,
+            "Cu_ppm": 26.3981,
+            "Au_ppm": 0.0025
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 770.0,
+          "length_m": 50.0,
+          "density_kg_m3": -227.31,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 58.0949,
+            "Al2O3_pct": 16.366,
+            "Fe2O3_pct": 6.3235,
+            "K2O_pct": 2.958,
+            "Cu_ppm": 49.4227,
+            "Au_ppm": 0.0024
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 820.0,
+          "length_m": 50.0,
+          "density_kg_m3": -180.54,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 53.7158,
+            "Al2O3_pct": 17.3515,
+            "Fe2O3_pct": 6.2682,
+            "K2O_pct": 3.0237,
+            "Cu_ppm": 37.1383,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 870.0,
+          "length_m": 50.0,
+          "density_kg_m3": -230.95,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 57.7518,
+            "Al2O3_pct": 18.9078,
+            "Fe2O3_pct": 5.8859,
+            "K2O_pct": 2.882,
+            "Cu_ppm": 44.5866,
+            "Au_ppm": 0.0015
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 920.0,
+          "length_m": 50.0,
+          "density_kg_m3": -235.89,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 59.2891,
+            "Al2O3_pct": 19.3024,
+            "Fe2O3_pct": 5.8223,
+            "K2O_pct": 2.8906,
+            "Cu_ppm": 71.0638,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 970.0,
+          "length_m": 50.0,
+          "density_kg_m3": -213.61,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 59.1779,
+            "Al2O3_pct": 17.5481,
+            "Fe2O3_pct": 6.3727,
+            "K2O_pct": 2.9624,
+            "Cu_ppm": 41.1363,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1020.0,
+          "length_m": 50.0,
+          "density_kg_m3": -213.9,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.5587,
+            "Al2O3_pct": 19.6783,
+            "Fe2O3_pct": 6.0173,
+            "K2O_pct": 3.0268,
+            "Cu_ppm": 48.1775,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1070.0,
+          "length_m": 45.0,
+          "density_kg_m3": -216.06,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.6409,
+            "Al2O3_pct": 16.6599,
+            "Fe2O3_pct": 5.6969,
+            "K2O_pct": 3.011,
+            "Cu_ppm": 59.484,
+            "Au_ppm": 0.0017
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1120.0,
+          "length_m": 50.0,
+          "density_kg_m3": -108.25,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 68.3182,
+            "Al2O3_pct": 13.4884,
+            "Fe2O3_pct": 4.0349,
+            "K2O_pct": 2.4581,
+            "Cu_ppm": 25.779,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1170.0,
+          "length_m": 45.0,
+          "density_kg_m3": -86.84,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 62.6131,
+            "Al2O3_pct": 14.5992,
+            "Fe2O3_pct": 4.4798,
+            "K2O_pct": 2.5321,
+            "Cu_ppm": 33.3651,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1220.0,
+          "length_m": 50.0,
+          "density_kg_m3": 269.68,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 59.784,
+            "Al2O3_pct": 17.2039,
+            "Fe2O3_pct": 7.6365,
+            "K2O_pct": 1.8362,
+            "Cu_ppm": 47.2249,
+            "Au_ppm": 0.0031
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1270.0,
+          "length_m": 50.0,
+          "density_kg_m3": 325.62,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 62.4969,
+            "Al2O3_pct": 17.4096,
+            "Fe2O3_pct": 7.9473,
+            "K2O_pct": 1.8314,
+            "Cu_ppm": 53.1964,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1320.0,
+          "length_m": 50.0,
+          "density_kg_m3": 292.34,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 58.0531,
+            "Al2O3_pct": 15.9718,
+            "Fe2O3_pct": 7.1562,
+            "K2O_pct": 1.6563,
+            "Cu_ppm": 44.6954,
+            "Au_ppm": 0.003
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1370.0,
+          "length_m": 50.0,
+          "density_kg_m3": 309.58,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 55.4828,
+            "Al2O3_pct": 16.379,
+            "Fe2O3_pct": 7.3747,
+            "K2O_pct": 1.8027,
+            "Cu_ppm": 78.2895,
+            "Au_ppm": 0.0039
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1420.0,
+          "length_m": 50.0,
+          "density_kg_m3": 297.24,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 57.9588,
+            "Al2O3_pct": 18.4195,
+            "Fe2O3_pct": 8.0876,
+            "K2O_pct": 1.8816,
+            "Cu_ppm": 73.0332,
+            "Au_ppm": 0.0033
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1470.0,
+          "length_m": 50.0,
+          "density_kg_m3": 276.62,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 54.0668,
+            "Al2O3_pct": 17.5963,
+            "Fe2O3_pct": 7.843,
+            "K2O_pct": 1.7407,
+            "Cu_ppm": 68.2591,
+            "Au_ppm": 0.0028
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1520.0,
+          "length_m": 50.0,
+          "density_kg_m3": 272.65,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 55.2211,
+            "Al2O3_pct": 17.2466,
+            "Fe2O3_pct": 7.1835,
+            "K2O_pct": 1.8186,
+            "Cu_ppm": 67.6106,
+            "Au_ppm": 0.004
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1570.0,
+          "length_m": 50.0,
+          "density_kg_m3": 290.87,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 55.8778,
+            "Al2O3_pct": 16.4609,
+            "Fe2O3_pct": 8.0633,
+            "K2O_pct": 1.7957,
+            "Cu_ppm": 77.691,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1620.0,
+          "length_m": 50.0,
+          "density_kg_m3": 274.15,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 56.1671,
+            "Al2O3_pct": 15.9201,
+            "Fe2O3_pct": 7.24,
+            "K2O_pct": 1.8244,
+            "Cu_ppm": 63.2651,
+            "Au_ppm": 0.0028
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1670.0,
+          "length_m": 50.0,
+          "density_kg_m3": 284.97,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 51.9451,
+            "Al2O3_pct": 17.8742,
+            "Fe2O3_pct": 7.5454,
+            "K2O_pct": 1.7182,
+            "Cu_ppm": 33.8536,
+            "Au_ppm": 0.0031
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1720.0,
+          "length_m": 50.0,
+          "density_kg_m3": 238.82,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 59.0531,
+            "Al2O3_pct": 17.4551,
+            "Fe2O3_pct": 7.5598,
+            "K2O_pct": 1.864,
+            "Cu_ppm": 59.0609,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1770.0,
+          "length_m": 50.0,
+          "density_kg_m3": 321.56,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 59.5541,
+            "Al2O3_pct": 16.4134,
+            "Fe2O3_pct": 7.623,
+            "K2O_pct": 1.7652,
+            "Cu_ppm": 73.837,
+            "Au_ppm": 0.0029
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1820.0,
+          "length_m": 50.0,
+          "density_kg_m3": 269.62,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 58.0368,
+            "Al2O3_pct": 17.2833,
+            "Fe2O3_pct": 7.6856,
+            "K2O_pct": 1.8748,
+            "Cu_ppm": 63.2255,
+            "Au_ppm": 0.0028
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1870.0,
+          "length_m": 35.0,
+          "density_kg_m3": 263.0,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "andesite",
+          "stratigraphic_unit": "andesitic_dike",
+          "chemistry": {
+            "SiO2_pct": 57.8795,
+            "Al2O3_pct": 17.1066,
+            "Fe2O3_pct": 7.51,
+            "K2O_pct": 1.9429,
+            "Cu_ppm": 50.5653,
+            "Au_ppm": 0.0025
+          },
+          "lithology_code": 7,
+          "source": "synthetic_core"
+        }
+      ]
+    },
+    {
+      "id": "BH-SYNTH-003",
+      "x_m": 54.87,
+      "y_m": 2333.79,
+      "elevation_m": -1441.89,
+      "azimuth_deg": 0.0,
+      "dip_deg": 90.0,
+      "total_depth_m": 884.46,
+      "samples": [
+        {
+          "start_depth_m": 10.0,
+          "length_m": 50.0,
+          "density_kg_m3": -402.1,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 66.267,
+            "Al2O3_pct": 12.3305,
+            "Fe2O3_pct": 3.9323,
+            "K2O_pct": 1.96,
+            "Cu_ppm": 14.4158,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 60.0,
+          "length_m": 50.0,
+          "density_kg_m3": -409.82,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 67.8186,
+            "Al2O3_pct": 13.1247,
+            "Fe2O3_pct": 3.9503,
+            "K2O_pct": 1.9063,
+            "Cu_ppm": 18.0938,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 110.0,
+          "length_m": 50.0,
+          "density_kg_m3": -375.26,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 67.3251,
+            "Al2O3_pct": 12.742,
+            "Fe2O3_pct": 3.9273,
+            "K2O_pct": 2.0295,
+            "Cu_ppm": 25.0721,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 160.0,
+          "length_m": 50.0,
+          "density_kg_m3": -411.87,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.6348,
+            "Al2O3_pct": 12.2124,
+            "Fe2O3_pct": 4.1166,
+            "K2O_pct": 2.1886,
+            "Cu_ppm": 23.9509,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 210.0,
+          "length_m": 50.0,
+          "density_kg_m3": -439.75,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 66.7884,
+            "Al2O3_pct": 12.5944,
+            "Fe2O3_pct": 4.0988,
+            "K2O_pct": 2.1585,
+            "Cu_ppm": 22.7095,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 260.0,
+          "length_m": 45.0,
+          "density_kg_m3": -370.95,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.8884,
+            "Al2O3_pct": 12.6563,
+            "Fe2O3_pct": 4.0541,
+            "K2O_pct": 2.1503,
+            "Cu_ppm": 19.7241,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 310.0,
+          "length_m": 50.0,
+          "density_kg_m3": -81.72,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 73.3348,
+            "Al2O3_pct": 15.2487,
+            "Fe2O3_pct": 4.4156,
+            "K2O_pct": 2.2521,
+            "Cu_ppm": 30.1696,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 360.0,
+          "length_m": 50.0,
+          "density_kg_m3": -126.27,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.3343,
+            "Al2O3_pct": 14.6563,
+            "Fe2O3_pct": 4.4373,
+            "K2O_pct": 2.632,
+            "Cu_ppm": 25.2526,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 410.0,
+          "length_m": 50.0,
+          "density_kg_m3": -106.05,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.2537,
+            "Al2O3_pct": 13.963,
+            "Fe2O3_pct": 4.4325,
+            "K2O_pct": 2.3672,
+            "Cu_ppm": 32.5664,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 460.0,
+          "length_m": 50.0,
+          "density_kg_m3": -116.12,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 70.9771,
+            "Al2O3_pct": 14.3778,
+            "Fe2O3_pct": 4.3049,
+            "K2O_pct": 2.427,
+            "Cu_ppm": 31.859,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 510.0,
+          "length_m": 50.0,
+          "density_kg_m3": -135.58,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 69.0298,
+            "Al2O3_pct": 14.228,
+            "Fe2O3_pct": 4.3662,
+            "K2O_pct": 2.4936,
+            "Cu_ppm": 23.489,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 560.0,
+          "length_m": 50.0,
+          "density_kg_m3": -126.87,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.3337,
+            "Al2O3_pct": 12.9579,
+            "Fe2O3_pct": 4.7356,
+            "K2O_pct": 2.448,
+            "Cu_ppm": 42.7373,
+            "Au_ppm": 0.0015
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 610.0,
+          "length_m": 45.0,
+          "density_kg_m3": -76.25,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.0423,
+            "Al2O3_pct": 15.1235,
+            "Fe2O3_pct": 4.3005,
+            "K2O_pct": 2.4777,
+            "Cu_ppm": 30.7125,
+            "Au_ppm": 0.0023
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 660.0,
+          "length_m": 50.0,
+          "density_kg_m3": -241.1,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 66.8129,
+            "Al2O3_pct": 18.2725,
+            "Fe2O3_pct": 5.726,
+            "K2O_pct": 3.0193,
+            "Cu_ppm": 50.1769,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 710.0,
+          "length_m": 50.0,
+          "density_kg_m3": -224.03,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.3893,
+            "Al2O3_pct": 17.7671,
+            "Fe2O3_pct": 6.1272,
+            "K2O_pct": 3.1559,
+            "Cu_ppm": 43.5546,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 760.0,
+          "length_m": 50.0,
+          "density_kg_m3": -203.61,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 55.0644,
+            "Al2O3_pct": 17.0844,
+            "Fe2O3_pct": 5.8484,
+            "K2O_pct": 2.7675,
+            "Cu_ppm": 40.2772,
+            "Au_ppm": 0.0027
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 810.0,
+          "length_m": 50.0,
+          "density_kg_m3": -211.69,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.481,
+            "Al2O3_pct": 18.5426,
+            "Fe2O3_pct": 5.8421,
+            "K2O_pct": 3.1871,
+            "Cu_ppm": 45.5862,
+            "Au_ppm": 0.0017
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 860.0,
+          "length_m": 20.0,
+          "density_kg_m3": -197.76,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.8164,
+            "Al2O3_pct": 17.5565,
+            "Fe2O3_pct": 6.2736,
+            "K2O_pct": 2.8566,
+            "Cu_ppm": 55.5571,
+            "Au_ppm": 0.0027
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        }
+      ]
+    },
+    {
+      "id": "BH-SYNTH-004",
+      "x_m": 4501.08,
+      "y_m": 4420.34,
+      "elevation_m": -981.66,
+      "azimuth_deg": 0.88,
+      "dip_deg": 73.12,
+      "total_depth_m": 1530.77,
+      "samples": [
+        {
+          "start_depth_m": 20.0,
+          "length_m": 50.0,
+          "density_kg_m3": -182.04,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 80.3549,
+            "Al2O3_pct": 8.5216,
+            "Fe2O3_pct": 2.3903,
+            "K2O_pct": 1.6042,
+            "Cu_ppm": 12.1378,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 70.0,
+          "length_m": 50.0,
+          "density_kg_m3": -245.71,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 81.8935,
+            "Al2O3_pct": 8.6546,
+            "Fe2O3_pct": 2.5624,
+            "K2O_pct": 1.3518,
+            "Cu_ppm": 18.1725,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 120.0,
+          "length_m": 50.0,
+          "density_kg_m3": -181.5,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 81.1772,
+            "Al2O3_pct": 8.0811,
+            "Fe2O3_pct": 2.3147,
+            "K2O_pct": 1.4665,
+            "Cu_ppm": 14.4799,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 170.0,
+          "length_m": 50.0,
+          "density_kg_m3": -229.09,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 72.9972,
+            "Al2O3_pct": 9.7522,
+            "Fe2O3_pct": 2.2807,
+            "K2O_pct": 1.5672,
+            "Cu_ppm": 13.1602,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 220.0,
+          "length_m": 50.0,
+          "density_kg_m3": -211.44,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 84.1176,
+            "Al2O3_pct": 8.7702,
+            "Fe2O3_pct": 2.3461,
+            "K2O_pct": 1.6188,
+            "Cu_ppm": 11.6775,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 270.0,
+          "length_m": 50.0,
+          "density_kg_m3": -201.18,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 78.8598,
+            "Al2O3_pct": 8.2765,
+            "Fe2O3_pct": 2.5902,
+            "K2O_pct": 1.4621,
+            "Cu_ppm": 18.7465,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 320.0,
+          "length_m": 50.0,
+          "density_kg_m3": -234.64,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 75.1697,
+            "Al2O3_pct": 8.662,
+            "Fe2O3_pct": 2.3498,
+            "K2O_pct": 1.4726,
+            "Cu_ppm": 14.7682,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 370.0,
+          "length_m": 10.0,
+          "density_kg_m3": -137.85,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 67.9247,
+            "Al2O3_pct": 8.8995,
+            "Fe2O3_pct": 2.5351,
+            "K2O_pct": 1.3758,
+            "Cu_ppm": 17.5877,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 385.0,
+          "length_m": 50.0,
+          "density_kg_m3": -449.58,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 63.1356,
+            "Al2O3_pct": 10.9064,
+            "Fe2O3_pct": 3.9894,
+            "K2O_pct": 2.0452,
+            "Cu_ppm": 16.3686,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 435.0,
+          "length_m": 50.0,
+          "density_kg_m3": -430.86,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.9795,
+            "Al2O3_pct": 12.2501,
+            "Fe2O3_pct": 4.172,
+            "K2O_pct": 1.9874,
+            "Cu_ppm": 24.7097,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 485.0,
+          "length_m": 50.0,
+          "density_kg_m3": -431.3,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 61.8991,
+            "Al2O3_pct": 12.7372,
+            "Fe2O3_pct": 3.8274,
+            "K2O_pct": 1.9553,
+            "Cu_ppm": 22.0773,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 535.0,
+          "length_m": 50.0,
+          "density_kg_m3": -389.63,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.8241,
+            "Al2O3_pct": 11.1953,
+            "Fe2O3_pct": 3.7417,
+            "K2O_pct": 1.8634,
+            "Cu_ppm": 21.0752,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 585.0,
+          "length_m": 50.0,
+          "density_kg_m3": -418.73,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.0949,
+            "Al2O3_pct": 12.2329,
+            "Fe2O3_pct": 4.0146,
+            "K2O_pct": 2.0518,
+            "Cu_ppm": 20.7874,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 635.0,
+          "length_m": 50.0,
+          "density_kg_m3": -419.84,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 60.6211,
+            "Al2O3_pct": 12.0443,
+            "Fe2O3_pct": 3.8754,
+            "K2O_pct": 2.0939,
+            "Cu_ppm": 24.5558,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 685.0,
+          "length_m": 50.0,
+          "density_kg_m3": -433.35,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.7879,
+            "Al2O3_pct": 11.9058,
+            "Fe2O3_pct": 4.024,
+            "K2O_pct": 1.8875,
+            "Cu_ppm": 15.0256,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 735.0,
+          "length_m": 15.0,
+          "density_kg_m3": -418.73,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 66.111,
+            "Al2O3_pct": 12.4074,
+            "Fe2O3_pct": 4.3141,
+            "K2O_pct": 2.1228,
+            "Cu_ppm": 24.0883,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 755.0,
+          "length_m": 50.0,
+          "density_kg_m3": -86.34,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.6632,
+            "Al2O3_pct": 14.1802,
+            "Fe2O3_pct": 4.7813,
+            "K2O_pct": 2.4843,
+            "Cu_ppm": 27.4981,
+            "Au_ppm": 0.0025
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 805.0,
+          "length_m": 50.0,
+          "density_kg_m3": -100.1,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.377,
+            "Al2O3_pct": 13.4144,
+            "Fe2O3_pct": 4.1041,
+            "K2O_pct": 2.4321,
+            "Cu_ppm": 27.1027,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 855.0,
+          "length_m": 50.0,
+          "density_kg_m3": -87.24,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 70.0964,
+            "Al2O3_pct": 13.9307,
+            "Fe2O3_pct": 4.5978,
+            "K2O_pct": 2.3012,
+            "Cu_ppm": 34.2959,
+            "Au_ppm": 0.0022
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 910.0,
+          "length_m": 50.0,
+          "density_kg_m3": -244.74,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.9776,
+            "Al2O3_pct": 17.628,
+            "Fe2O3_pct": 5.633,
+            "K2O_pct": 3.1372,
+            "Cu_ppm": 48.8974,
+            "Au_ppm": 0.0022
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 960.0,
+          "length_m": 50.0,
+          "density_kg_m3": -210.29,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 63.5206,
+            "Al2O3_pct": 15.3847,
+            "Fe2O3_pct": 6.2656,
+            "K2O_pct": 3.0662,
+            "Cu_ppm": 57.2154,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1010.0,
+          "length_m": 50.0,
+          "density_kg_m3": -184.1,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 57.8772,
+            "Al2O3_pct": 17.5246,
+            "Fe2O3_pct": 6.3986,
+            "K2O_pct": 3.2954,
+            "Cu_ppm": 47.1365,
+            "Au_ppm": 0.0027
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1060.0,
+          "length_m": 50.0,
+          "density_kg_m3": -218.87,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 62.978,
+            "Al2O3_pct": 17.9237,
+            "Fe2O3_pct": 5.8171,
+            "K2O_pct": 2.7117,
+            "Cu_ppm": 47.5433,
+            "Au_ppm": 0.0017
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1110.0,
+          "length_m": 50.0,
+          "density_kg_m3": -195.97,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 56.5237,
+            "Al2O3_pct": 17.6245,
+            "Fe2O3_pct": 6.1026,
+            "K2O_pct": 2.8561,
+            "Cu_ppm": 53.5855,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1160.0,
+          "length_m": 50.0,
+          "density_kg_m3": -213.24,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 63.5735,
+            "Al2O3_pct": 19.4849,
+            "Fe2O3_pct": 5.7756,
+            "K2O_pct": 3.1089,
+            "Cu_ppm": 42.365,
+            "Au_ppm": 0.0013
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1210.0,
+          "length_m": 10.0,
+          "density_kg_m3": -236.68,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.5565,
+            "Al2O3_pct": 17.6042,
+            "Fe2O3_pct": 5.7746,
+            "K2O_pct": 3.153,
+            "Cu_ppm": 57.2726,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1225.0,
+          "length_m": 50.0,
+          "density_kg_m3": -151.48,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 63.7912,
+            "Al2O3_pct": 14.2698,
+            "Fe2O3_pct": 4.5286,
+            "K2O_pct": 2.6208,
+            "Cu_ppm": 31.1249,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1275.0,
+          "length_m": 50.0,
+          "density_kg_m3": -139.97,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 68.2241,
+            "Al2O3_pct": 14.7843,
+            "Fe2O3_pct": 4.6365,
+            "K2O_pct": 2.4529,
+            "Cu_ppm": 26.8881,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1325.0,
+          "length_m": 50.0,
+          "density_kg_m3": -91.27,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 58.2117,
+            "Al2O3_pct": 13.6498,
+            "Fe2O3_pct": 4.4516,
+            "K2O_pct": 2.5019,
+            "Cu_ppm": 27.0686,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1375.0,
+          "length_m": 50.0,
+          "density_kg_m3": -97.06,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 69.0243,
+            "Al2O3_pct": 14.3903,
+            "Fe2O3_pct": 4.7699,
+            "K2O_pct": 2.4113,
+            "Cu_ppm": 32.6496,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1425.0,
+          "length_m": 50.0,
+          "density_kg_m3": -155.96,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 67.6423,
+            "Al2O3_pct": 13.4989,
+            "Fe2O3_pct": 4.8206,
+            "K2O_pct": 2.5175,
+            "Cu_ppm": 30.2431,
+            "Au_ppm": 0.0026
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1475.0,
+          "length_m": 50.0,
+          "density_kg_m3": -89.55,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 63.0225,
+            "Al2O3_pct": 13.7501,
+            "Fe2O3_pct": 4.4007,
+            "K2O_pct": 2.3871,
+            "Cu_ppm": 26.02,
+            "Au_ppm": 0.0017
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1525.0,
+          "length_m": 5.0,
+          "density_kg_m3": -113.73,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 66.481,
+            "Al2O3_pct": 13.597,
+            "Fe2O3_pct": 4.6582,
+            "K2O_pct": 2.7282,
+            "Cu_ppm": 28.706,
+            "Au_ppm": 0.0026
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        }
+      ]
+    },
+    {
+      "id": "BH-SYNTH-005",
+      "x_m": 171.24,
+      "y_m": 1302.58,
+      "elevation_m": -1459.24,
+      "azimuth_deg": 0.0,
+      "dip_deg": 90.0,
+      "total_depth_m": 2131.49,
+      "samples": [
+        {
+          "start_depth_m": 0.0,
+          "length_m": 50.0,
+          "density_kg_m3": -214.39,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 72.581,
+            "Al2O3_pct": 9.9381,
+            "Fe2O3_pct": 2.6305,
+            "K2O_pct": 1.4386,
+            "Cu_ppm": 17.0071,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 50.0,
+          "length_m": 40.0,
+          "density_kg_m3": -193.22,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 77.2969,
+            "Al2O3_pct": 8.5072,
+            "Fe2O3_pct": 2.6866,
+            "K2O_pct": 1.5757,
+            "Cu_ppm": 19.0544,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 95.0,
+          "length_m": 50.0,
+          "density_kg_m3": -435.02,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 69.9688,
+            "Al2O3_pct": 12.259,
+            "Fe2O3_pct": 4.1077,
+            "K2O_pct": 1.9603,
+            "Cu_ppm": 16.2512,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 145.0,
+          "length_m": 50.0,
+          "density_kg_m3": -465.79,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 69.5038,
+            "Al2O3_pct": 11.4245,
+            "Fe2O3_pct": 3.8127,
+            "K2O_pct": 1.9472,
+            "Cu_ppm": 16.2226,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 195.0,
+          "length_m": 50.0,
+          "density_kg_m3": -414.63,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 63.7899,
+            "Al2O3_pct": 12.2904,
+            "Fe2O3_pct": 3.9181,
+            "K2O_pct": 2.0763,
+            "Cu_ppm": 17.0762,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 245.0,
+          "length_m": 50.0,
+          "density_kg_m3": -428.65,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 59.5092,
+            "Al2O3_pct": 11.722,
+            "Fe2O3_pct": 3.8398,
+            "K2O_pct": 1.9242,
+            "Cu_ppm": 17.7942,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 295.0,
+          "length_m": 50.0,
+          "density_kg_m3": -442.61,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 61.4725,
+            "Al2O3_pct": 12.5245,
+            "Fe2O3_pct": 3.801,
+            "K2O_pct": 2.0103,
+            "Cu_ppm": 20.8825,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 345.0,
+          "length_m": 50.0,
+          "density_kg_m3": -395.87,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.5223,
+            "Al2O3_pct": 12.9611,
+            "Fe2O3_pct": 3.9514,
+            "K2O_pct": 1.9513,
+            "Cu_ppm": 20.0543,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 395.0,
+          "length_m": 50.0,
+          "density_kg_m3": -449.94,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.2822,
+            "Al2O3_pct": 12.1352,
+            "Fe2O3_pct": 3.8512,
+            "K2O_pct": 2.034,
+            "Cu_ppm": 22.3862,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 445.0,
+          "length_m": 45.0,
+          "density_kg_m3": -411.39,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 66.399,
+            "Al2O3_pct": 11.486,
+            "Fe2O3_pct": 4.0849,
+            "K2O_pct": 1.9867,
+            "Cu_ppm": 24.9437,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 495.0,
+          "length_m": 50.0,
+          "density_kg_m3": -134.29,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.4599,
+            "Al2O3_pct": 14.9719,
+            "Fe2O3_pct": 4.8526,
+            "K2O_pct": 2.4763,
+            "Cu_ppm": 36.781,
+            "Au_ppm": 0.0017
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 545.0,
+          "length_m": 50.0,
+          "density_kg_m3": -142.01,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.4125,
+            "Al2O3_pct": 12.9943,
+            "Fe2O3_pct": 4.6434,
+            "K2O_pct": 2.3686,
+            "Cu_ppm": 28.208,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 595.0,
+          "length_m": 45.0,
+          "density_kg_m3": -140.22,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 69.5956,
+            "Al2O3_pct": 12.7505,
+            "Fe2O3_pct": 4.3674,
+            "K2O_pct": 2.6427,
+            "Cu_ppm": 24.7616,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 645.0,
+          "length_m": 50.0,
+          "density_kg_m3": -212.05,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 59.6064,
+            "Al2O3_pct": 18.6265,
+            "Fe2O3_pct": 6.0586,
+            "K2O_pct": 3.1236,
+            "Cu_ppm": 52.446,
+            "Au_ppm": 0.0024
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 695.0,
+          "length_m": 50.0,
+          "density_kg_m3": -261.89,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.1593,
+            "Al2O3_pct": 17.9346,
+            "Fe2O3_pct": 5.1583,
+            "K2O_pct": 2.883,
+            "Cu_ppm": 46.4407,
+            "Au_ppm": 0.0015
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 745.0,
+          "length_m": 45.0,
+          "density_kg_m3": -220.08,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 63.2685,
+            "Al2O3_pct": 18.0033,
+            "Fe2O3_pct": 5.8801,
+            "K2O_pct": 3.0132,
+            "Cu_ppm": 37.0373,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 795.0,
+          "length_m": 50.0,
+          "density_kg_m3": -83.69,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.0516,
+            "Al2O3_pct": 13.8005,
+            "Fe2O3_pct": 4.347,
+            "K2O_pct": 2.5046,
+            "Cu_ppm": 20.6989,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 845.0,
+          "length_m": 50.0,
+          "density_kg_m3": -141.94,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.2847,
+            "Al2O3_pct": 14.0168,
+            "Fe2O3_pct": 4.305,
+            "K2O_pct": 2.1986,
+            "Cu_ppm": 22.1947,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 895.0,
+          "length_m": 50.0,
+          "density_kg_m3": -104.17,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.6646,
+            "Al2O3_pct": 14.046,
+            "Fe2O3_pct": 4.7506,
+            "K2O_pct": 2.4514,
+            "Cu_ppm": 31.78,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 945.0,
+          "length_m": 50.0,
+          "density_kg_m3": -137.71,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.486,
+            "Al2O3_pct": 13.1569,
+            "Fe2O3_pct": 4.7392,
+            "K2O_pct": 2.4124,
+            "Cu_ppm": 17.6123,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 995.0,
+          "length_m": 50.0,
+          "density_kg_m3": -115.69,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 66.1472,
+            "Al2O3_pct": 12.9937,
+            "Fe2O3_pct": 4.0618,
+            "K2O_pct": 2.5245,
+            "Cu_ppm": 24.4876,
+            "Au_ppm": 0.0022
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1045.0,
+          "length_m": 50.0,
+          "density_kg_m3": -127.85,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.3411,
+            "Al2O3_pct": 14.3994,
+            "Fe2O3_pct": 4.8553,
+            "K2O_pct": 2.7324,
+            "Cu_ppm": 32.6927,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1095.0,
+          "length_m": 50.0,
+          "density_kg_m3": -101.21,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.9038,
+            "Al2O3_pct": 14.3219,
+            "Fe2O3_pct": 4.7694,
+            "K2O_pct": 2.3782,
+            "Cu_ppm": 12.8668,
+            "Au_ppm": 0.0024
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1145.0,
+          "length_m": 50.0,
+          "density_kg_m3": -155.11,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 63.5551,
+            "Al2O3_pct": 13.83,
+            "Fe2O3_pct": 4.724,
+            "K2O_pct": 2.4415,
+            "Cu_ppm": 31.4892,
+            "Au_ppm": 0.0025
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1195.0,
+          "length_m": 50.0,
+          "density_kg_m3": -138.32,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 62.5175,
+            "Al2O3_pct": 14.0284,
+            "Fe2O3_pct": 4.4586,
+            "K2O_pct": 2.5196,
+            "Cu_ppm": 21.7249,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1245.0,
+          "length_m": 50.0,
+          "density_kg_m3": -114.35,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 69.801,
+            "Al2O3_pct": 14.5003,
+            "Fe2O3_pct": 4.5347,
+            "K2O_pct": 2.6479,
+            "Cu_ppm": 18.0965,
+            "Au_ppm": 0.0023
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1295.0,
+          "length_m": 50.0,
+          "density_kg_m3": -137.14,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.9442,
+            "Al2O3_pct": 14.1247,
+            "Fe2O3_pct": 4.4294,
+            "K2O_pct": 2.7,
+            "Cu_ppm": 27.863,
+            "Au_ppm": 0.0016
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1345.0,
+          "length_m": 50.0,
+          "density_kg_m3": -121.03,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 69.9784,
+            "Al2O3_pct": 13.379,
+            "Fe2O3_pct": 4.4096,
+            "K2O_pct": 2.5497,
+            "Cu_ppm": 29.581,
+            "Au_ppm": 0.0015
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1395.0,
+          "length_m": 50.0,
+          "density_kg_m3": -129.93,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 64.0224,
+            "Al2O3_pct": 14.0251,
+            "Fe2O3_pct": 4.4375,
+            "K2O_pct": 2.27,
+            "Cu_ppm": 35.7294,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1445.0,
+          "length_m": 50.0,
+          "density_kg_m3": -116.2,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 71.9971,
+            "Al2O3_pct": 13.4053,
+            "Fe2O3_pct": 4.6796,
+            "K2O_pct": 2.3925,
+            "Cu_ppm": 26.1653,
+            "Au_ppm": 0.0029
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1495.0,
+          "length_m": 50.0,
+          "density_kg_m3": -43.63,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 59.9269,
+            "Al2O3_pct": 14.2567,
+            "Fe2O3_pct": 4.9302,
+            "K2O_pct": 2.2051,
+            "Cu_ppm": 38.1976,
+            "Au_ppm": 0.0026
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1545.0,
+          "length_m": 50.0,
+          "density_kg_m3": -114.65,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.3407,
+            "Al2O3_pct": 14.3113,
+            "Fe2O3_pct": 4.5879,
+            "K2O_pct": 2.573,
+            "Cu_ppm": 37.9051,
+            "Au_ppm": 0.0023
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1595.0,
+          "length_m": 50.0,
+          "density_kg_m3": -117.15,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 59.2093,
+            "Al2O3_pct": 13.2512,
+            "Fe2O3_pct": 4.7518,
+            "K2O_pct": 2.4829,
+            "Cu_ppm": 40.364,
+            "Au_ppm": 0.0022
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1645.0,
+          "length_m": 50.0,
+          "density_kg_m3": -145.57,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 62.3119,
+            "Al2O3_pct": 13.4387,
+            "Fe2O3_pct": 5.0746,
+            "K2O_pct": 2.4026,
+            "Cu_ppm": 40.6121,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1695.0,
+          "length_m": 45.0,
+          "density_kg_m3": -94.82,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.8875,
+            "Al2O3_pct": 13.517,
+            "Fe2O3_pct": 4.2599,
+            "K2O_pct": 2.3855,
+            "Cu_ppm": 35.574,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        }
+      ]
+    },
+    {
+      "id": "BH-SYNTH-006",
+      "x_m": 872.91,
+      "y_m": 43.38,
+      "elevation_m": -1187.12,
+      "azimuth_deg": 0.0,
+      "dip_deg": 90.0,
+      "total_depth_m": 2185.69,
+      "samples": [
+        {
+          "start_depth_m": 15.0,
+          "length_m": 50.0,
+          "density_kg_m3": -144.49,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 66.4601,
+            "Al2O3_pct": 11.1151,
+            "Fe2O3_pct": 3.4514,
+            "K2O_pct": 1.8196,
+            "Cu_ppm": 23.9964,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 65.0,
+          "length_m": 50.0,
+          "density_kg_m3": -168.97,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 65.7274,
+            "Al2O3_pct": 10.9562,
+            "Fe2O3_pct": 3.4077,
+            "K2O_pct": 2.0234,
+            "Cu_ppm": 21.7302,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 115.0,
+          "length_m": 50.0,
+          "density_kg_m3": -166.21,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 72.825,
+            "Al2O3_pct": 11.7159,
+            "Fe2O3_pct": 3.5413,
+            "K2O_pct": 1.9851,
+            "Cu_ppm": 18.6971,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 165.0,
+          "length_m": 50.0,
+          "density_kg_m3": -137.19,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 71.5197,
+            "Al2O3_pct": 11.7291,
+            "Fe2O3_pct": 3.4276,
+            "K2O_pct": 2.1401,
+            "Cu_ppm": 20.8963,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 215.0,
+          "length_m": 50.0,
+          "density_kg_m3": -155.44,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 63.4791,
+            "Al2O3_pct": 11.4282,
+            "Fe2O3_pct": 3.2718,
+            "K2O_pct": 1.8519,
+            "Cu_ppm": 26.4318,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 265.0,
+          "length_m": 50.0,
+          "density_kg_m3": -173.37,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 69.3102,
+            "Al2O3_pct": 10.5195,
+            "Fe2O3_pct": 3.629,
+            "K2O_pct": 2.1068,
+            "Cu_ppm": 28.3392,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 315.0,
+          "length_m": 50.0,
+          "density_kg_m3": -144.07,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 69.8194,
+            "Al2O3_pct": 11.3329,
+            "Fe2O3_pct": 3.5052,
+            "K2O_pct": 2.136,
+            "Cu_ppm": 27.7872,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 365.0,
+          "length_m": 50.0,
+          "density_kg_m3": -167.03,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 65.9623,
+            "Al2O3_pct": 11.1146,
+            "Fe2O3_pct": 3.3141,
+            "K2O_pct": 2.0884,
+            "Cu_ppm": 18.2178,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 415.0,
+          "length_m": 50.0,
+          "density_kg_m3": -152.28,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 67.821,
+            "Al2O3_pct": 10.5877,
+            "Fe2O3_pct": 3.5555,
+            "K2O_pct": 1.8984,
+            "Cu_ppm": 23.8151,
+            "Au_ppm": 0.0013
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 465.0,
+          "length_m": 50.0,
+          "density_kg_m3": -177.13,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 68.3989,
+            "Al2O3_pct": 11.0624,
+            "Fe2O3_pct": 3.7095,
+            "K2O_pct": 1.9907,
+            "Cu_ppm": 22.5093,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 515.0,
+          "length_m": 50.0,
+          "density_kg_m3": -172.4,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 68.4349,
+            "Al2O3_pct": 10.8729,
+            "Fe2O3_pct": 3.9553,
+            "K2O_pct": 2.0117,
+            "Cu_ppm": 27.2505,
+            "Au_ppm": 0.0013
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 565.0,
+          "length_m": 50.0,
+          "density_kg_m3": -172.82,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 70.5872,
+            "Al2O3_pct": 11.5106,
+            "Fe2O3_pct": 3.4644,
+            "K2O_pct": 2.1002,
+            "Cu_ppm": 24.8362,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 615.0,
+          "length_m": 50.0,
+          "density_kg_m3": -169.43,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 60.6033,
+            "Al2O3_pct": 10.794,
+            "Fe2O3_pct": 3.3817,
+            "K2O_pct": 2.0434,
+            "Cu_ppm": 20.5517,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 665.0,
+          "length_m": 50.0,
+          "density_kg_m3": -153.55,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 66.978,
+            "Al2O3_pct": 12.1727,
+            "Fe2O3_pct": 3.3188,
+            "K2O_pct": 1.8052,
+            "Cu_ppm": 21.8613,
+            "Au_ppm": 0.0004
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 715.0,
+          "length_m": 45.0,
+          "density_kg_m3": -175.75,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 71.9516,
+            "Al2O3_pct": 11.6282,
+            "Fe2O3_pct": 3.4497,
+            "K2O_pct": 2.0727,
+            "Cu_ppm": 28.0021,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 765.0,
+          "length_m": 50.0,
+          "density_kg_m3": -218.99,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 74.8636,
+            "Al2O3_pct": 8.8124,
+            "Fe2O3_pct": 2.3211,
+            "K2O_pct": 1.4741,
+            "Cu_ppm": 11.8655,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 815.0,
+          "length_m": 50.0,
+          "density_kg_m3": -205.64,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 81.9834,
+            "Al2O3_pct": 9.6974,
+            "Fe2O3_pct": 2.5054,
+            "K2O_pct": 1.5453,
+            "Cu_ppm": 15.476,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 865.0,
+          "length_m": 50.0,
+          "density_kg_m3": -179.51,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 73.8034,
+            "Al2O3_pct": 8.9394,
+            "Fe2O3_pct": 2.4544,
+            "K2O_pct": 1.4164,
+            "Cu_ppm": 11.9673,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 915.0,
+          "length_m": 50.0,
+          "density_kg_m3": -160.53,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 76.4317,
+            "Al2O3_pct": 9.3057,
+            "Fe2O3_pct": 2.3419,
+            "K2O_pct": 1.4977,
+            "Cu_ppm": 12.3727,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 965.0,
+          "length_m": 50.0,
+          "density_kg_m3": -190.44,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 83.0534,
+            "Al2O3_pct": 8.9151,
+            "Fe2O3_pct": 2.6229,
+            "K2O_pct": 1.5494,
+            "Cu_ppm": 20.7883,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1015.0,
+          "length_m": 50.0,
+          "density_kg_m3": -137.62,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 79.5636,
+            "Al2O3_pct": 9.519,
+            "Fe2O3_pct": 2.3741,
+            "K2O_pct": 1.4413,
+            "Cu_ppm": 15.0695,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1065.0,
+          "length_m": 45.0,
+          "density_kg_m3": -217.37,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 82.9068,
+            "Al2O3_pct": 8.3894,
+            "Fe2O3_pct": 2.2569,
+            "K2O_pct": 1.4237,
+            "Cu_ppm": 12.0528,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1115.0,
+          "length_m": 50.0,
+          "density_kg_m3": -427.25,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 65.4995,
+            "Al2O3_pct": 11.7321,
+            "Fe2O3_pct": 4.4073,
+            "K2O_pct": 2.094,
+            "Cu_ppm": 22.0353,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1165.0,
+          "length_m": 50.0,
+          "density_kg_m3": -419.81,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 66.7169,
+            "Al2O3_pct": 11.733,
+            "Fe2O3_pct": 3.9619,
+            "K2O_pct": 1.967,
+            "Cu_ppm": 16.3869,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1215.0,
+          "length_m": 50.0,
+          "density_kg_m3": -432.57,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 69.6025,
+            "Al2O3_pct": 10.9729,
+            "Fe2O3_pct": 4.2799,
+            "K2O_pct": 1.9323,
+            "Cu_ppm": 17.4047,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1265.0,
+          "length_m": 50.0,
+          "density_kg_m3": -439.82,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 64.5151,
+            "Al2O3_pct": 12.7564,
+            "Fe2O3_pct": 3.5149,
+            "K2O_pct": 1.7877,
+            "Cu_ppm": 17.8146,
+            "Au_ppm": 0.0006
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1315.0,
+          "length_m": 50.0,
+          "density_kg_m3": -441.69,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 66.0441,
+            "Al2O3_pct": 11.0435,
+            "Fe2O3_pct": 3.5992,
+            "K2O_pct": 2.0502,
+            "Cu_ppm": 24.045,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1365.0,
+          "length_m": 45.0,
+          "density_kg_m3": -400.96,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 60.6345,
+            "Al2O3_pct": 12.8797,
+            "Fe2O3_pct": 3.9329,
+            "K2O_pct": 1.9752,
+            "Cu_ppm": 22.0087,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1415.0,
+          "length_m": 50.0,
+          "density_kg_m3": -127.41,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.7953,
+            "Al2O3_pct": 14.1027,
+            "Fe2O3_pct": 4.4305,
+            "K2O_pct": 2.591,
+            "Cu_ppm": 29.7281,
+            "Au_ppm": 0.0022
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1465.0,
+          "length_m": 50.0,
+          "density_kg_m3": -129.32,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 65.3111,
+            "Al2O3_pct": 14.1129,
+            "Fe2O3_pct": 4.4397,
+            "K2O_pct": 2.5225,
+            "Cu_ppm": 31.7805,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1515.0,
+          "length_m": 45.0,
+          "density_kg_m3": -117.87,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.7166,
+            "Al2O3_pct": 13.5567,
+            "Fe2O3_pct": 4.4563,
+            "K2O_pct": 2.3997,
+            "Cu_ppm": 32.0812,
+            "Au_ppm": 0.0017
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1565.0,
+          "length_m": 50.0,
+          "density_kg_m3": -167.73,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 55.8584,
+            "Al2O3_pct": 17.6598,
+            "Fe2O3_pct": 6.8533,
+            "K2O_pct": 2.9778,
+            "Cu_ppm": 37.0147,
+            "Au_ppm": 0.0024
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1615.0,
+          "length_m": 50.0,
+          "density_kg_m3": -239.94,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 59.4347,
+            "Al2O3_pct": 18.3381,
+            "Fe2O3_pct": 5.4457,
+            "K2O_pct": 3.0206,
+            "Cu_ppm": 38.6682,
+            "Au_ppm": 0.002
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1665.0,
+          "length_m": 50.0,
+          "density_kg_m3": -228.64,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.1462,
+            "Al2O3_pct": 18.3847,
+            "Fe2O3_pct": 6.3631,
+            "K2O_pct": 2.9882,
+            "Cu_ppm": 54.7325,
+            "Au_ppm": 0.0021
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1715.0,
+          "length_m": 50.0,
+          "density_kg_m3": -188.64,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.4553,
+            "Al2O3_pct": 18.2749,
+            "Fe2O3_pct": 6.1832,
+            "K2O_pct": 2.8482,
+            "Cu_ppm": 45.0382,
+            "Au_ppm": 0.0024
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1765.0,
+          "length_m": 50.0,
+          "density_kg_m3": -265.41,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 57.8689,
+            "Al2O3_pct": 17.4044,
+            "Fe2O3_pct": 5.9266,
+            "K2O_pct": 2.8853,
+            "Cu_ppm": 39.7681,
+            "Au_ppm": 0.0019
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1815.0,
+          "length_m": 50.0,
+          "density_kg_m3": -241.4,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 60.838,
+            "Al2O3_pct": 18.2871,
+            "Fe2O3_pct": 6.5093,
+            "K2O_pct": 2.7054,
+            "Cu_ppm": 66.7521,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1865.0,
+          "length_m": 50.0,
+          "density_kg_m3": -259.56,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 58.7036,
+            "Al2O3_pct": 17.7822,
+            "Fe2O3_pct": 5.5813,
+            "K2O_pct": 2.9467,
+            "Cu_ppm": 60.1621,
+            "Au_ppm": 0.0023
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1915.0,
+          "length_m": 45.0,
+          "density_kg_m3": -201.43,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "shale",
+          "stratigraphic_unit": "lower_sediments",
+          "chemistry": {
+            "SiO2_pct": 56.825,
+            "Al2O3_pct": 18.4018,
+            "Fe2O3_pct": 5.7022,
+            "K2O_pct": 2.9203,
+            "Cu_ppm": 46.8431,
+            "Au_ppm": 0.0027
+          },
+          "lithology_code": 1,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1965.0,
+          "length_m": 45.0,
+          "density_kg_m3": -140.61,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "siltstone",
+          "stratigraphic_unit": "upper_sediments",
+          "chemistry": {
+            "SiO2_pct": 61.5749,
+            "Al2O3_pct": 12.7949,
+            "Fe2O3_pct": 4.8659,
+            "K2O_pct": 2.3955,
+            "Cu_ppm": 17.2604,
+            "Au_ppm": 0.0018
+          },
+          "lithology_code": 3,
+          "source": "synthetic_core"
+        }
+      ]
+    },
+    {
+      "id": "BH-SYNTH-007",
+      "x_m": 5639.06,
+      "y_m": 163.35,
+      "elevation_m": -1382.11,
+      "azimuth_deg": 0.0,
+      "dip_deg": 90.0,
+      "total_depth_m": 1060.74,
+      "samples": [
+        {
+          "start_depth_m": 20.0,
+          "length_m": 50.0,
+          "density_kg_m3": -158.93,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 72.4764,
+            "Al2O3_pct": 10.656,
+            "Fe2O3_pct": 3.5366,
+            "K2O_pct": 2.0199,
+            "Cu_ppm": 21.358,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 70.0,
+          "length_m": 45.0,
+          "density_kg_m3": -175.38,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "conglomerate",
+          "stratigraphic_unit": "conglomerate",
+          "chemistry": {
+            "SiO2_pct": 72.5648,
+            "Al2O3_pct": 10.9405,
+            "Fe2O3_pct": 3.7288,
+            "K2O_pct": 2.0402,
+            "Cu_ppm": 17.5076,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 4,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 120.0,
+          "length_m": 50.0,
+          "density_kg_m3": -187.19,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 83.2858,
+            "Al2O3_pct": 8.9913,
+            "Fe2O3_pct": 2.573,
+            "K2O_pct": 1.6578,
+            "Cu_ppm": 21.632,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 170.0,
+          "length_m": 50.0,
+          "density_kg_m3": -230.19,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 77.5436,
+            "Al2O3_pct": 9.0472,
+            "Fe2O3_pct": 2.7691,
+            "K2O_pct": 1.4152,
+            "Cu_ppm": 11.2326,
+            "Au_ppm": 0.0007
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 220.0,
+          "length_m": 50.0,
+          "density_kg_m3": -219.02,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 74.0956,
+            "Al2O3_pct": 9.3293,
+            "Fe2O3_pct": 2.5892,
+            "K2O_pct": 1.4309,
+            "Cu_ppm": 13.7906,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 270.0,
+          "length_m": 50.0,
+          "density_kg_m3": -199.53,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 76.664,
+            "Al2O3_pct": 9.3623,
+            "Fe2O3_pct": 2.5287,
+            "K2O_pct": 1.4685,
+            "Cu_ppm": 13.7804,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 320.0,
+          "length_m": 50.0,
+          "density_kg_m3": -227.13,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 81.4426,
+            "Al2O3_pct": 8.7848,
+            "Fe2O3_pct": 2.5423,
+            "K2O_pct": 1.5156,
+            "Cu_ppm": 12.6922,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 370.0,
+          "length_m": 50.0,
+          "density_kg_m3": -179.05,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 78.2654,
+            "Al2O3_pct": 8.9813,
+            "Fe2O3_pct": 2.5662,
+            "K2O_pct": 1.4952,
+            "Cu_ppm": 13.1568,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 420.0,
+          "length_m": 50.0,
+          "density_kg_m3": -193.25,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 75.6182,
+            "Al2O3_pct": 8.6023,
+            "Fe2O3_pct": 2.6447,
+            "K2O_pct": 1.4152,
+            "Cu_ppm": 13.1803,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 470.0,
+          "length_m": 50.0,
+          "density_kg_m3": -207.2,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 80.0323,
+            "Al2O3_pct": 9.2828,
+            "Fe2O3_pct": 2.264,
+            "K2O_pct": 1.4999,
+            "Cu_ppm": 17.6568,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 520.0,
+          "length_m": 50.0,
+          "density_kg_m3": -209.99,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 78.5279,
+            "Al2O3_pct": 8.8563,
+            "Fe2O3_pct": 2.4993,
+            "K2O_pct": 1.3835,
+            "Cu_ppm": 16.2955,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 570.0,
+          "length_m": 50.0,
+          "density_kg_m3": -178.55,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 78.6307,
+            "Al2O3_pct": 9.1966,
+            "Fe2O3_pct": 2.5753,
+            "K2O_pct": 1.5261,
+            "Cu_ppm": 11.1205,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 620.0,
+          "length_m": 50.0,
+          "density_kg_m3": -206.08,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 77.6926,
+            "Al2O3_pct": 9.6882,
+            "Fe2O3_pct": 2.4702,
+            "K2O_pct": 1.4869,
+            "Cu_ppm": 19.5894,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 670.0,
+          "length_m": 50.0,
+          "density_kg_m3": -183.61,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 80.8918,
+            "Al2O3_pct": 10.2027,
+            "Fe2O3_pct": 2.6153,
+            "K2O_pct": 1.6126,
+            "Cu_ppm": 16.5643,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 720.0,
+          "length_m": 50.0,
+          "density_kg_m3": -182.68,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 83.008,
+            "Al2O3_pct": 8.8369,
+            "Fe2O3_pct": 2.6446,
+            "K2O_pct": 1.532,
+            "Cu_ppm": 16.9335,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 770.0,
+          "length_m": 45.0,
+          "density_kg_m3": -185.73,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 72.9619,
+            "Al2O3_pct": 9.3615,
+            "Fe2O3_pct": 2.5651,
+            "K2O_pct": 1.6663,
+            "Cu_ppm": 16.7393,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 820.0,
+          "length_m": 50.0,
+          "density_kg_m3": -434.64,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 62.5112,
+            "Al2O3_pct": 11.9943,
+            "Fe2O3_pct": 3.7655,
+            "K2O_pct": 1.9645,
+            "Cu_ppm": 18.1072,
+            "Au_ppm": 0.0015
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 870.0,
+          "length_m": 50.0,
+          "density_kg_m3": -421.02,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 71.9976,
+            "Al2O3_pct": 12.0695,
+            "Fe2O3_pct": 4.1581,
+            "K2O_pct": 1.9436,
+            "Cu_ppm": 17.4904,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 920.0,
+          "length_m": 50.0,
+          "density_kg_m3": -421.93,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 70.837,
+            "Al2O3_pct": 12.4606,
+            "Fe2O3_pct": 3.9702,
+            "K2O_pct": 2.0596,
+            "Cu_ppm": 14.6929,
+            "Au_ppm": 0.0007
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 970.0,
+          "length_m": 50.0,
+          "density_kg_m3": -440.85,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 70.2031,
+            "Al2O3_pct": 12.2525,
+            "Fe2O3_pct": 3.9005,
+            "K2O_pct": 1.9521,
+            "Cu_ppm": 11.9426,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1020.0,
+          "length_m": 40.0,
+          "density_kg_m3": -441.34,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 60.147,
+            "Al2O3_pct": 12.4137,
+            "Fe2O3_pct": 3.9643,
+            "K2O_pct": 2.1692,
+            "Cu_ppm": 19.8417,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        }
+      ]
+    },
+    {
+      "id": "BH-SYNTH-008",
+      "x_m": 6113.14,
+      "y_m": 4891.92,
+      "elevation_m": -512.48,
+      "azimuth_deg": 0.0,
+      "dip_deg": 90.0,
+      "total_depth_m": 1123.61,
+      "samples": [
+        {
+          "start_depth_m": 0.0,
+          "length_m": 50.0,
+          "density_kg_m3": -198.84,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 70.1575,
+            "Al2O3_pct": 9.2879,
+            "Fe2O3_pct": 2.489,
+            "K2O_pct": 1.4856,
+            "Cu_ppm": 21.1294,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 50.0,
+          "length_m": 50.0,
+          "density_kg_m3": -175.14,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 72.691,
+            "Al2O3_pct": 9.4091,
+            "Fe2O3_pct": 2.6834,
+            "K2O_pct": 1.3695,
+            "Cu_ppm": 11.4033,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 100.0,
+          "length_m": 50.0,
+          "density_kg_m3": -183.5,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 83.8803,
+            "Al2O3_pct": 9.5959,
+            "Fe2O3_pct": 2.5667,
+            "K2O_pct": 1.392,
+            "Cu_ppm": 19.3729,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 150.0,
+          "length_m": 50.0,
+          "density_kg_m3": -197.28,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 78.1675,
+            "Al2O3_pct": 9.6858,
+            "Fe2O3_pct": 2.49,
+            "K2O_pct": 1.4862,
+            "Cu_ppm": 16.7837,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 200.0,
+          "length_m": 50.0,
+          "density_kg_m3": -202.41,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 81.7651,
+            "Al2O3_pct": 9.0246,
+            "Fe2O3_pct": 2.3847,
+            "K2O_pct": 1.4445,
+            "Cu_ppm": 15.5736,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 250.0,
+          "length_m": 50.0,
+          "density_kg_m3": -221.83,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 71.7266,
+            "Al2O3_pct": 9.3385,
+            "Fe2O3_pct": 2.2176,
+            "K2O_pct": 1.5164,
+            "Cu_ppm": 18.4193,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 300.0,
+          "length_m": 50.0,
+          "density_kg_m3": -204.42,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 76.111,
+            "Al2O3_pct": 8.2482,
+            "Fe2O3_pct": 2.4459,
+            "K2O_pct": 1.4587,
+            "Cu_ppm": 13.9465,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 350.0,
+          "length_m": 50.0,
+          "density_kg_m3": -172.57,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 82.103,
+            "Al2O3_pct": 8.8904,
+            "Fe2O3_pct": 2.4928,
+            "K2O_pct": 1.4551,
+            "Cu_ppm": 17.2674,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 400.0,
+          "length_m": 50.0,
+          "density_kg_m3": -210.79,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 74.2782,
+            "Al2O3_pct": 9.6374,
+            "Fe2O3_pct": 2.5087,
+            "K2O_pct": 1.4866,
+            "Cu_ppm": 9.0299,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 450.0,
+          "length_m": 50.0,
+          "density_kg_m3": -227.25,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 81.4032,
+            "Al2O3_pct": 8.9252,
+            "Fe2O3_pct": 2.2132,
+            "K2O_pct": 1.4974,
+            "Cu_ppm": 12.7506,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 500.0,
+          "length_m": 50.0,
+          "density_kg_m3": -169.29,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 77.5262,
+            "Al2O3_pct": 8.7587,
+            "Fe2O3_pct": 2.5711,
+            "K2O_pct": 1.4438,
+            "Cu_ppm": 20.9935,
+            "Au_ppm": 0.0007
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 550.0,
+          "length_m": 50.0,
+          "density_kg_m3": -168.1,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 78.3225,
+            "Al2O3_pct": 8.4238,
+            "Fe2O3_pct": 2.4187,
+            "K2O_pct": 1.6305,
+            "Cu_ppm": 14.3496,
+            "Au_ppm": 0.0009
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 600.0,
+          "length_m": 50.0,
+          "density_kg_m3": -117.22,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 84.2394,
+            "Al2O3_pct": 8.9909,
+            "Fe2O3_pct": 2.4342,
+            "K2O_pct": 1.358,
+            "Cu_ppm": 11.3916,
+            "Au_ppm": 0.0014
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 650.0,
+          "length_m": 50.0,
+          "density_kg_m3": -240.01,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 77.7248,
+            "Al2O3_pct": 9.7003,
+            "Fe2O3_pct": 2.4005,
+            "K2O_pct": 1.4241,
+            "Cu_ppm": 18.4932,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 700.0,
+          "length_m": 50.0,
+          "density_kg_m3": -217.05,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 81.3669,
+            "Al2O3_pct": 9.3608,
+            "Fe2O3_pct": 2.6389,
+            "K2O_pct": 1.6496,
+            "Cu_ppm": 13.2679,
+            "Au_ppm": 0.0007
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 750.0,
+          "length_m": 50.0,
+          "density_kg_m3": -133.64,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 79.1781,
+            "Al2O3_pct": 9.238,
+            "Fe2O3_pct": 2.331,
+            "K2O_pct": 1.4211,
+            "Cu_ppm": 14.5126,
+            "Au_ppm": 0.0007
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 800.0,
+          "length_m": 50.0,
+          "density_kg_m3": -191.49,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 75.1205,
+            "Al2O3_pct": 8.9258,
+            "Fe2O3_pct": 2.3156,
+            "K2O_pct": 1.6388,
+            "Cu_ppm": 21.6772,
+            "Au_ppm": 0.0007
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 850.0,
+          "length_m": 50.0,
+          "density_kg_m3": -153.41,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 74.7515,
+            "Al2O3_pct": 8.8734,
+            "Fe2O3_pct": 2.4751,
+            "K2O_pct": 1.5943,
+            "Cu_ppm": 18.1928,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 900.0,
+          "length_m": 50.0,
+          "density_kg_m3": -195.91,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 84.5555,
+            "Al2O3_pct": 9.1799,
+            "Fe2O3_pct": 2.5829,
+            "K2O_pct": 1.5179,
+            "Cu_ppm": 18.1363,
+            "Au_ppm": 0.0008
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 950.0,
+          "length_m": 50.0,
+          "density_kg_m3": -197.27,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 75.9279,
+            "Al2O3_pct": 9.0736,
+            "Fe2O3_pct": 2.3053,
+            "K2O_pct": 1.4939,
+            "Cu_ppm": 16.0209,
+            "Au_ppm": 0.0012
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1000.0,
+          "length_m": 50.0,
+          "density_kg_m3": -169.0,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 73.2307,
+            "Al2O3_pct": 9.6166,
+            "Fe2O3_pct": 2.4588,
+            "K2O_pct": 1.5586,
+            "Cu_ppm": 20.0378,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1050.0,
+          "length_m": 35.0,
+          "density_kg_m3": -185.43,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "sandstone",
+          "stratigraphic_unit": "middle_sediments",
+          "chemistry": {
+            "SiO2_pct": 77.3609,
+            "Al2O3_pct": 8.3493,
+            "Fe2O3_pct": 2.4382,
+            "K2O_pct": 1.4552,
+            "Cu_ppm": 14.0331,
+            "Au_ppm": 0.001
+          },
+          "lithology_code": 2,
+          "source": "synthetic_core"
+        },
+        {
+          "start_depth_m": 1090.0,
+          "length_m": 30.0,
+          "density_kg_m3": -461.65,
+          "uncertainty_kg_m3": 25.0,
+          "lithology": "alluvium",
+          "stratigraphic_unit": "alluvium",
+          "chemistry": {
+            "SiO2_pct": 69.1409,
+            "Al2O3_pct": 12.2784,
+            "Fe2O3_pct": 4.0229,
+            "K2O_pct": 2.1154,
+            "Cu_ppm": 15.7899,
+            "Au_ppm": 0.0011
+          },
+          "lithology_code": 5,
+          "source": "synthetic_core"
+        }
+      ]
+    }
+  ]
+}

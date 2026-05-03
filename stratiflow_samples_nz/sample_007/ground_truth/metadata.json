@@ -1,0 +1,115 @@
+{
+  "schema_version": "stratiflow-sample-v1",
+  "sample_id": "sample_007",
+  "seed": 20260508,
+  "geomodel_attempts": 2,
+  "structuralgeo_axis_note": "GeoGen returns [nx, ny, nz] with z_index=0 at the bottom. Volumes here are converted to spec [nz, ny, nx] with z_index=0 at the top via transpose((2,1,0))[::-1, :, :].",
+  "mesh": {
+    "nz": 64,
+    "ny": 128,
+    "nx": 128,
+    "dx_m": 50.0,
+    "dy_m": 50.0,
+    "dz_m": 50.0,
+    "z_top_m": 0.0
+  },
+  "geospatial": {
+    "crs": "EPSG:2193",
+    "horizontal_units": "meters",
+    "origin_xy_absolute_m": [
+      1326498.1662461376,
+      5157450.239159159
+    ],
+    "bbox_xy_absolute_m": [
+      1326498.1662461376,
+      5157450.239159159,
+      1332898.1662461376,
+      5163850.239159159
+    ],
+    "z_top_m_local": 0.0,
+    "z_top_m_absolute": 1585.4510498046875,
+    "axis_to_absolute_xy_note": "Local x_m -> absolute x = origin_xy_absolute_m[0] + x_m. Local y_m -> absolute y = origin_xy_absolute_m[1] + y_m. Local z (k=0 top, increasing downward) -> absolute elevation = z_top_m_absolute - (k + 0.5) * dz_m   (when z_top_m_absolute is set)."
+  },
+  "physics": {
+    "reference_density_kg_m3": 2670.0,
+    "obs_plane_z_m": 50.0,
+    "regional_trend": {
+      "kind": "linear+quadratic_isotropic",
+      "amplitude_mgal": 3.0,
+      "coefficients": {
+        "a_u": -0.8272613064733332,
+        "b_v": 0.5369166286096302,
+        "c_radial": 0.16540636243658377
+      }
+    },
+    "station_noise_mgal_sigma": 0.08
+  },
+  "summary": {
+    "n_units": 4,
+    "n_faults": 2,
+    "n_user_faults": 1,
+    "n_boreholes": 8,
+    "surface_relief_m": 1566.0592041015625,
+    "qc_warnings": []
+  },
+  "geomodel_event_history": [
+    "Bedrock",
+    "Sedimentation",
+    "Fold",
+    "Fold",
+    "Sedimentation",
+    "Fold",
+    "Fold",
+    "Fold",
+    "Sedimentation",
+    "Fault",
+    "Fault",
+    "Fold",
+    "DikePlane",
+    "DikePlane",
+    "Sedimentation",
+    "Tilt",
+    "Fold",
+    "Fold",
+    "UnconformityDepth",
+    "Sedimentation",
+    "Fold",
+    "Fold",
+    "Sedimentation",
+    "UnconformityDepth",
+    "Sedimentation",
+    "Fault",
+    "Fold",
+    "Fold",
+    "DikePlane",
+    "Fold",
+    "Shift"
+  ],
+  "provenance": {
+    "source": "microsoft_planetary_computer",
+    "dem_collection": "cop-dem-glo-30",
+    "landcover_collection": "esa-worldcover",
+    "region_name": "southern_alps",
+    "center_lonlat": [
+      169.6478529115761,
+      -43.65799140425815
+    ],
+    "bbox_nztm": [
+      1326498.1662461376,
+      5157450.239159159,
+      1332898.1662461376,
+      5163850.239159159
+    ],
+    "absolute_dem_offset_m": 1585.4510498046875,
+    "absolute_dem_range_m": [
+      19.391813278198242,
+      1585.4510498046875
+    ],
+    "landcover_stats": {
+      "built_up_fraction": 0.0,
+      "water_fraction": 0.0006897908149646675,
+      "snow_ice_fraction": 0.0
+    },
+    "tile_picker_attempts": 1
+  }
+}

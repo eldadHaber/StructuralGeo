@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
-from typing import Tuple
+from typing import Optional, Tuple
 
 import numpy as np
 
@@ -75,14 +75,28 @@ def write_gravity_stations_csv(
     cfg: GenerationConfig,
     rng: np.random.Generator,
     out_path: Path,
+    crs: Optional[str] = None,
+    origin_xy_absolute_m=(0.0, 0.0),
 ) -> Path:
     """Write a perturbed station-form CSV. Stations are jittered ±20 m
     horizontal and ±5 m vertical relative to grid centers, with extra
-    0.05 mGal noise on top of the grid noise."""
+    0.05 mGal noise on top of the grid noise.
+
+    If ``crs`` is provided, the file leads with two ``#``-prefixed comment
+    lines documenting the CRS and the absolute (x, y) origin so pipeline
+    code can map local x_m/y_m -> absolute coordinates. Pandas and most
+    CSV readers skip these with ``comment="#"``.
+    """
     ny, nx = grid_mgal.shape
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", newline="") as f:
+        if crs:
+            f.write(f"# crs: {crs}\n")
+            f.write(f"# origin_xy_absolute_m: {origin_xy_absolute_m[0]:.3f},"
+                    f" {origin_xy_absolute_m[1]:.3f}\n")
+        else:
+            f.write("# crs: local-meters\n")
         w = csv.writer(f)
         w.writerow(["id", "x_m", "y_m", "z_m", "gravity_mgal"])
         for j in range(ny):

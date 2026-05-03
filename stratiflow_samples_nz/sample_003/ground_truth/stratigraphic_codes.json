@@ -1,0 +1,18 @@
+{
+  "5": {
+    "name": "alluvium",
+    "age_order": 0
+  },
+  "3": {
+    "name": "upper_sediments",
+    "age_order": 1
+  },
+  "4": {
+    "name": "conglomerate",
+    "age_order": 2
+  },
+  "1": {
+    "name": "lower_sediments",
+    "age_order": 3
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "stratiflow-sample-v1",
+  "sample_id": "sample_011",
+  "seed": 20260512,
+  "geomodel_attempts": 3,
+  "structuralgeo_axis_note": "GeoGen returns [nx, ny, nz] with z_index=0 at the bottom. Volumes here are converted to spec [nz, ny, nx] with z_index=0 at the top via transpose((2,1,0))[::-1, :, :].",
+  "mesh": {
+    "nz": 64,
+    "ny": 128,
+    "nx": 128,
+    "dx_m": 50.0,
+    "dy_m": 50.0,
+    "dz_m": 50.0,
+    "z_top_m": 0.0
+  },
+  "geospatial": {
+    "crs": "EPSG:2193",
+    "horizontal_units": "meters",
+    "origin_xy_absolute_m": [
+      1545766.3282631421,
+      5188070.261608277
+    ],
+    "bbox_xy_absolute_m": [
+      1545766.3282631421,
+      5188070.261608277,
+      1552166.3282631421,
+      5194470.261608277
+    ],
+    "z_top_m_local": 0.0,
+    "z_top_m_absolute": 142.47787475585938,
+    "axis_to_absolute_xy_note": "Local x_m -> absolute x = origin_xy_absolute_m[0] + x_m. Local y_m -> absolute y = origin_xy_absolute_m[1] + y_m. Local z (k=0 top, increasing downward) -> absolute elevation = z_top_m_absolute - (k + 0.5) * dz_m   (when z_top_m_absolute is set)."
+  },
+  "physics": {
+    "reference_density_kg_m3": 2670.0,
+    "obs_plane_z_m": 50.0,
+    "regional_trend": {
+      "kind": "linear+quadratic_isotropic",
+      "amplitude_mgal": 3.0,
+      "coefficients": {
+        "a_u": -0.9892723803813049,
+        "b_v": -0.07190627961147307,
+        "c_radial": -0.12715991651123165
+      }
+    },
+    "station_noise_mgal_sigma": 0.08
+  },
+  "summary": {
+    "n_units": 6,
+    "n_faults": 3,
+    "n_user_faults": 2,
+    "n_boreholes": 8,
+    "surface_relief_m": 62.310035705566406,
+    "qc_warnings": []
+  },
+  "geomodel_event_history": [
+    "Bedrock",
+    "Sedimentation",
+    "Tilt",
+    "UnconformityBase",
+    "Fault",
+    "Fold",
+    "Fold",
+    "Fold",
+    "UnconformityDepth",
+    "Fold",
+    "Fold",
+    "Fold",
+    "Sedimentation",
+    "Fault",
+    "UnconformityDepth",
+    "Fault",
+    "Fold",
+    "Tilt",
+    "UnconformityDepth",
+    "Tilt",
+    "Tilt",
+    "UnconformityDepth",
+    "Tilt",
+    "DikePlane",
+    "DikePlane",
+    "Tilt",
+    "Fold",
+    "Fold",
+    "UnconformityDepth",
+    "Sedimentation",
+    "Fold",
+    "Fold",
+    "Fold",
+    "DikePlane",
+    "DikePlane",
+    "Fold",
+    "Tilt",
+    "UnconformityDepth",
+    "Tilt",
+    "Tilt",
+    "UnconformityDepth",
+    "Tilt",
+    "Tilt",
+    "UnconformityDepth",
+    "Tilt",
+    "Fold",
+    "Fold",
+    "Sedimentation",
+    "Sedimentation",
+    "Fold",
+    "Shift"
+  ],
+  "provenance": {
+    "source": "microsoft_planetary_computer",
+    "dem_collection": "cop-dem-glo-30",
+    "landcover_collection": "esa-worldcover",
+    "region_name": "canterbury_plains",
+    "center_lonlat": [
+      172.369473022061,
+      -43.4297237792114
+    ],
+    "bbox_nztm": [
+      1545766.3282631421,
+      5188070.261608277,
+      1552166.3282631421,
+      5194470.261608277
+    ],
+    "absolute_dem_offset_m": 142.47787475585938,
+    "absolute_dem_range_m": [
+      80.16783905029297,
+      142.47787475585938
+    ],
+    "landcover_stats": {
+      "built_up_fraction": 0.0012593155619920573,
+      "water_fraction": 0.08948336579069276,
+      "snow_ice_fraction": 0.0
+    },
+    "tile_picker_attempts": 4
+  }
+}

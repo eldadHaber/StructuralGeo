@@ -1,0 +1,34 @@
+{
+  "1": {
+    "name": "lower_sediments",
+    "age_order": 0
+  },
+  "2": {
+    "name": "middle_sediments",
+    "age_order": 1
+  },
+  "5": {
+    "name": "alluvium",
+    "age_order": 2
+  },
+  "3": {
+    "name": "upper_sediments",
+    "age_order": 3
+  },
+  "4": {
+    "name": "conglomerate",
+    "age_order": 4
+  },
+  "6": {
+    "name": "mafic_dike",
+    "age_order": 5
+  },
+  "8": {
+    "name": "rhyolitic_dike",
+    "age_order": 6
+  },
+  "13": {
+    "name": "oxide_ore",
+    "age_order": 7
+  }
+}

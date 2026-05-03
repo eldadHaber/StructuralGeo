@@ -8,8 +8,14 @@ See the synthetic-test-dataset spec for the full contract. Quick start:
 """
 
 from geogen.stratiflow.config import GenerationConfig
-from geogen.stratiflow.generate import generate_sample
+from geogen.stratiflow.generate import generate_sample, generate_sample_from_nz_tile
 from geogen.stratiflow.qc import QCFailure
 from geogen.stratiflow import viz  # noqa: F401  (matplotlib lazily imported)
 
-__all__ = ["GenerationConfig", "generate_sample", "QCFailure", "viz"]
+__all__ = [
+    "GenerationConfig",
+    "generate_sample",
+    "generate_sample_from_nz_tile",
+    "QCFailure",
+    "viz",
+]

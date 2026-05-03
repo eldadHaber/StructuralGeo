@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 from dataclasses import asdict
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 
@@ -26,6 +26,7 @@ from geogen.stratiflow.faults import (
 from geogen.stratiflow.gravity import forward_gravity_grid, write_gravity_stations_csv
 from geogen.stratiflow.lithology import (
     AIR_CODE,
+    BASEMENT_CODE,
     build_density_volume,
     build_susceptibility_volume,
     build_vocabulary,
@@ -116,10 +117,7 @@ def generate_sample(
     out_dir: Path,
     sample_id: str = "sample_001",
 ) -> Dict:
-    """Build one spec-compliant sample under ``out_dir``.
-
-    Returns a small summary dict (counts, paths) for logging / aggregation.
-    """
+    """Build one spec-compliant sample under ``out_dir``."""
     out_dir = Path(out_dir)
     (out_dir / "ground_truth").mkdir(parents=True, exist_ok=True)
     (out_dir / "inputs").mkdir(parents=True, exist_ok=True)
@@ -130,16 +128,46 @@ def generate_sample(
     # ---- Stage A: geomodel + acceptance ----
     model, litho_zyx, faults, attempts = _generate_acceptable_geomodel(cfg, rng)
 
-    # Surface relief constraint: if synthetic relief is below threshold,
-    # apply a 2D perturbation to deform the top voxels into air.
+    # If geomodel is flat-topped, apply 2D Fourier perturbation to imprint relief.
     dem_initial = extract_dem_from_volume(litho_zyx, cfg.dz_m)
-    if float(dem_initial.ptp() if False else (dem_initial.max() - dem_initial.min())) < cfg.surface_relief_min_m:
+    if float(dem_initial.max() - dem_initial.min()) < cfg.surface_relief_min_m:
         litho_zyx, dem_yx = apply_topographic_perturbation(
             litho_zyx, cfg.dz_m, cfg.surface_relief_amplitude_m, rng,
         )
     else:
         dem_yx = dem_initial
 
+    return _finish_sample_writeout(
+        cfg=cfg, out_dir=out_dir, sample_id=sample_id,
+        rng=rng, model=model, litho_zyx=litho_zyx, dem_yx=dem_yx,
+        faults=faults, attempts=attempts, extra_metadata=None,
+        crs=None,                                    # synthetic frame
+        origin_xy_absolute_m=(0.0, 0.0),
+        z_top_absolute_m=None,
+    )
+
+
+def _finish_sample_writeout(
+    *,
+    cfg: GenerationConfig,
+    out_dir: Path,
+    sample_id: str,
+    rng: np.random.Generator,
+    model,
+    litho_zyx: np.ndarray,
+    dem_yx: np.ndarray,
+    faults: list,
+    attempts: int,
+    extra_metadata: Optional[Dict] = None,
+    crs: Optional[str] = None,
+    origin_xy_absolute_m: Tuple[float, float] = (0.0, 0.0),
+    z_top_absolute_m: Optional[float] = None,
+) -> Dict:
+    """Shared sample-writeout pipeline (everything from vocab onward).
+
+    Both ``generate_sample`` and ``generate_sample_from_nz_tile`` call this
+    once they have a geomodel + DEM.
+    """
     # ---- Stage B: vocabulary + density / susceptibility volumes ----
     present_codes = [int(c) for c in np.unique(litho_zyx) if int(c) != AIR_CODE]
     ordered_codes = reorder_by_median_depth(litho_zyx, present_codes)
@@ -166,7 +194,10 @@ def generate_sample(
         density_vol, dem_yx, cfg, rng,
     )
     stations_csv = out_dir / "inputs" / "gravity_stations.csv"
-    write_gravity_stations_csv(gravity_grid, dem_yx, cfg, rng, stations_csv)
+    write_gravity_stations_csv(
+        gravity_grid, dem_yx, cfg, rng, stations_csv,
+        crs=crs, origin_xy_absolute_m=origin_xy_absolute_m,
+    )
 
     # ---- Stage G: split user-known vs hidden faults ----
     user_faults, hidden_faults = split_user_known_faults(
@@ -205,6 +236,8 @@ def generate_sample(
     with open(out_dir / "ground_truth" / "fault_traces.json", "w") as f:
         json.dump({"faults": faults}, f, indent=2)
 
+    x_max_abs = origin_xy_absolute_m[0] + cfg.nx * cfg.dx_m
+    y_max_abs = origin_xy_absolute_m[1] + cfg.ny * cfg.dy_m
     metadata = {
         "schema_version": "stratiflow-sample-v1",
         "sample_id": sample_id,
@@ -220,6 +253,24 @@ def generate_sample(
             "dx_m": cfg.dx_m, "dy_m": cfg.dy_m, "dz_m": cfg.dz_m,
             "z_top_m": 0.0,
         },
+        "geospatial": {
+            "crs": crs,                                  # e.g. "EPSG:2193" or null for local frame
+            "horizontal_units": "meters",
+            "origin_xy_absolute_m": [float(origin_xy_absolute_m[0]),
+                                     float(origin_xy_absolute_m[1])],
+            "bbox_xy_absolute_m": [float(origin_xy_absolute_m[0]),
+                                   float(origin_xy_absolute_m[1]),
+                                   float(x_max_abs), float(y_max_abs)],
+            "z_top_m_local": 0.0,
+            "z_top_m_absolute": (float(z_top_absolute_m)
+                                 if z_top_absolute_m is not None else None),
+            "axis_to_absolute_xy_note": (
+                "Local x_m -> absolute x = origin_xy_absolute_m[0] + x_m. "
+                "Local y_m -> absolute y = origin_xy_absolute_m[1] + y_m. "
+                "Local z (k=0 top, increasing downward) -> absolute elevation "
+                "= z_top_m_absolute - (k + 0.5) * dz_m   (when z_top_m_absolute is set)."
+            ),
+        },
         "physics": {
             "reference_density_kg_m3": cfg.reference_density_kg_m3,
             **gravity_meta,
@@ -234,12 +285,20 @@ def generate_sample(
         },
         "geomodel_event_history": [type(ev).__name__ for ev in (model.history_unpacked or model.history)],
     }
+    if extra_metadata:
+        metadata["provenance"] = extra_metadata
     with open(out_dir / "ground_truth" / "metadata.json", "w") as f:
         json.dump(metadata, f, indent=2)
 
     np.save(out_dir / "inputs" / "dem.npy", dem_yx)
-    write_dem_geotiff(dem_yx, out_dir / "inputs" / "dem.tif",
-                      dx_m=cfg.dx_m, dy_m=cfg.dy_m)
+    # Use the declared CRS (NZ tile path) or a synthetic local-CRS fallback.
+    geotiff_crs_epsg = _epsg_from_crs(crs) if crs else 32760
+    write_dem_geotiff(
+        dem_yx, out_dir / "inputs" / "dem.tif",
+        dx_m=cfg.dx_m, dy_m=cfg.dy_m,
+        origin_xy=tuple(origin_xy_absolute_m),
+        crs_epsg=geotiff_crs_epsg,
+    )
     np.save(out_dir / "inputs" / "obs_z.npy", obs_z)
     np.save(out_dir / "inputs" / "gravity_grid.npy", gravity_grid)
     np.save(out_dir / "inputs" / "surface_contact_raster.npy", contact_degraded)
@@ -256,7 +315,11 @@ def generate_sample(
 
     _write_notes(out_dir / "expected_outputs" / "notes.md")
     _write_readme(out_dir / "README.md", metadata, cfg, lithology_codes)
-    _write_pipeline_config(out_dir / "config.yaml", cfg, lithology_codes, stratigraphic_codes)
+    _write_pipeline_config(
+        out_dir / "config.yaml", cfg, lithology_codes, stratigraphic_codes,
+        crs=crs, origin_xy_absolute_m=origin_xy_absolute_m,
+        z_top_absolute_m=z_top_absolute_m,
+    )
 
     return {
         "out_dir": str(out_dir),
@@ -266,6 +329,149 @@ def generate_sample(
         "surface_relief_m": float(dem_yx.max() - dem_yx.min()),
         "qc_warnings": warnings,
     }
+
+
+# ---------------------------------------------------------------------------
+# NZ-tile path (real DEM from Microsoft Planetary Computer)
+
+
+def _stitch_geogen_to_real_dem(
+    litho_zyx: np.ndarray,
+    real_dem_absolute_yx: np.ndarray,
+    cfg: GenerationConfig,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Re-anchor a GeoGen-derived volume to a real DEM.
+
+    Steps:
+      1. Forward-fill GeoGen's internal air with the topmost rock per column
+         (so the column has a continuous lithology stack).
+      2. Shift the real DEM so its max equals 0 (matches stratiflow's frame
+         convention z_top = 0, increasing z is downward).
+      3. For each (j, i), mask voxels with elevation > shifted_dem[j, i]
+         as AIR.
+
+    Returns ``(new_lithology_zyx, shifted_dem_yx, dem_offset_m)``.
+    """
+    nz, ny, nx = litho_zyx.shape
+
+    # Forward-fill GeoGen internal air with topmost-rock per column
+    out = litho_zyx.copy()
+    for j in range(ny):
+        for i in range(nx):
+            col = out[:, j, i]
+            non_air = np.where(col != AIR_CODE)[0]
+            if non_air.size == 0:
+                col[:] = BASEMENT_CODE
+                continue
+            top_rock_idx = non_air.min()
+            top_rock_val = col[top_rock_idx]
+            col[:top_rock_idx] = top_rock_val   # spec: z=0 is top, so fill upward
+
+    dem_offset_m = float(real_dem_absolute_yx.max())
+    dem_shifted = real_dem_absolute_yx - dem_offset_m  # max -> 0, others negative
+
+    # Clip the shifted DEM to the frame floor so no column ends up entirely
+    # above the deepest voxel center -- which would mask the column to all-air
+    # and break the "DEM matches top-of-rock" QC invariant for high-relief
+    # tiles (relief > nz * dz_m). The clip elevation is one quarter-voxel
+    # above the deepest cell center so the deepest cell is guaranteed rock.
+    deepest_center_m = -(nz - 0.5) * cfg.dz_m
+    dem_floor_m = deepest_center_m + 0.25 * cfg.dz_m
+    dem_shifted = np.maximum(dem_shifted, dem_floor_m).astype(np.float32)
+
+    # Voxel-center elevations in spec frame (z_top = 0, k=0 at top):
+    z_centers = -(np.arange(nz) + 0.5) * cfg.dz_m
+    above_dem = z_centers[:, None, None] > dem_shifted[None, :, :]
+    out[above_dem] = AIR_CODE
+    return out, dem_shifted, dem_offset_m
+
+
+def generate_sample_from_nz_tile(
+    region,
+    cfg: GenerationConfig,
+    out_dir: Path,
+    sample_id: str = "sample_001",
+    *,
+    max_tile_attempts: int = 30,
+    max_built_up_fraction: float = 0.02,
+    max_water_fraction: float = 0.30,
+) -> Dict:
+    """Generate a stratiflow sample using a real NZ DEM as the surface.
+
+    Pulls Copernicus DEM 30m via MPC for a randomly-sampled tile in the
+    given tectonic region, rejects tiles with > ``max_built_up_fraction``
+    built-up land cover (ESA WorldCover 10m), then runs the standard
+    stratiflow pipeline with that DEM stitched in as the top boundary of
+    the GeoGen subsurface volume.
+    """
+    from geogen.gis.mpc import PlanetaryComputerClient
+    from geogen.stratiflow.nz_tile import (
+        fetch_s2_rgb_at_grid,
+        pick_nz_tile_for_stratiflow,
+    )
+
+    out_dir = Path(out_dir)
+    (out_dir / "ground_truth").mkdir(parents=True, exist_ok=True)
+    (out_dir / "inputs").mkdir(parents=True, exist_ok=True)
+    (out_dir / "expected_outputs").mkdir(parents=True, exist_ok=True)
+
+    rng = np.random.default_rng(cfg.seed)
+
+    # ---- Real NZ tile via MPC ----
+    client = PlanetaryComputerClient()
+    nz_result = pick_nz_tile_for_stratiflow(
+        region, cfg, rng,
+        max_attempts=max_tile_attempts,
+        max_built_up=max_built_up_fraction,
+        max_water=max_water_fraction,
+        client=client,
+    )
+
+    # Fetch a Sentinel-2 RGB composite at the stratiflow grid (best-effort).
+    # Stored at inputs/satellite_rgb.npy as float32 [3, ny, nx] in [0, 1].
+    s2_rgb = fetch_s2_rgb_at_grid(
+        client, nz_result.tile.bbox_nztm, ny=cfg.ny, nx=cfg.nx,
+    )
+    if s2_rgb is not None:
+        np.save(out_dir / "inputs" / "satellite_rgb.npy", s2_rgb.astype(np.float32))
+
+    # ---- GeoGen acceptance loop ----
+    model, litho_zyx, faults, attempts = _generate_acceptable_geomodel(cfg, rng)
+
+    # ---- Stitch GeoGen to real DEM ----
+    litho_zyx, dem_shifted_yx, dem_offset_m = _stitch_geogen_to_real_dem(
+        litho_zyx, nz_result.dem_yx, cfg,
+    )
+
+    # Provenance metadata
+    extra = {
+        "source": "microsoft_planetary_computer",
+        "dem_collection": "cop-dem-glo-30",
+        "landcover_collection": "esa-worldcover",
+        "region_name": region.name,
+        "center_lonlat": list(nz_result.tile.center_lonlat),
+        "bbox_nztm": list(nz_result.tile.bbox_nztm),
+        "absolute_dem_offset_m": dem_offset_m,
+        "absolute_dem_range_m": [
+            float(nz_result.dem_yx.min()), float(nz_result.dem_yx.max()),
+        ],
+        "landcover_stats": {
+            "built_up_fraction": nz_result.landcover_stats["built_up"],
+            "water_fraction": nz_result.landcover_stats["water"],
+            "snow_ice_fraction": nz_result.landcover_stats["snow_ice"],
+        },
+        "tile_picker_attempts": nz_result.attempts,
+    }
+
+    xmin, ymin, _xmax, _ymax = nz_result.tile.bbox_nztm
+    return _finish_sample_writeout(
+        cfg=cfg, out_dir=out_dir, sample_id=sample_id,
+        rng=rng, model=model, litho_zyx=litho_zyx, dem_yx=dem_shifted_yx,
+        faults=faults, attempts=attempts, extra_metadata=extra,
+        crs="EPSG:2193",                             # NZGD2000 / NZTM2000
+        origin_xy_absolute_m=(float(xmin), float(ymin)),
+        z_top_absolute_m=dem_offset_m,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -287,6 +493,28 @@ def _write_notes(path: Path):
 
 
 def _write_readme(path: Path, metadata, cfg: GenerationConfig, lithology_codes):
+    geo = metadata.get("geospatial", {})
+    crs_line = (f"- CRS: `{geo['crs']}`  (origin xy abs = "
+                f"{geo['origin_xy_absolute_m'][0]:.1f}, {geo['origin_xy_absolute_m'][1]:.1f} m"
+                + (f"; z_top abs = {geo['z_top_m_absolute']:.1f} m)"
+                   if geo.get("z_top_m_absolute") is not None else ")")
+                ) if geo.get("crs") else "- CRS: local meters (no projection)"
+    prov = metadata.get("provenance")
+    prov_lines: list = []
+    if prov:
+        prov_lines = [
+            "",
+            "## Provenance",
+            "",
+            f"- Source: {prov.get('source', '?')}",
+            f"- Region: {prov.get('region_name', '?')}",
+            f"- Center (lon, lat): {prov.get('center_lonlat', '?')}",
+            f"- DEM: {prov.get('dem_collection', '?')}",
+            f"- Land cover: {prov.get('landcover_collection', '?')}  "
+            f"(built-up {100 * prov.get('landcover_stats', {}).get('built_up_fraction', 0):.1f}%, "
+            f"water {100 * prov.get('landcover_stats', {}).get('water_fraction', 0):.1f}%)",
+            f"- Tile picker attempts: {prov.get('tile_picker_attempts', '?')}",
+        ]
     lines = [
         f"# Stratiflow synthetic sample `{metadata['sample_id']}`",
         "",
@@ -297,10 +525,12 @@ def _write_readme(path: Path, metadata, cfg: GenerationConfig, lithology_codes):
         f"- Mesh: nz={cfg.nz}, ny={cfg.ny}, nx={cfg.nx}, dz=dy=dx={cfg.dx_m} m",
         f"- Domain extent: {cfg.nx * cfg.dx_m / 1000:.1f} x {cfg.ny * cfg.dy_m / 1000:.1f} x {cfg.nz * cfg.dz_m / 1000:.1f} km",
         f"- Reference density: {cfg.reference_density_kg_m3} kg/m^3",
+        crs_line,
         f"- Units: {metadata['summary']['n_units']}",
         f"- Faults (ground truth / user-known): {metadata['summary']['n_faults']} / {metadata['summary']['n_user_faults']}",
         f"- Boreholes: {metadata['summary']['n_boreholes']}",
         f"- Surface relief: {metadata['summary']['surface_relief_m']:.0f} m",
+        *prov_lines,
         "",
         "## Lithology vocabulary",
         "",
@@ -340,9 +570,20 @@ def _write_readme(path: Path, metadata, cfg: GenerationConfig, lithology_codes):
     path.write_text("\n".join(lines) + "\n")
 
 
+def _epsg_from_crs(crs: Optional[str]) -> int:
+    """Extract integer EPSG code from a string like 'EPSG:2193'."""
+    if not crs:
+        return 32760
+    return int(str(crs).split(":")[-1])
+
+
 def _write_pipeline_config(
     path: Path, cfg: GenerationConfig,
     lithology_codes, stratigraphic_codes,
+    *,
+    crs: Optional[str] = None,
+    origin_xy_absolute_m: Tuple[float, float] = (0.0, 0.0),
+    z_top_absolute_m: Optional[float] = None,
 ):
     """Write a minimal pipeline config.yaml referencing the inputs/ files."""
     lithology_yaml = "\n".join(
@@ -354,6 +595,9 @@ def _write_pipeline_config(
         f"  {c}: {{name: {e['name']}, age_order: {e['age_order']}}}"
         for c, e in sorted(stratigraphic_codes.items())
     )
+    crs_yaml_value = f'"{crs}"' if crs else "null"
+    z_top_abs_yaml = (f"{z_top_absolute_m:.2f}"
+                      if z_top_absolute_m is not None else "null")
     text = f"""# Pipeline config generated for this synthetic sample
 mesh:
   nz: {cfg.nz}
@@ -363,6 +607,13 @@ mesh:
   dy_m: {cfg.dy_m}
   dz_m: {cfg.dz_m}
   observation_height_m: {cfg.obs_height_m}
+
+geospatial:
+  crs: {crs_yaml_value}
+  horizontal_units: meters
+  origin_xy_absolute_m: [{origin_xy_absolute_m[0]:.3f}, {origin_xy_absolute_m[1]:.3f}]
+  z_top_m_local: 0.0
+  z_top_m_absolute: {z_top_abs_yaml}
 
 reference_density_kg_m3: {cfg.reference_density_kg_m3}
 
