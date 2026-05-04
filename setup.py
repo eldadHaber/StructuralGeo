@@ -20,6 +20,7 @@ setup(
         "trame-vtk",
         "tqdm",
         "PyDTMC",
+        "geoflow-contracts>=0.2,<0.3",
     ],
     extras_require={
         # Microsoft Planetary Computer + raster ingestion for geogen.gis
